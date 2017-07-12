@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.java.repository.HomeRepository">
+
+
+
+	
+  <select id="searchHome" resultType="int">
+		select 
+			 count(1) 
+		from expert t
+		
+  </select>
+  
+  
+  <insert id="insertAdminUser" parameterType="AdminUser" useGeneratedKeys="true" keyProperty="userId">
+		INSERT INTO admin_user(
+		admin_user_name,
+		`role_id`,
+		role_name ,
+		question_category_id ,
+		question_category_name,
+		`password`,
+		`create_date`,
+		`create_id`,
+		`update_id` ,
+		`update_date`,
+		createor,
+		updateor)
+		VALUES(
+		#{userName},
+		#{roleId},
+		#{roleName},
+		#{questionCategoryIds},
+		#{questionCategoryNames},
+		#{password},
+		now(),
+		#{createId},
+		#{updateId},
+		now(),
+		#{createor},
+		#{updateor}
+		)
+	</insert>
+  
+ 
+</mapper>

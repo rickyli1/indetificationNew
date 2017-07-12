@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<configuration>
+    <contextName>LogMng</contextName>
+    <property name="logname" value="tmp"/>
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+    <!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.main.java" level="DEBUG">
+        <appender-ref ref="console" />
+        <!--<appender-ref ref="file" />-->
+    </logger>
+    
+	<logger name="com.pringframework" level="DEBUG">
+		<level value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+		<!-- <appender-ref ref="FILE" /> -->
+	</logger>
+
+	<logger name="org.apache.commons" level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<!--<appender-ref ref="FILE" />-->
+	</logger>
+
+	<logger name="java.sql" level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+		<!-- <appender-ref ref="FILE" />  -->
+	</logger>
+
+	<logger name="java.sql.statement" level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+		<!-- <appender-ref ref="FILE" />  -->
+	</logger>
+
+	<logger name="java.sql.ResultSet" level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+		<!-- <appender-ref ref="FILE" /> -->
+	</logger>
+
+	<logger name="org.apache.ibatis" level="DEBUG">
+		<level value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+		<!--<appender-ref ref="FILE" /> -->
+	</logger>
+    
+
+    <!-- 日志级别 -->
+    <root>
+        <!-- 定义了ERROR和INFO级别的日志，分别在FILE文件和控制台输出 -->
+        <level value="debug" />
+        <!-- <level value="info" /> -->
+        <!--  <appender-ref ref="file" />-->
+        <appender-ref ref="console" />
+    </root>
+
+</configuration>

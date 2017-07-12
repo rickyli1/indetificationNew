@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.java.repository.RepairRepository">
+		<resultMap id="RepairerMap" type="Repairer">
+		<id column="repairer_id" property="repairerId" />
+		<result column="repairer_no" property="repairerNo" />
+		<result column="repairer_name" property="repairerName" />
+		<result column="repairer_level" property="repairerLevel" />
+		<result column="repairer_area" property="repairerArea" />
+		
+		<result column="delete_flag" property="deleteFlag" />
+		<result column="CREATE_BY" property="createBy" />
+		<result column="LAST_MODIFY_BY" property="lastModifyBy" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+	</resultMap>
+
+	<select id="findAllRepairersCount" resultType="int">
+		select
+		count(1)
+		from repairer
+        where delete_flag = 0
+	</select>
+	
+	
+	<select id="findAllRepairers" resultMap="RepairerMap">
+		SELECT
+		 `repairer_id` ,
+		  `repairer_no`, 
+		  `repairer_name`,
+		  `repairer_level`,
+		  `repairer_area`,
+		  `CREATE_BY`,
+		  `LAST_MODIFY_BY`,
+		  `CREATE_TIME`,
+		  `LAST_MODIFY_TIME`,
+		  `DELETE_FLAG`
+		FROM repairer
+        where delete_flag = 0
+		LIMIT ${startNo}, ${pageSize}
+	</select>
+	
+	<select id="findAllRepairersForExport" resultMap="RepairerMap">
+		SELECT
+		 `repairer_id` ,
+		  `repairer_no`, 
+		  `repairer_name`,
+		  `repairer_level`,
+		  `repairer_area`,
+		  `CREATE_BY`,
+		  `LAST_MODIFY_BY`,
+		  `CREATE_TIME`,
+		  `LAST_MODIFY_TIME`,
+		  `DELETE_FLAG`
+		FROM repairer
+		where delete_flag = 0
+	</select>
+	
+	<insert id="importRepairers" parameterType="Repairer" useGeneratedKeys="true" keyProperty="repairerId">
+		INSERT INTO repairer(
+		  `repairer_no`, 
+		  `repairer_name`,
+		  `repairer_level`,
+		  `repairer_area`,
+		  `CREATE_BY`,
+		  `LAST_MODIFY_BY`,
+		  `CREATE_TIME`,
+		  `LAST_MODIFY_TIME`,
+		  `DELETE_FLAG`
+         )
+		VALUES(
+		#{repairerNo},
+		#{repairerName},
+		#{repairerLevel},
+		#{repairerArea},
+		
+		#{createId},
+		#{updateId},
+		now(),
+		now(),
+		0
+		)
+	</insert>
+	
+	<update id="deleteAllRepairers">
+    UPDATE repairer
+    SET  
+       DELETE_FLAG = 1
+    WHERE DELETE_FLAG = 0
+  </update>
+  
+</mapper>
