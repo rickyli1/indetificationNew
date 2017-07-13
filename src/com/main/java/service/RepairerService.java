@@ -6,15 +6,13 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.session.ExecutorType;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.main.java.model.AdminUser;
 import com.main.java.model.Repairer;
 import com.main.java.repository.RepairRepository;
 import com.main.java.utils.Constants;
@@ -22,18 +20,10 @@ import com.main.java.utils.ExcelUtil;
 import com.main.java.utils.IndetificationUtil;
 
 @Service
-public class RepairerService {
+public class RepairerService extends BaseImportService<RepairRepository, Repairer>{
 	
 	@Autowired
 	private RepairRepository repairRepository;
-	
-	//@Autowired
-	//private DataSourceTransactionManager transactionManager;
-	
-	@Autowired
-	private SqlSessionFactory sqlSessionFactory;
-	
-	
 	
 	public int getRepairersCount() {
 		return repairRepository.findAllRepairersCount();
@@ -50,8 +40,10 @@ public class RepairerService {
 	
 
 
-	public String importRepairers(Principal adminUser, Sheet sheet) throws UnsupportedEncodingException {
+	public String importRepairers(Sheet sheet) throws UnsupportedEncodingException {
 		List<Repairer> repairers = new ArrayList<>();
+		
+		AdminUser user = IndetificationUtil.getAdminUser();
 		
 		for (Row row : sheet) {
 			if (row.getRowNum() < 1) {
@@ -84,42 +76,20 @@ public class RepairerService {
 			    	}
 		    		
 				}
-				repairer.setCreateor(adminUser.getName());
-				repairer.setUpdateor(adminUser.getName());
+				repairer.setCreateor(user.getUsername());
+				repairer.setUpdateor(user.getUserName());
+				repairer.setCreateId(user.getUpdateId());
+				repairer.setUpdateId(user.getUpdateId());
 				repairers.add(repairer);
 			}
 		}
 		
-		batchCommit(repairers);
-		return Constants.RESULT_SUCCESS;
+		return batchCommit(repairers, RepairRepository.class);
 	}
 	
-	 private  void batchCommit(List<Repairer> list) {
-         SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
-         //通过新的session获取mapper
-         RepairRepository repairRepository = session.getMapper(RepairRepository.class);
 
-         try {
-             for (int i = 0; i < list.size(); i++) {
-            	 repairRepository.importRepairers(list.get(i));
-                     if ((i % Constants.COMMIT_COUNT_EVERY_TIME == 0  && i > 0)|| i == list.size() - 1) {
-                         //手动每1000个一提交，提交后无法回滚
-                         session.commit();
-                        //清理缓存，防止溢出
-                         session.clearCache();
-                    }
-             }
-         }
-        catch (Exception e) {
-             e.printStackTrace();
-             session.rollback();
-         } finally {
-             if (session != null) {
-                 session.close();
-             }
-         }
-     }
-
-	
-
+	@Override
+	protected void batchInsertInfo(RepairRepository repository, Repairer bean) {
+		repairRepository.importRepairers(bean);
+	}
 }

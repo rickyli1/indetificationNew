@@ -41,7 +41,7 @@ public class RepairerController {
 	
 	@RequestMapping(value="/import",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> importQestion(Principal adminUser,@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+	public Map<String, String> importQestion(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 		Map<String, String> response = new HashMap<String, String>();;
 		
 		if(file == null || file.isEmpty()) {
@@ -51,7 +51,7 @@ public class RepairerController {
 		
 		try(InputStream fileStream = file.getInputStream()) {
 			Sheet sheet = ExcelUtil.createSheet(file.getInputStream(), file.getContentType());
-			repairerService.importRepairers(adminUser, sheet);
+			repairerService.importRepairers(sheet);
 			response.put("message", "导人成功！");
 			return response;
 		}catch(Exception e) {

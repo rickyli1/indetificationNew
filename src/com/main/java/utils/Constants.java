@@ -2,6 +2,7 @@ package com.main.java.utils;
 
 public class Constants {
 	public static final String   RESULT_SUCCESS = "success";
+	public static final String   RESULT_FAIL = "FAIL";
 	/**
 	 * 删除标识 false 未删除
 	 */
