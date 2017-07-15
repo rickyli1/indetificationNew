@@ -1,7 +1,6 @@
 package com.main.java.service;
 
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -46,7 +45,7 @@ public class RepairerService extends BaseImportService<RepairRepository, Repaire
 	
 
 
-	public String importRepairers(Sheet sheet) throws UnsupportedEncodingException {
+	public String importRepairers(Sheet sheet) {
 		List<Repairer> repairers = new ArrayList<>();
 		
 		AdminUser user = IndetificationUtil.getAdminUser();

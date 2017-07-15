@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.java.repository.ApplicationRepository">
+	<resultMap id="applicationMap" type="Application">
+		<id property="applicationId" column="application_id" />
+		<result property="applicationDate" column="application_date" />
+		<result property="applicationRepairer" column="application_repairer" />
+		<result property="equipmentManager" column="equipment_manager" />
+		<result property="equimentGroup" column="equiment_group" />
+		
+		<result property="equimentName" column="equiment_name" />
+		<result property="repairerLevel" column="repairer_level" />
+		<result property="repairerHistory" column="repairer_history" />
+		<result property="remark" column="remark" />
+		
+		<result column="delete_flag" property="deleteFlag" />
+		<result column="CREATE_BY" property="createBy" />
+		<result column="LAST_MODIFY_BY" property="lastModifyBy" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+	</resultMap>
+	 
+	<select id="findApplicationsCount" resultType="int">
+		select
+		count(1)
+		from application_new
+        where delete_flag = 0
+	</select>
+	
+	
+	<select id="findAllApplications" resultMap="applicationMap" parameterType="Application">
+		SELECT
+		  `application_id`,
+		  `application_date`,
+		  `application_repairer`, 
+		  `equipment_manager`,
+		  `equiment_group`,
+		  `equiment_name`,
+		  `repairer_level`,
+		  `repairer_history`,
+		  `remark`,
+		  `CREATE_BY`,
+		  `LAST_MODIFY_BY`,
+		  `CREATE_TIME`,
+		  `LAST_MODIFY_TIME`,
+		  `DELETE_FLAG`
+		FROM application_new
+        where delete_flag = 0
+		LIMIT ${startNo}, ${pageSize}
+	</select>
+	
+	<select id="findAllApplicationsForExport" resultMap="applicationMap">
+		SELECT
+		  `application_id`,
+		  `application_date`,
+		  `application_repairer`, 
+		  `equipment_manager`,
+		  `equiment_group`,
+		  `equiment_name`,
+		  `repairer_level`,
+		  `repairer_history`,
+		  `remark`,
+		  `CREATE_BY`,
+		  `LAST_MODIFY_BY`,
+		  `CREATE_TIME`,
+		  `LAST_MODIFY_TIME`,
+		  `DELETE_FLAG`
+		FROM application_new
+		where delete_flag = 0
+	</select>
+	
+	<insert id="importApplications" parameterType="Application" useGeneratedKeys="true" keyProperty="applicationId">
+		INSERT INTO application_new(
+		  `application_date`,
+		  `application_repairer`, 
+		  `equipment_manager`,
+		  `equiment_group`,
+		  `equiment_name`,
+		  `repairer_level`,
+		  `repairer_history`,
+		  `remark`,
+		  `CREATE_BY`,
+		  `LAST_MODIFY_BY`,
+		  `CREATE_TIME`,
+		  `LAST_MODIFY_TIME`,
+		  `DELETE_FLAG`)
+		VALUES(
+		#{applicationDate},
+		#{applicationRepairer},
+		#{equipmentManager},
+		#{equimentGroup},
+		#{equimentName},
+		#{repairerLevel},
+		#{repairerHistory},
+		#{remark},
+		
+		#{createId},
+		#{updateId},
+		now(),
+		now(),
+		0
+		)
+	</insert>
+	
+	
+</mapper>

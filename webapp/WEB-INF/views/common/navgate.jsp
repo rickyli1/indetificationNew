@@ -96,7 +96,8 @@
    <div class="container">
      <div id="navbar" class="navbar-collapse collapse">
        <ul class="nav navbar-nav">
-         <li><a href="/repairer/import"><spring:message code="lable.navgate.repairer"/></a></li>
+         <li><a href="/repairer/init"><spring:message code="lable.navgate.repairer"/></a></li>
+         <li><a href="/application/init">认可申请</a></li>
        </ul>
      </div><!--/.nav-collapse -->
    </div>
