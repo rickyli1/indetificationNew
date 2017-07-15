@@ -40,6 +40,7 @@
 <script type="text/javascript">
 $('#pagination_repairerList').twbsPagination({
     totalPages: '${totalPage}',
+    startPage:parseInt('${page}', 10),
     visiblePages: 10,
     onPageClick: function (event, page) {
     	$("#page").val(page);
