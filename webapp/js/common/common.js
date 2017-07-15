@@ -82,6 +82,7 @@ identification.fileUpload = function(url, uploadBtnId, fileName, fileId){
 	        		if(data.result.message) {
 			        	//提示信息
 				        alert(data.result.message);
+		        	     window.location.href = window.location.href;				        
 	        		}else{
 	        			$('#'+ fileName).text(data.result.fileName);
 	        			$('#'+ fileId).val(data.result.fileId);
@@ -89,6 +90,7 @@ identification.fileUpload = function(url, uploadBtnId, fileName, fileId){
 	        	} else {
 		        	//提示信息
 	        		 alert("文件导人成功！");
+	        	     window.location.href = window.location.href;
 	        	}
 	        	
 	        	$('#loading').hide();

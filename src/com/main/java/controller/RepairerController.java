@@ -5,11 +5,11 @@ import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.server.PathParam;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -18,14 +18,18 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.main.java.model.Repairer;
 import com.main.java.service.RepairerService;
+import com.main.java.utils.Constants;
 import com.main.java.utils.ExcelUtil;
+import com.main.java.utils.PageUtil;
 import com.main.java.utils.TimeUtils;
 
 
@@ -36,13 +40,15 @@ public class RepairerController {
 	private RepairerService repairerService;
 	
 	@RequestMapping("/init")
-	public String repairerInit() {
+	public String repairerInit(Model model) {
+		doSearch(1, model);
+
 		return "repairer/search";
 	}
 	
 	@RequestMapping("/search/{page}")
-	public String searchRepairers(@PathParam(value = "page") int page) {
-		
+	public String searchRepairers(@PathVariable int page, Model model) {
+		doSearch(page, model);
 		return "/repairer/list";
 	}
 
@@ -108,5 +114,18 @@ public class RepairerController {
 		
    }
 	
-	
+	private void  doSearch(int page, Model model) {
+		Repairer repairer = new Repairer();
+		repairer.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));
+		repairer.setPageSize(Constants.PAGE_SIZE);
+		
+		int totalCount = repairerService.findRepairersCount();
+		List<Repairer> repairers = repairerService.findAllRepairers(repairer);
+		model.addAttribute("totalPage", PageUtil.getTotalPage(totalCount, Constants.PAGE_SIZE));
+		model.addAttribute("pageSize", Constants.PAGE_SIZE);
+		model.addAttribute("page", page);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("repairers", repairers);
+		
+	}
 }

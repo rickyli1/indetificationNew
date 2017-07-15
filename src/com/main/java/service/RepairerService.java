@@ -36,8 +36,12 @@ public class RepairerService extends BaseImportService<RepairRepository, Repaire
 		return repairRepository.findAllRepairersForExport();
 	}
 	
-	public List<Repairer> findAllRepairers(){
-		return  repairRepository.findAllRepairers();
+	public List<Repairer> findAllRepairers(Repairer repairer){
+		return  repairRepository.findAllRepairers(repairer);
+	}
+	
+	public int findRepairersCount() {
+		return repairRepository.findAllRepairersCount();
 	}
 	
 

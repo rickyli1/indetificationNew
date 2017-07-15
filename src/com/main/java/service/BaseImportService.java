@@ -31,12 +31,11 @@ public abstract class BaseImportService<T,V>{
          T repository = session.getMapper(type);
 
          try {
+    		 //如果不是增量添加，需在子类实现deleteAllData
+			 deleteAllData();   
+
         	 IntStream.range(0, list.size()).forEach(i -> {
         		 batchInsertInfo(repository, list.get(i));
-        		 //如果不是增量添加，需在子类实现deleteAllData
-        		 if(i == 0) {
-        			 deleteAllData();   
-        		 }
         		 if ((i % Constants.COMMIT_COUNT_EVERY_TIME == 0  && i > 0)|| i == list.size() - 1) {
                      //手动每1000个一提交，提交后无法回滚
                      session.commit();

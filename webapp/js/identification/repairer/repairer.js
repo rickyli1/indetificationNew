@@ -7,7 +7,7 @@
 		bindEvent: function() {
 			var that = this;
 			
-			$("#searchBtn").click(function(){
+			$("#repairerSearchBtn").click(function(){
 				$("#page").val(1);
 				that.searchList();
 			});	
@@ -29,7 +29,6 @@
 			var that = this;
 			
 			$("#repairerResultList").empty();
-			var data = this.getSearchConditions();
 			identification.ajax("/repairer/search/" + $("#page").val(), null, "html", function(res) {
 				$("#repairerResultList").html(res);
 			});

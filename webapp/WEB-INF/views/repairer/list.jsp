@@ -12,13 +12,14 @@
 	                <th>单位性质</th>
 	              </tr>
 	            </thead>
+	            	
 	            <tbody>
-	            	<c:forEach var="apply" items="${applicationResultList}" varStatus="status">
+	            	<c:forEach var="repairer" items="${repairers}" varStatus="status">
 		               <tr>
-		                <td>${status.count+(page-1)*pageSize}</td>
-		                <td>${apply.companyName}</td>
-		                <td>${apply.equipmentName}</td>
-		                <td>${apply.repairLevel}</td>
+		                <td>${repairer.repairerNo}</td>
+		                <td>${repairer.repairerArea}</td>
+		                <td>${repairer.repairerName}</td>
+		                <td>${repairer.repairerLevel}</td>
 		               </tr>
 	            	</c:forEach>
 	            </tbody>
@@ -37,7 +38,15 @@
 <script type="text/javascript" src="/js/common/jquery/jquery.twbsPagination.min.js" charset="UTF-8"></script>
 
 <script type="text/javascript">
-	
+$('#pagination_repairerList').twbsPagination({
+    totalPages: '${totalPage}',
+    visiblePages: 10,
+    onPageClick: function (event, page) {
+    	$("#page").val(page);
+	    event.preventDefault();
+    	goPage(page);
+    }
+});	
 	
  </script>
       

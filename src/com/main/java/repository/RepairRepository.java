@@ -10,7 +10,7 @@ public interface RepairRepository {
 	
 	public List<Repairer> findAllRepairersForExport();
 	
-	public List<Repairer> findAllRepairers();
+	public List<Repairer> findAllRepairers(Repairer repairer);
 	
 	public int findAllRepairersCount();
 	

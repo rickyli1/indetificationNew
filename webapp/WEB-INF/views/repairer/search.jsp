@@ -48,6 +48,8 @@
 	      </div>
       </div>
       </div>
+  	<input type="hidden" name="page" id="page" value="1"/>
+      
  <div id="alertDiv"></div>
 		<c:import url="/WEB-INF/views/common/commonScript.jsp"></c:import>  
 

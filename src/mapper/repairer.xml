@@ -25,7 +25,7 @@
 	</select>
 	
 	
-	<select id="findAllRepairers" resultMap="RepairerMap">
+	<select id="findAllRepairers" resultMap="RepairerMap" parameterType="Repairer">
 		SELECT
 		 `repairer_id` ,
 		  `repairer_no`, 
