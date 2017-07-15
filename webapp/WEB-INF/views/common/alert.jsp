@@ -12,13 +12,18 @@
 
 <c:set var="baseUrl" value='${fn:replace(reqUrl,uri,"")}/'/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-   <script type="text/javascript">
+   
+</head>
+<body>
+<%
+out.clear();
+out = pageContext.pushBody();
+%>
+</body>
+  <script type="text/javascript">
+  console.log(2222);
       alert("${msg}");
       window.location.href = "${baseUrl}"+"${url}";
     </script>
-    
-</head>
-<body>
-
-</body>
+  
 </html>

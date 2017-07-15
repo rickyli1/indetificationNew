@@ -9,8 +9,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtil {
@@ -41,6 +43,7 @@ public class ExcelUtil {
 		return sheet;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static String getCellValue(Cell cell) {
 		if (cell == null) {
 			return StringUtils.EMPTY;
@@ -65,4 +68,26 @@ public class ExcelUtil {
 				return StringUtils.EMPTY;
 		}
 	}
+	
+	
+	/**
+	 * 描述：设置简单的Cell样式
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("deprecation")
+	public static CellStyle setSimpleCellStyle(Workbook wb) {
+		CellStyle cs = wb.createCellStyle();
+
+		cs.setBorderBottom(CellStyle.BORDER_THIN); // 下边框
+		cs.setBorderLeft(CellStyle.BORDER_THIN);// 左边框
+		cs.setBorderTop(CellStyle.BORDER_THIN);// 上边框
+		cs.setBorderRight(CellStyle.BORDER_THIN);// 右边框
+
+//		cs.setAlignment(CellStyle.ALIGN_CENTER); // 居中
+		cs.setAlignment(XSSFCellStyle.ALIGN_CENTER); // 居中  
+		cs.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);//垂直  
+		return cs;
+	}
+
 }

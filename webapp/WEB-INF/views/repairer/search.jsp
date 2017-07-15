@@ -30,7 +30,7 @@
 				        <!-- The file input field used as target for the file upload widget -->
 				         <input id="repairerImoprtBtn"  type="file" name="file" multiple>
 				    </span>  
-      				<button type="button" class="btn btn-primary btn-sm" id="repairerSearchBtn">导出</button>
+      				<button type="button" class="btn btn-primary btn-sm" id="repairerExportBtn">导出</button>
                  </div>
                                  
               </div>

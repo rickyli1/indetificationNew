@@ -1,5 +1,5 @@
 (function($) {
-	Class('Identification.repairer.List',{
+	Class('Identification.repairer.List', {
 		init:function() {
 			this.bindEvent();
 		},
@@ -12,9 +12,17 @@
 				that.searchList();
 			});	
 			
-	        //申请文件上传
-        	identification.fileUpload("/repairer/import","repairerImoprtBtn", "", "");	  
+	        //文件导入
+        	identification.fileUpload("/repairer/import","repairerImoprtBtn", "", "");	
+        	
+           //文件导出
+        	$("#repairerExportBtn").click(function(){
+        		$("#loading").show();
+				location.href="/repairer/export";   
+				$("#loading").hide();
 
+			});	
+        	
 		},
 		
 		searchList : function() {

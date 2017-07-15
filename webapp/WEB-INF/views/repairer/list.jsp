@@ -38,18 +38,7 @@
 
 <script type="text/javascript">
 	
-	if('${totalPage}' > 1){
-		$('#pagination_repairerList').twbsPagination({
-		    totalPages: ${totalPage},
-		    startPage: ${page},
-		    visiblePages: 10,
-		    onPageClick: function (event, page) {
-		    	$("#page").val(page);
-			    event.preventDefault();
-		    	goPage(page);
-		    }
-		});
-	}
+	
  </script>
       
       

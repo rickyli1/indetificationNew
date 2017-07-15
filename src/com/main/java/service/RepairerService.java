@@ -2,11 +2,14 @@ package com.main.java.service;
 
 
 import java.io.UnsupportedEncodingException;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,6 @@ import org.springframework.stereotype.Service;
 import com.main.java.model.AdminUser;
 import com.main.java.model.Repairer;
 import com.main.java.repository.RepairRepository;
-import com.main.java.utils.Constants;
 import com.main.java.utils.ExcelUtil;
 import com.main.java.utils.IndetificationUtil;
 
@@ -91,5 +93,46 @@ public class RepairerService extends BaseImportService<RepairRepository, Repaire
 	@Override
 	protected void batchInsertInfo(RepairRepository repository, Repairer bean) {
 		repairRepository.importRepairers(bean);
+	}
+	
+	@Override
+	protected void deleteAllData() {
+		repairRepository.deleteAllRepairers();
+	}
+
+
+	@Override
+	protected void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs) {
+		//取数据
+		List<Repairer> repairers = findAllRepairersForExport();
+
+	    if(CollectionUtils.isNotEmpty(repairers)) {
+	    	
+	    	IntStream.range(0, repairers.size()).forEach(index -> {
+	    		Repairer repairer = repairers.get(index);
+	    		Row row = sheet.createRow(index + 1);
+	    		
+	    		//序号
+	    		Cell cell = row.createCell(0);
+				cell.setCellValue(repairer.getRepairerNo());
+				cell.setCellStyle(cs);
+				
+				//辖区 
+	    		cell = row.createCell(1);
+				cell.setCellValue(repairer.getRepairerArea());
+				cell.setCellStyle(cs);
+				
+				//修理单位 
+				cell = row.createCell(2);
+				cell.setCellValue(repairer.getRepairerName());
+				cell.setCellStyle(cs);
+								
+				
+				//单位性质
+				cell = row.createCell(3);
+				cell.setCellValue(repairer.getRepairerLevel());
+				cell.setCellStyle(cs);
+	    	});
+	    }
 	}
 }
