@@ -19,6 +19,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,14 +41,15 @@ public class ApplicationController {
 	
 	@RequestMapping("/init")
 	public String applicationInit(Model model) {
-		doSearch(1, model);
+		Application searchParams = new Application();
+		doSearch(1, model, searchParams);
 
 		return "application/search";
 	}
 	
 	@RequestMapping("/search/{page}")
-	public String searchRepairers(@PathVariable int page, Model model) {
-		doSearch(page, model);
+	public String searchRepairers(@PathVariable int page, Model model, @RequestBody Application searchParams) {
+		doSearch(page, model, searchParams);
 		return "/application/list";
 	}
 
@@ -80,16 +82,23 @@ public class ApplicationController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value ="/export")
-	public String exportRepairers(Model model,HttpServletRequest request,HttpServletResponse response) throws Exception {
+
+	public String exportRepairers(Model model,HttpServletRequest request,HttpServletResponse response, @RequestParam(value="applicationDate", required=false)String applicationDate
+			, @RequestParam(value="applicationRepairer", required=false)String applicationRepairer, @RequestParam(value="equimentName", required=false)String equimentName) throws Exception {
 		OutputStream os = null;  
 		Workbook wb = null;    //工作薄
+		
+		Application application = new Application(); 
+		application.setApplicationDate(applicationDate);
+		application.setEquimentName(equimentName);
+		application.setApplicationRepairer(applicationRepairer);
 
 		try {		
 			//导出Excel文件数据
 			Resource res2 = new ClassPathResource("resources/export/认可申请表.xls"); 
 			
 			String sheetName="认可申请表";  
-			wb = applicationService.writeNewExcel(res2.getFile()); 
+			wb = applicationService.writeNewExcel(res2.getFile(), application); 
 			
 			String fileName= sheetName + "_" +TimeUtils.getStringFromTime(new Date(), TimeUtils.FORMAT_DATE_NO) +".xls";
 		    response.setContentType("application/vnd.ms-excel");
@@ -112,13 +121,12 @@ public class ApplicationController {
 		
    }
 	
-	private void  doSearch(int page, Model model) {
-		Application application = new Application();
-		application.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));
-		application.setPageSize(Constants.PAGE_SIZE);
+	private void  doSearch(int page, Model model, Application searchParams) {
+		searchParams.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));
+		searchParams.setPageSize(Constants.PAGE_SIZE);
 		
-		int totalCount = applicationService.findApplicatiosCount();
-		List<Application> applications = applicationService.findAllApplications(application);
+		int totalCount = applicationService.findApplicatiosCount(searchParams);
+		List<Application> applications = applicationService.findAllApplications(searchParams);
 		model.addAttribute("totalPage", PageUtil.getTotalPage(totalCount, Constants.PAGE_SIZE));
 		model.addAttribute("pageSize", Constants.PAGE_SIZE);
 		model.addAttribute("page", page);

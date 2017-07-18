@@ -16,6 +16,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.main.java.model.Application;
 import com.main.java.utils.Constants;
 import com.main.java.utils.ExcelUtil;
 
@@ -66,7 +67,7 @@ public abstract class BaseImportService<T,V>{
 	 
 	 
 	 
-	 public Workbook writeNewExcel(File file) throws Exception {
+	 public Workbook writeNewExcel(File file, V searchParam) throws Exception {
 			
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
 		       // 打开HSSFWorkbook
@@ -77,12 +78,12 @@ public abstract class BaseImportService<T,V>{
 			// 循环插入数据
 			CellStyle cs = ExcelUtil.setSimpleCellStyle(wb); // Excel单元格样式
 			
-			writeCells(wb, sheet, cs);
+			writeCells(wb, sheet, cs, searchParam);
 			
 			return wb;
 		}
 	 
-	 protected abstract void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs);
+	 protected abstract void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs, V searchParam);
 
 
 }

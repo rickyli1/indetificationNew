@@ -8,10 +8,10 @@ public interface ApplicationRepository {
 
 	public void importApplications(Application application); 
 	
-	public List<Application> findAllApplicationsForExport();
+	public List<Application> findAllApplicationsForExport(Application application);
 	
 	public List<Application> findAllApplications(Application application);
 	
-	public int findApplicationsCount();
+	public int findApplicationsCount(Application searchParams);
 	
 }

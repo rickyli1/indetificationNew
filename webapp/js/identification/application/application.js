@@ -18,20 +18,37 @@
            //文件导出
         	$("#applicationExportBtn").click(function(){
         		$("#loading").show();
-				location.href="/application/export";   
+				location.href="/application/export?applicationDate="+  $("#requireData").val().trim()+"&applicationRepairer=" +  $("#requireCompany").val().trim()+"&equimentName="+ $("#equipmentName").val();
 				$("#loading").hide();
 
 			});	
         	
 		},
 		
+		// 设置参数隐藏域
+		setSearchParam: function() {
+			$("#requireData").val($("#applicationDateHid").val().trim());
+			$("#requireCompany").val($("#applicationRepairerHid").val().trim());
+			$("#equipmentName").val($("#equimentNameHid").val().trim());
+		},
 		searchList : function() {
 			var that = this;
 			
 			$("#applicationResultList").empty();
-			identification.ajax("/application/search/" + $("#page").val(), null, "html", function(res) {
+			var params = that.getParams();
+			console.log(params);
+			identification.ajax("/application/search/" + $("#page").val(), JSON.stringify(params), "html", function(res) {
 				$("#applicationResultList").html(res);
 			});
+		},
+		
+		getParams : function() {
+			var data = {	
+					"applicationDate": $("#requireData").val(),
+					"applicationRepairer":$("#requireCompany").val(),
+					"equimentName":$("#equipmentName").val(),
+				};
+		   return data;
 		}
 		
 	});

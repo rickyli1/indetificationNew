@@ -21,12 +21,26 @@
 		<result column="CREATE_TIME" property="createTime" />
 		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
 	</resultMap>
+	
+	<sql id="searchCondSql">
+  		<if test="applicationDate != null and applicationDate != '' ">
+  			and application_date = #{applicationDate}
+  		</if>
+  		<if test="applicationRepairer != null and applicationRepairer != '' ">
+  			and application_repairer like concat('%',#{applicationRepairer},'%')
+  		</if>
+  		<if test="equimentName != null and equimentName != '' ">
+  			and equiment_name  like concat('%',#{equimentName},'%')
+  		</if>
+	</sql>
+	
 	 
-	<select id="findApplicationsCount" resultType="int">
+	<select id="findApplicationsCount" resultType="int" parameterType="Application">
 		select
 		count(1)
 		from application_new
         where delete_flag = 0
+        <include refid="searchCondSql" />
 	</select>
 	
 	
@@ -48,10 +62,12 @@
 		  `DELETE_FLAG`
 		FROM application_new
         where delete_flag = 0
+        <include refid="searchCondSql" />
+        
 		LIMIT ${startNo}, ${pageSize}
 	</select>
 	
-	<select id="findAllApplicationsForExport" resultMap="applicationMap">
+	<select id="findAllApplicationsForExport" resultMap="applicationMap" parameterType="Application">
 		SELECT
 		  `application_id`,
 		  `application_date`,
@@ -69,6 +85,7 @@
 		  `DELETE_FLAG`
 		FROM application_new
 		where delete_flag = 0
+        <include refid="searchCondSql" />
 	</select>
 	
 	<insert id="importApplications" parameterType="Application" useGeneratedKeys="true" keyProperty="applicationId">

@@ -17,9 +17,28 @@
 	<div class="panel panel-primary">
 	  <div class="panel-heading">认可申请</div>
 		  <div class="panel-body"> 
-		  
-           <fieldset>
+            <fieldset>
               <legend> </legend>
+              <div class="form-group">
+                 <label class="col-md-1 control-label" for="requireData">申请日期</label>
+                 <div class="col-md-2">
+                    <input type="text" id="requireData" class="form-control" name="requireData">
+                 </div>
+                 <label class="col-md-1 control-label" for="requireCompany">申请单位</label>
+                 <div class="col-md-2">                
+					<input type="text" id="requireCompany" class="form-control" name="requireCompany">
+                 </div>
+                 
+                 <label class="col-md-2 control-label" for="equipmentName">申请ZB型号名称</label>
+                 <div class="col-md-2">                
+                   <input type="text" id="equipmentName" class="form-control" name="equipmentName">
+                 </div>                 
+              </div>
+           </fieldset>
+        		  
+		  
+		  
+           <fieldset Style="margin-top:10px">
               <div class="form-group">
                  <div class="col-md-3">
       				<button type="button" class="btn btn-primary btn-sm" id="applicationSearchBtn">查询</button>
@@ -49,6 +68,11 @@
       </div>
       </div>
   	<input type="hidden" name="page" id="page" value="1"/>
+<div>
+ <input type="hidden" id="applicationDateHid" value="">
+ <input type="hidden" id="applicationRepairerHid" value="">
+ <input type="hidden" id="equimentNameHid" value="">
+ </div>	       	
       
  <div id="alertDiv"></div>
 		<c:import url="/WEB-INF/views/common/commonScript.jsp"></c:import>  

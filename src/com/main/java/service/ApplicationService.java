@@ -25,16 +25,12 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 	@Autowired
 	private ApplicationRepository applicationRepository;
 	
-	public List<Application> findAllApplicationsForExport() {
-		return applicationRepository.findAllApplicationsForExport();
-	}
-	
 	public List<Application> findAllApplications(Application application){
 		return  applicationRepository.findAllApplications(application);
 	}
 	
-	public int findApplicatiosCount() {
-		return applicationRepository.findApplicationsCount();
+	public int findApplicatiosCount(Application searchParams) {
+		return applicationRepository.findApplicationsCount(searchParams);
 	}
 	
 	public String importRepairers(Sheet sheet) {
@@ -113,9 +109,9 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 	
 
 	@Override
-	protected void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs) {
+	protected void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs, Application bean) {
 		//取数据
-		List<Application> applications = this.findAllApplicationsForExport();
+		List<Application> applications = applicationRepository.findAllApplicationsForExport(bean);
 
 	    if(CollectionUtils.isNotEmpty(applications)) {
 	    	
