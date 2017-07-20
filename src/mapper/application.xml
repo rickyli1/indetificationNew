@@ -32,6 +32,34 @@
   		<if test="equimentName != null and equimentName != '' ">
   			and equiment_name  like concat('%',#{equimentName},'%')
   		</if>
+  		
+	</sql>
+	
+	<sql id="orderBySql">
+	    <choose>
+	    	<when test="orderType == 1">
+	    		order by application_date
+	    	</when>
+	    	
+	    	<when test="orderType == 2">
+	    		order by application_repairer
+	    	</when>
+	    	<when test="orderType == 3">
+	    		order by equiment_name	    	
+	    	</when>
+	    	<when test="orderType == 4">
+	    		order by application_date desc
+	    	</when>
+	    	<when test="orderType == 5">
+	    		order by application_repairer desc	    	
+	    	</when>
+	    	<when test="orderType == 6">
+	    		order by equiment_name	desc    		    	
+	    	</when>
+	    	<otherwise>
+	    		  order by application_date
+	    	</otherwise>
+	    </choose>
 	</sql>
 	
 	 
@@ -63,7 +91,7 @@
 		FROM application_new
         where delete_flag = 0
         <include refid="searchCondSql" />
-        
+        <include refid="orderBySql" />
 		LIMIT ${startNo}, ${pageSize}
 	</select>
 	
@@ -86,6 +114,7 @@
 		FROM application_new
 		where delete_flag = 0
         <include refid="searchCondSql" />
+        <include refid="orderBySql" />
 	</select>
 	
 	<insert id="importApplications" parameterType="Application" useGeneratedKeys="true" keyProperty="applicationId">

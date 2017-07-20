@@ -18,12 +18,19 @@
            //文件导出
         	$("#applicationExportBtn").click(function(){
         		$("#loading").show();
-				location.href="/application/export?applicationDate="+  $("#requireData").val().trim()+"&applicationRepairer=" +  $("#requireCompany").val().trim()+"&equimentName="+ $("#equipmentName").val();
+				location.href="/application/export?applicationDate="+  $("#requireData").val().trim()+"&applicationRepairer=" +  $("#requireCompany").val().trim()+"&equimentName="+ $("#equipmentName").val()+"&orderType="+ $("#orderType").val();
 				$("#loading").hide();
 
 			});	
         	
+        	that.initCalendar();
+        	
 		},
+		
+		initCalendar : function() {
+			identification.initCalendarByClass('form_datetime','form_date','form_time');			
+		},
+
 		
 		// 设置参数隐藏域
 		setSearchParam: function() {
@@ -47,6 +54,7 @@
 					"applicationDate": $("#requireData").val(),
 					"applicationRepairer":$("#requireCompany").val(),
 					"equimentName":$("#equipmentName").val(),
+					"orderType":$("#orderType").val()
 				};
 		   return data;
 		}

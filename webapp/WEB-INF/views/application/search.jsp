@@ -22,7 +22,11 @@
               <div class="form-group">
                  <label class="col-md-1 control-label" for="requireData">申请日期</label>
                  <div class="col-md-2">
-                    <input type="text" id="requireData" class="form-control" name="requireData">
+                   <span class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="requireData" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" type="text" value="" readonly="readonly">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </span>
+				     <input type="hidden" id="requireData" value="" />                
                  </div>
                  <label class="col-md-1 control-label" for="requireCompany">申请单位</label>
                  <div class="col-md-2">                
@@ -31,7 +35,7 @@
                  
                  <label class="col-md-2 control-label" for="equipmentName">申请ZB型号名称</label>
                  <div class="col-md-2">                
-                   <input type="text" id="equipmentName" class="form-control" name="equipmentName">
+                   <input type="text" id="equipmentName" class="form-control input-xlarge" name="equipmentName">
                  </div>                 
               </div>
            </fieldset>
@@ -40,7 +44,7 @@
 		  
            <fieldset Style="margin-top:10px">
               <div class="form-group">
-                 <div class="col-md-3">
+                 <div class="col-md-4">
       				<button type="button" class="btn btn-primary btn-sm" id="applicationSearchBtn">查询</button>
       				
                     <span class="btn btn-primary  btn-sm fileinput-button">
@@ -50,6 +54,15 @@
 				         <input id="applicationImoprtBtn"  type="file" name="file" multiple>
 				    </span>  
       				<button type="button" class="btn btn-primary btn-sm" id="applicationExportBtn">导出</button>
+      				
+      				<select style="height:30px" id="orderType"> 
+      					<option value="1">升序+申请日期</option>
+      					<option value="2">升序+申请单位</option>
+      					<option value="3">升序+申请ZB型号名称</option>
+      					<option value="4">降序+申请日期</option>
+      					<option value="5">降序+申请单位</option>
+      					<option value="6">降序+申请ZB型号名称</option>
+      				</select>
                  </div>
                                  
               </div>

@@ -84,7 +84,8 @@ public class ApplicationController {
 	@RequestMapping(value ="/export")
 
 	public String exportRepairers(Model model,HttpServletRequest request,HttpServletResponse response, @RequestParam(value="applicationDate", required=false)String applicationDate
-			, @RequestParam(value="applicationRepairer", required=false)String applicationRepairer, @RequestParam(value="equimentName", required=false)String equimentName) throws Exception {
+			, @RequestParam(value="applicationRepairer", required=false)String applicationRepairer, @RequestParam(value="equimentName", required=false)String equimentName
+			, @RequestParam(value="orderType", required=false)String orderType) throws Exception {
 		OutputStream os = null;  
 		Workbook wb = null;    //工作薄
 		
@@ -92,6 +93,7 @@ public class ApplicationController {
 		application.setApplicationDate(applicationDate);
 		application.setEquimentName(equimentName);
 		application.setApplicationRepairer(applicationRepairer);
+		application.setOrderType(orderType);
 
 		try {		
 			//导出Excel文件数据

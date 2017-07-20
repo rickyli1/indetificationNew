@@ -18,6 +18,7 @@ import com.main.java.model.Application;
 import com.main.java.repository.ApplicationRepository;
 import com.main.java.utils.ExcelUtil;
 import com.main.java.utils.IndetificationUtil;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class ApplicationService extends BaseImportService<ApplicationRepository, Application>{
@@ -106,6 +107,18 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 	protected void batchInsertInfo(ApplicationRepository repository, Application bean) {
 		repository.importApplications(bean);
 	}
+	
+	@Override
+	protected  List<Application> filterExistData(List<Application> list) {
+		Application application = new Application();
+		
+		List<Application> applicationList = applicationRepository.findAllApplicationsForExport(application);
+		
+		List<String> applicationKeyList = applicationList.stream().map(Application :: getApplicationKey).collect(toList());
+		
+		return list.stream().filter(item -> !applicationKeyList.contains(item.getApplicationKey())).collect(toList());
+		 
+	 }
 	
 
 	@Override
