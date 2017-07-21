@@ -60,7 +60,6 @@ public abstract class BaseImportService<T,V>{
          return Constants.RESULT_SUCCESS;
      }
 	 
-	 
 	 protected abstract void batchInsertInfo(T mapper, V bean) ;
 	 
 	 protected void deleteAllData() {}

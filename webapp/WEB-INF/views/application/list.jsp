@@ -7,28 +7,33 @@
 	         <table class="table table-bordered table-striped">
 	            <thead>
 	              <tr>
-	                <th>申请日期</th>
+	                <th style="width:9%">申请日期</th>
 	                <th>申请单位</th>
 	                <th>装备管理机关</th>
-	                <th>申请装备专业</th>
+	                <th style="width:7%">备装专业</th>
 	                <th>申请ZB型号名称</th>
-	                <th>申请级别</th>
+	                <th style="width:7%">申请级别</th>
 	                <th>申请经历</th>
-	                <th>备注</th>
+	                <th Style="width:5%">备注</th>
+	                <th style="width:11%">操作</th>
 	              </tr>
 	            </thead>
 	            	
 	            <tbody>
 	            	<c:forEach var="application" items="${applications}" varStatus="status">
 		               <tr>
-		                <td>${application.applicationDate}</td>
-		                <td>${application.applicationRepairer}</td>
-		                <td>${application.equipmentManager}</td>
-		                <td>${application.equimentGroup}</td>
-		                <td>${application.equimentName}</td>
-		                <td>${application.repairerLevel}</td>
-		                <td>${application.repairerHistory}</td>
-		                <td>${application.remark}</td>
+		                <td id="applicationDate${application.applicationId}">${application.applicationDate}</td>
+		                <td id="applicationRepairer${application.applicationId}">${application.applicationRepairer}</td>
+		                <td id="equipmentManager${application.applicationId}">${application.equipmentManager}</td>
+		                <td id="equimentGroup${application.applicationId}">${application.equimentGroup}</td>
+		                <td id="equimentName${application.applicationId}">${application.equimentName}</td>
+		                <td id="repairerLevel${application.applicationId}">${application.repairerLevel}</td>
+		                <td  id="repairerHistory${application.applicationId}"class="history">${application.repairerHistory}</td>
+		                <td id="remark${application.applicationId}">${application.remark}</td>
+		                <td>
+							<button id="applicationModifyBtn" class="btn btn-primary btn-sm" type="button"  data-toggle="modal" data-target="#applicationUpdateModal" onclick="identification.application.goApplicationUpdate('${application.applicationId}')">修改</button>
+							<button id="applocationDelBtn" class="btn btn-primary btn-sm" type="button" onclick="identification.application.goApplicationDelete('${application.applicationId}')">删除</button>
+		                </td>		              
 		               </tr>
 	            	</c:forEach>
 	            </tbody>

@@ -12,6 +12,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.main.java.model.AdminUser;
 import com.main.java.model.Application;
@@ -100,8 +101,18 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 		
 		return batchCommit(applications, ApplicationRepository.class);
 	}
-
 	
+	 
+	 @Transactional
+	 public void deleteRepairById(int id) {
+		 applicationRepository.deleteRepairById(id);
+	 }
+	 
+	 @Transactional
+	 public void updateRepair(Application updateParams) {
+		 applicationRepository.updateRepair(updateParams);
+	}
+	 
 	
 	@Override
 	protected void batchInsertInfo(ApplicationRepository repository, Application bean) {
@@ -179,4 +190,5 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 			});
 	    }
 	}
+
 }

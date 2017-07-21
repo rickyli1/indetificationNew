@@ -86,8 +86,78 @@
  <input type="hidden" id="applicationRepairerHid" value="">
  <input type="hidden" id="equimentNameHid" value="">
  </div>	       	
-      
  <div id="alertDiv"></div>
+ 
+ <div class="modal fade" id="applicationUpdateModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true" style="display:none">
+      	<div class="modal-dialog" style="width:800px">
+      		<form method="post">
+      			<div class="modal-content">
+      				<div class="modal-header">
+      					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title" id="detailModalLabel">认可申请修改</h4>
+      				</div>
+      				<div class="panel-body"> 
+      				<div class="form-group">
+					<div class="row" style="margin-top:10px">
+					    <div class="row" style="margin-top:10px">
+					      	<label class="col-md-2 control-label" for="updateApplicationDate">申请日期</label>
+					      <div class="col-md-3">	
+					      	<input type="text" id="updateApplicationDate" name="updateApplicationDate"/>
+					      </div>
+					      
+						  <label class="col-md-2 control-label" for="updateApplicationRepairer">申请单位</label>
+					      <div class="col-md-3">
+					      	<input type="text" id="updateApplicationRepairer" name="updateApplicationRepairer"/>
+						  </div>
+						 </div>
+					    <div class="row" style="margin-top:10px">							  
+						 <label class="col-md-2 control-label" for="updateEquipmentManager">装备管理机关</label>							  
+					      <div class="col-md-3">
+					      	<input type="text" id="updateEquipmentManager" name="updateEquipmentManager"/>
+						  </div>
+						  
+						  <label class="col-md-2 control-label" for="updateEquimentGroup">备装专业</label>
+						  <div class="col-md-3">
+					      	<input type="text" id="updateEquimentGroup" name="updateEquimentGroup"/>
+						  </div>
+                             </div>
+                           <div class="row" style="margin-top:10px">
+						  <label class="col-md-2 control-label" for="updateRepairerLevel">申请级别</label>
+						  <div class="col-md-3">
+					      	<input type="text" id="updateRepairerLevel" name="updateRepairerLevel"/>
+						  </div>
+
+                          <label class="col-md-2 control-label" for="updateEquimentName">申请ZB型号名称</label>
+						  <div class="col-md-3">
+					      	<input type="text" id="updateEquimentName" name="updateEquimentName"/>
+						  </div>
+						  </div>
+						  <div class="row" style="margin-top:10px">
+						  
+						 <label class="col-md-2 control-label" for="updateRepairerHistory">申请经历</label>							  
+						  <div class="col-md-3">
+					      	<textarea rows="5" cols="68" id="updateRepairerHistory"></textarea>
+						  </div>
+						  </div>
+						  <div class="row" style="margin-top:10px">
+						  
+						 <label class="col-md-2 control-label" for="updateRepairerHistory">备注</label>							  
+						  <div class="col-md-3">
+					      	<input type="text" id="updateRemark" name="updateRemark"/>
+						  </div>
+						  </div>
+						  								  
+						</div>
+					</div>
+					<input type="hidden" id="updateApplicationId" value=""/>
+					<button style="float:right" id="updateApplicationBtn" class="btn btn-primary btn-sm" type="button"  onclick="identification.application.updatelicationUpdate()">确认</button>
+				  </div>
+				</div>
+				</div>
+			</form>
+		</div>
+	  </div>
+ 
 		<c:import url="/WEB-INF/views/common/commonScript.jsp"></c:import>  
 
 	    <script type="text/javascript" src="/js/identification/application/application.js" charset="UTF-8"></script>	    

@@ -123,6 +123,29 @@ public class ApplicationController {
 		
    }
 	
+	@RequestMapping(value ="/delete/{id}")
+	public String deleteRepairById(Model model, @PathVariable int id) {
+		applicationService.deleteRepairById(id);
+		
+		model.addAttribute("msg", "删除成功！");
+		model.addAttribute("url", "application/init"); 
+		 
+	   return "common/alert";
+
+	}
+	
+	@RequestMapping(value ="/update")
+	public String updateRepair(Model model,@RequestBody Application updateParams) {
+		applicationService.updateRepair(updateParams);
+		
+		model.addAttribute("msg", "修改成功！");
+		model.addAttribute("url", "application/init"); 
+		 
+	   return "common/alert";
+
+	}
+
+	
 	private void  doSearch(int page, Model model, Application searchParams) {
 		searchParams.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));
 		searchParams.setPageSize(Constants.PAGE_SIZE);

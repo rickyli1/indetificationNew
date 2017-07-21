@@ -117,6 +117,26 @@
         <include refid="orderBySql" />
 	</select>
 	
+	<update id="deleteRepairById"  parameterType="int">
+	    update application_new
+	    set DELETE_FLAG = 1
+	    where application_id = #{id}
+	</update>
+	
+	<update id="updateRepair"  parameterType="Application">
+	    update application_new
+	    set 
+		  `application_date` = #{applicationDate},
+		  `application_repairer` = #{applicationRepairer},
+		  `equipment_manager` = #{equipmentManager},
+		  `equiment_group` = #{equimentGroup},
+		  `equiment_name` = #{equimentName},
+		  `repairer_level` = #{repairerLevel},
+		  `repairer_history` = #{repairerHistory},
+		  `remark` = #{remark}
+	    where application_id = #{applicationId}
+	</update>
+	
 	<insert id="importApplications" parameterType="Application" useGeneratedKeys="true" keyProperty="applicationId">
 		INSERT INTO application_new(
 		  `application_date`,

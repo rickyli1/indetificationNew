@@ -2,6 +2,7 @@
 	Class('Identification.application.List', {
 		init:function() {
 			this.bindEvent();
+			this.formatHistory();
 		},
 		
 		bindEvent: function() {
@@ -25,6 +26,12 @@
         	
         	that.initCalendar();
         	
+        	//order change
+        	$("#orderType").change(function() {
+        		$("#page").val(1);
+				that.searchList();
+        	});
+        	
 		},
 		
 		initCalendar : function() {
@@ -43,10 +50,17 @@
 			
 			$("#applicationResultList").empty();
 			var params = that.getParams();
-			console.log(params);
 			identification.ajax("/application/search/" + $("#page").val(), JSON.stringify(params), "html", function(res) {
 				$("#applicationResultList").html(res);
+				that.formatHistory();
+				 $(document).scrollTop(200);
 			});
+		},
+		
+		formatHistory:function() {
+			$(".history").each(function(index,item) {
+				$(item).html($(item).text().replace(/\n/ig, "<br>"));
+			})
 		},
 		
 		getParams : function() {
@@ -57,6 +71,52 @@
 					"orderType":$("#orderType").val()
 				};
 		   return data;
+		},
+		
+		goApplicationDelete:function(id) {
+			if(confirm("确定删除此项么？")) {
+				identification.ajax("/application/delete/" + id, null, "html", function(res) {
+					alert("删除成功！");
+	        	     window.location.href = window.location.href;				        
+				});
+			}
+		},
+		
+		goApplicationUpdate:function(id){
+			$("#updateApplicationDate").val($("#applicationDate"+id).text());
+			$("#updateApplicationRepairer").val($("#applicationRepairer"+id).text());
+			$("#updateEquipmentManager").val($("#equipmentManager"+id).text());
+			$("#updateEquimentGroup").val($("#equimentGroup"+id).text());
+			$("#updateEquimentName").val($("#equimentName"+id).text());
+			$("#updateRepairerLevel").val($("#repairerLevel"+id).text());
+			$("#updateRepairerHistory").val($("#repairerHistory"+id).html().replace(/<br>/ig, "\n"));
+			$("#updateRemark").val($("#remark"+id).text());
+			$("#updateApplicationId").val(id);
+		},
+		
+		updatelicationUpdate:function() {
+			
+			var params = this.getUpdateParams();
+			identification.ajax("/application/update", JSON.stringify(params), "html", function(res) {
+				alert("修改成功！");
+       	        window.location.href = window.location.href;				        
+			});
+		},
+		
+		getUpdateParams:function() {
+			var data = {	
+					"applicationDate": $("#updateApplicationDate").val(),
+					"applicationRepairer":$("#updateApplicationRepairer").val(),
+					"equipmentManager":$("#updateEquipmentManager").val(),
+					"equimentGroup":$("#updateEquimentGroup").val(),
+					"equimentName":$("#updateEquimentName").val(),
+					"repairerLevel":$("#updateRepairerLevel").val(),
+					"repairerHistory":$("#updateRepairerHistory").val(),
+					"remark":$("#updateRemark").val(),
+					"applicationId":$("#updateApplicationId").val()
+				};
+		   return data;
+			
 		}
 		
 	});
