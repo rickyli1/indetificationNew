@@ -41,6 +41,7 @@ public class EquipmentController {
 	@Autowired
 	private EquipmentService equipmentService;
 	
+	
 	@RequestMapping("/init")
 	public String repairerInit(Model model) {
 		Equipment equipment = new Equipment();
