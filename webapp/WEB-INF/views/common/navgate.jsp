@@ -98,6 +98,7 @@
        <ul class="nav navbar-nav">
          <li><a href="/repairer/init"><spring:message code="lable.navgate.repairer"/></a></li>
          <li><a href="/application/init">认可申请</a></li>
+         <li><a href="/equipment/init">承修单位</a></li>
        </ul>
      </div><!--/.nav-collapse -->
    </div>

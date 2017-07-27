@@ -30,7 +30,7 @@ public class Constants {
 
 	public static String FILE_NAME= "承修单位选择范围";
 	
-	public static int PAGE_SIZE = 3;
+	public static int PAGE_SIZE = 5;
 	
 	public static int  COMMIT_COUNT_EVERY_TIME = 500;
 }
