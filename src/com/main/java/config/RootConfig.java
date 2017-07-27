@@ -33,7 +33,7 @@ public class RootConfig {
 	        ds.setDriverClassName("com.mysql.jdbc.Driver");
 	        ds.setUrl("jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8");
 	        ds.setUsername("root");
-	        ds.setPassword("123qaz");
+	        ds.setPassword("duqiao");
 	        ds.setInitialSize(5); //初始大小
 	        ds.setMaxIdle(5);
 	        ds.setMinIdle(2);

@@ -33,10 +33,12 @@ public abstract class BaseImportService<T,V>{
          try {
     		 //如果不是增量添加，需在子类实现deleteAllData
 			 deleteAllData();   
+			 
+			 List<V> filterList = filterExistData(list);
 
-        	 IntStream.range(0, list.size()).forEach(i -> {
-        		 batchInsertInfo(repository, list.get(i));
-        		 if ((i % Constants.COMMIT_COUNT_EVERY_TIME == 0  && i > 0)|| i == list.size() - 1) {
+        	 IntStream.range(0, filterList.size()).forEach(i -> {
+        		 batchInsertInfo(repository, filterList.get(i));
+        		 if ((i % Constants.COMMIT_COUNT_EVERY_TIME == 0  && i > 0)|| i == filterList.size() - 1) {
                      //手动每1000个一提交，提交后无法回滚
                      session.commit();
                     //清理缓存，防止溢出
@@ -58,15 +60,15 @@ public abstract class BaseImportService<T,V>{
          return Constants.RESULT_SUCCESS;
      }
 	 
-	 
 	 protected abstract void batchInsertInfo(T mapper, V bean) ;
 	 
 	 protected void deleteAllData() {}
 	 
+     protected  List<V> filterExistData(List<V> list) {
+    	 return list;
+     }
 	 
-	 
-	 
-	 public Workbook writeNewExcel(File file) throws Exception {
+	 public Workbook writeNewExcel(File file, V searchParam) throws Exception {
 			
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
 		       // 打开HSSFWorkbook
@@ -77,14 +79,12 @@ public abstract class BaseImportService<T,V>{
 			// 循环插入数据
 			CellStyle cs = ExcelUtil.setSimpleCellStyle(wb); // Excel单元格样式
 			
-			writeCells(wb, sheet, cs);
+			writeCells(wb, sheet, cs, searchParam);
 			
 			return wb;
 		}
 	 
-	 protected abstract void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs);
-
+	 protected abstract void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs, V searchParam);
 
 }
-
 

@@ -12,12 +12,14 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.main.java.model.AdminUser;
 import com.main.java.model.Application;
 import com.main.java.repository.ApplicationRepository;
 import com.main.java.utils.ExcelUtil;
 import com.main.java.utils.IndetificationUtil;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class ApplicationService extends BaseImportService<ApplicationRepository, Application>{
@@ -25,16 +27,12 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 	@Autowired
 	private ApplicationRepository applicationRepository;
 	
-	public List<Application> findAllApplicationsForExport() {
-		return applicationRepository.findAllApplicationsForExport();
-	}
-	
 	public List<Application> findAllApplications(Application application){
 		return  applicationRepository.findAllApplications(application);
 	}
 	
-	public int findApplicatiosCount() {
-		return applicationRepository.findApplicationsCount();
+	public int findApplicatiosCount(Application searchParams) {
+		return applicationRepository.findApplicationsCount(searchParams);
 	}
 	
 	public String importRepairers(Sheet sheet) {
@@ -103,19 +101,41 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 		
 		return batchCommit(applications, ApplicationRepository.class);
 	}
-
 	
+	 
+	 @Transactional
+	 public void deleteRepairById(int id) {
+		 applicationRepository.deleteRepairById(id);
+	 }
+	 
+	 @Transactional
+	 public void updateRepair(Application updateParams) {
+		 applicationRepository.updateRepair(updateParams);
+	}
+	 
 	
 	@Override
 	protected void batchInsertInfo(ApplicationRepository repository, Application bean) {
 		repository.importApplications(bean);
 	}
 	
+	@Override
+	protected  List<Application> filterExistData(List<Application> list) {
+		Application application = new Application();
+		
+		List<Application> applicationList = applicationRepository.findAllApplicationsForExport(application);
+		
+		List<String> applicationKeyList = applicationList.stream().map(Application :: getApplicationKey).collect(toList());
+		
+		return list.stream().filter(item -> !applicationKeyList.contains(item.getApplicationKey())).collect(toList());
+		 
+	 }
+	
 
 	@Override
-	protected void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs) {
+	protected void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs, Application bean) {
 		//取数据
-		List<Application> applications = this.findAllApplicationsForExport();
+		List<Application> applications = applicationRepository.findAllApplicationsForExport(bean);
 
 	    if(CollectionUtils.isNotEmpty(applications)) {
 	    	
@@ -170,4 +190,5 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 			});
 	    }
 	}
+
 }

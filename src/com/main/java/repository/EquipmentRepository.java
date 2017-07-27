@@ -17,4 +17,5 @@ public interface EquipmentRepository {
 	public void deleteAllEquipments();
 
 	public void updateAllEquipment(Equipment equipment);
+	
 }

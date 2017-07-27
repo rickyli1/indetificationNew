@@ -91,7 +91,7 @@ public class RepairerController {
 			Resource res2 = new ClassPathResource("resources/export/辖区单位.xls"); 
 			
 			String sheetName="辖区修理单位对应表";  
-			wb = repairerService.writeNewExcel(res2.getFile()); 
+			wb = repairerService.writeNewExcel(res2.getFile(),null); 
 			
 			String fileName= sheetName + "_" +TimeUtils.getStringFromTime(new Date(), TimeUtils.FORMAT_DATE_NO) +".xls";
 		    response.setContentType("application/vnd.ms-excel");

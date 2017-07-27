@@ -105,7 +105,7 @@ public class RepairerService extends BaseImportService<RepairRepository, Repaire
 
 
 	@Override
-	protected void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs) {
+	protected void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs, Repairer bean) {
 		//取数据
 		List<Repairer> repairers = findAllRepairersForExport();
 

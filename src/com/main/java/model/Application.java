@@ -15,6 +15,8 @@ public class Application extends BaseModel{
 	private String haveSuccesWwork; //有没有认可任务
 	private String areaHaveAbility;//辖区同型号修理能力总体评价结论
 	private String orginizationResult; //机关批复
+	
+	private String orderType; //排序
 	public int getApplicationId() {
 		return applicationId;
 	}
@@ -87,4 +89,20 @@ public class Application extends BaseModel{
 	public void setApplicationDate(String applicationDate) {
 		this.applicationDate = applicationDate;
 	}
+	public String getOrderType() {
+		return orderType;
+	}
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
+	}
+	
+	public String getApplicationKey() {
+		StringBuilder sb = new StringBuilder();
+		return sb.append(this.getApplicationDate())
+		  .append("+")
+		  .append(this.getApplicationRepairer())
+		  .append("+")
+		  .append(this.getEquimentName()).toString();
+	}
+	
 }
