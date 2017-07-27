@@ -193,7 +193,6 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 
 	    if(CollectionUtils.isNotEmpty(equipments)) {
 	    	String equipmentName ="";
-//	    	IntStream.range(0, equipments.size()).forEach(index -> {
 	    	int sameLine = 0;
 	    	boolean flag = false;
 	    	for(int index = 0 ; index < equipments.size() ; index++){

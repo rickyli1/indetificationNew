@@ -78,5 +78,4 @@ public class Equipment extends BaseModel{
 		this.remark = remark;
 	}
 	
-	
 }
