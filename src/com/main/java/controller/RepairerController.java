@@ -92,7 +92,6 @@ public class RepairerController {
 			
 			String sheetName="辖区修理单位对应表";  
 			wb = repairerService.writeNewExcel(res2.getFile(), null); 
-			
 			String fileName= sheetName + "_" +TimeUtils.getStringFromTime(new Date(), TimeUtils.FORMAT_DATE_NO) +".xls";
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-disposition", "attachment;filename="+ URLEncoder.encode(fileName, "utf-8"));

@@ -73,7 +73,7 @@
 	       	<c:import url="/WEB-INF/views/application/list.jsp" charEncoding="UTF-8"></c:import>  
 	       	</div>
 	       	
-           <div class="modal-backdrop fade in" style="display:none" id="loading">
+           <div class="modal-backdrop fade in" style="display:none;z-index:2000" id="loading">
 		   <div class="loading"></div>  
 	       </div>
       	      
@@ -102,7 +102,12 @@
 					    <div class="row" style="margin-top:10px">
 					      	<label class="col-md-2 control-label" for="updateApplicationDate">申请日期</label>
 					      <div class="col-md-3">	
-					      	<input type="text" id="updateApplicationDate" name="updateApplicationDate"/>
+							<span  class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="updateApplicationDate" data-link-format="yyyy-mm-dd">
+		                    <input id="updateApplicationDateTxt" class="form-control" type="text" value="" readonly="readonly">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                    </span>
+						     <input type="hidden" id="updateApplicationDate" value="" name="updateApplicationDate"/>               
+					      
 					      </div>
 					      
 						  <label class="col-md-2 control-label" for="updateApplicationRepairer">申请单位</label>
