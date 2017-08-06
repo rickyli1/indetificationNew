@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.java.repository.AuditRepository">
+	<resultMap id="applicationMap" type="Application">
+		<id property="applicationId" column="application_id" />
+		<result property="applicationDate" column="application_date" />
+		<result property="applicationRepairer" column="application_repairer" />
+		<result property="equipmentManager" column="equipment_manager" />
+		<result property="equimentGroup" column="equiment_group" />
+		
+		<result property="equimentName" column="equiment_name" />
+		<result property="repairerLevel" column="repairer_level" />
+		<result property="repairerHistory" column="repairer_history" />
+		<result property="remark" column="remark" />
+		
+		<result property="haveSuccesWwork" column="have_success_work" />
+		<result property="areaHaveAbility" column="area_have_ability" />
+		<result property="orginizationResult" column="orginization_result" />
+		
+		<result column="delete_flag" property="deleteFlag" />
+		<result column="CREATE_BY" property="createBy" />
+		<result column="LAST_MODIFY_BY" property="lastModifyBy" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+	</resultMap>
+
+	<resultMap id="repairerMap" type="Repairer">
+		<result column="repairer_name" property="repairerName" />
+		<result column="EQUIPMENT_LEVEL" property="repairerLevel" />
+	</resultMap>
+	
+	<sql id="searchCondSql">
+  		<if test="applicationDate != null and applicationDate != '' ">
+  			and application_date = #{applicationDate}
+  		</if>
+  		<if test="applicationRepairer != null and applicationRepairer != '' ">
+  			and application_repairer like concat('%',#{applicationRepairer},'%')
+  		</if>
+  		<if test="equimentName != null and equimentName != '' ">
+  			and equiment_name  like concat('%',#{equimentName},'%')
+  		</if>
+  		
+	</sql>
+	
+	 
+	<select id="findApplicationsCount" resultType="int" parameterType="Application">
+		select
+		count(1)
+		from application_new
+        where delete_flag = 0
+        <include refid="searchCondSql" />
+	</select>
+	
+	
+	<select id="findAllApplications" resultMap="applicationMap" parameterType="Application">
+		SELECT
+		  `application_id`,
+		  `application_date`,
+		  `application_repairer`, 
+		  `equipment_manager`,
+		  `equiment_group`,
+		  `equiment_name`,
+		  `repairer_level`,
+		  `repairer_history`,
+		  `remark`,
+  		  `have_success_work`,
+  		  `area_have_ability`,
+  		  `orginization_result`,
+		  `CREATE_BY`,
+		  `LAST_MODIFY_BY`,
+		  `CREATE_TIME`,
+		  `LAST_MODIFY_TIME`,
+		  `DELETE_FLAG`
+		FROM application_new
+        where delete_flag = 0
+        <include refid="searchCondSql" />
+		LIMIT ${startNo}, ${pageSize}
+	</select>
+	
+   <select id="findAreaRepairInfos" resultMap="repairerMap" parameterType="Application">
+        select  
+  			temp.repairer_name,
+  			equipment_NEW.EQUIPMENT_LEVEL
+  	    from equipment_NEW 
+  	    inner join 
+		(SELECT
+		  repairer.repairer_name
+		FROM repairer 
+		inner join repairer r on repairer.repairer_area = r.repairer_area and r.delete_flag = 0
+		
+        where repairer.delete_flag = 0
+        and repairer.repairer_name = #{applicationRepairer}) temp
+        
+        on equipment_NEW.EQUIPMENT_NAME = #{equimentName} and equipment_NEW.delete_flag = 0
+        
+	</select>
+	
+	
+	
+
+	
+</mapper>

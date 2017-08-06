@@ -1,5 +1,7 @@
 package com.main.java.model;
 
+import java.util.List;
+
 public class Application extends BaseModel{
 	private static final long serialVersionUID = 998250562196243906L;
 	
@@ -15,6 +17,8 @@ public class Application extends BaseModel{
 	private String haveSuccesWwork; //有没有认可任务
 	private String areaHaveAbility;//辖区同型号修理能力总体评价结论
 	private String orginizationResult; //机关批复
+	
+	private List<String> areaRepairInfos; //辖区修理信息 (大修 ： ***厂，###厂)
 	
 	private String orderType; //排序
 	public int getApplicationId() {
@@ -96,6 +100,12 @@ public class Application extends BaseModel{
 		this.orderType = orderType;
 	}
 	
+	public List<String> getAreaRepairInfos() {
+		return areaRepairInfos;
+	}
+	public void setAreaRepairInfos(List<String> areaRepairInfos) {
+		this.areaRepairInfos = areaRepairInfos;
+	}
 	public String getApplicationKey() {
 		StringBuilder sb = new StringBuilder();
 		return sb.append(this.getApplicationDate())
