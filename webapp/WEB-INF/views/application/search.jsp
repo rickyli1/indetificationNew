@@ -36,26 +36,30 @@
                  <label class="col-md-2 control-label" for="equipmentName">申请ZB型号名称</label>
                  <div class="col-md-2">                
                    <input type="text" id="equipmentName" class="form-control input-xlarge" name="equipmentName">
-                 </div>                 
+                 </div>  
+                 
+                  <div class="col-md-2">                
+      				<button type="button" class="btn btn-primary btnSize" id="applicationSearchBtn">查询</button>
+                 </div>                                
               </div>
            </fieldset>
         		  
 		  
 		  
            <fieldset Style="margin-top:10px">
+              <legend> </legend>
+           
               <div class="form-group">
-                 <div class="col-md-4">
-      				<button type="button" class="btn btn-primary btn-sm" id="applicationSearchBtn">查询</button>
-      				
-                    <span class="btn btn-primary  btn-sm fileinput-button">
+                 <div class="col-md-*">
+                      <span class="btn btn-primary  btnSize fileinput-button">
 				        <i class="glyphicon glyphicon-plus"></i>
 				        <span>导入</span>
 				        <!-- The file input field used as target for the file upload widget -->
 				         <input id="applicationImoprtBtn"  type="file" name="file" multiple>
-				    </span>  
-      				<button type="button" class="btn btn-primary btn-sm" id="applicationExportBtn">导出</button>
-      				
-      				<select style="height:30px" id="orderType"> 
+				       </span>  
+				       
+				     <div style="display:inline-block;float:right;">  
+     				<select style="height:30px" id="orderType" > 
       					<option value="1">升序+申请日期</option>
       					<option value="2">升序+申请单位</option>
       					<option value="3">升序+申请ZB型号名称</option>
@@ -63,6 +67,9 @@
       					<option value="5">降序+申请单位</option>
       					<option value="6">降序+申请ZB型号名称</option>
       				</select>
+       				
+       				<button type="button" class="btn btn-primary btnSize" id="applicationExportBtn">导出</button>
+      				</div>
                  </div>
                                  
               </div>

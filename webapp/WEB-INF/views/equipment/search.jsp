@@ -21,20 +21,20 @@
               <legend> </legend>
               <div class="form-group">
                 <label class="col-md-1 control-label" for="equipmentGroup"><spring:message code="lable.equipment.group"/></label>
-                 <div class="col-md-2" style="width:180px;">
+                 <div class="col-md-2">
                  	<input class="form-control" type="text" id="equipmentGroup" name="equipmentGroup">
                  </div>
                  <label class="col-md-1 control-label" for="equipmentSubGroup"><spring:message code="lable.equipment.subGroup"/></label>
-                 <div class="col-md-2" style="width:180px;">
+                 <div class="col-md-2">
 					<input class="form-control" type="text" id="equipmentSubGroup" name="equipmentSubGroup">
                  </div>
                  <label class="col-md-1 control-label" for="equipmentName"><spring:message code="lable.equipment.equipmentName"/></label>
-                 <div class="col-md-2" style="width:180px;">               
+                 <div class="col-md-2">               
 					 <input class="form-control" type="text" id="equipmentName" name="equipmentName">
                  </div>
                  
                  <label class="col-md-1 control-label" for="equipmentLevel"><spring:message code="lable.equipment.modifyCategory"/></label>
-                 <div class="col-md-2" style="width:180px;">                
+                 <div class="col-md-1">                
                      <select  class="form-control" id="equipmentLevel">
 					 <option selected value=""></option>				
 						  <option value="大修">大修</option>
@@ -42,22 +42,35 @@
 						  <option value="小修">小修</option>
 						  <option value="检修">检修</option>
 					</select>
-                 </div>                 
+                 </div>  
+                 <div class="col-md-1">                
+                    <button type="button" class="btn btn-primary btnSize" id="equipmentSearchBtn">查询</button>
+                 </div>                                
+                                 
               </div>
            </fieldset>  		  
 
 
              <fieldset style="margin-top:10px">
-                <button type="button" class="btn btn-primary btn-sm" id="equipmentSearchBtn">查询</button>
+                <legend> </legend>
+              <div class="form-group">
+                 <div class="col-md-*">
+             
       				
-                <span class="btn btn-primary  btn-sm fileinput-button">
+                <span class="btn btn-primary  btnSize fileinput-button">
 				        <i class="glyphicon glyphicon-plus"></i>
 				        <span>导入</span>
 				        <!-- The file input field used as target for the file upload widget -->
 				         <input id="equipmentImoprtBtn"  type="file" name="file" multiple>
 				</span>  
-      			<button type="button" class="btn btn-primary btn-sm" id="equipmentExportBtn">导出</button>
-                  
+				
+		        <div style="display:inline-block;float:right;">  
+      			<button type="button" class="btn btn-primary btnSize" id="equipmentExportBtn">导出</button>
+                 </div>
+                 
+                 </div>
+              </div>
+                 
             </fieldset>  		  
 	       	<div id="equipmentResultList">
 	       	<c:import url="/WEB-INF/views/equipment/list.jsp" charEncoding="UTF-8"></c:import>  

@@ -91,7 +91,8 @@
 			  }
 			
 </style>
-<div><img alt="" src="/images/ban2.jpg" style="width:100%;height:50%"></div>
+<!--  <div><img alt="" src="/images/ban2.jpg" style="width:100%;height:50%"></div>-->
+<div style="width:100%;height:50px;background-color:#1887f0"><span style="margin-left:38%"> <em style="color: white;font-size: xx-large;">XXXXX维修系统</em> </span></div>
 <nav class="navbar navbar-default" role="navigation">
    <div class="container">
      <div id="navbar" class="navbar-collapse collapse">

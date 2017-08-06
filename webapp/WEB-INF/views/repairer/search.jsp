@@ -21,16 +21,18 @@
            <fieldset>
               <legend> </legend>
               <div class="form-group">
-                 <div class="col-md-3">
-      				<button type="button" class="btn btn-primary btn-sm" id="repairerSearchBtn">查询</button>
+                 <div class="col-md-*">
+      				<button type="button" class="btn btn-primary btnSize" id="repairerSearchBtn" style="display:none">查询</button>
       				
-                    <span class="btn btn-primary  btn-sm fileinput-button">
+                    <span class="btn btn-primary  btnSize fileinput-button">
 				        <i class="glyphicon glyphicon-plus"></i>
 				        <span>导入</span>
 				        <!-- The file input field used as target for the file upload widget -->
 				         <input id="repairerImoprtBtn"  type="file" name="file" multiple>
 				    </span>  
-      				<button type="button" class="btn btn-primary btn-sm" id="repairerExportBtn">导出</button>
+				    <div style="display:inline-block;float:right;">  
+      				<button type="button" class="btn btn-primary btnSize" id="repairerExportBtn">导出</button>
+      				</div>
                  </div>
                                  
               </div>

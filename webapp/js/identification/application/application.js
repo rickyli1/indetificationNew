@@ -74,8 +74,13 @@
 		
 		goApplicationDelete:function(id) {
 			if(confirm("确定删除此项么？")) {
+//				identification.ajax("/application/delete/" + id, null, "html", function(res) {
+//					alert("删除成功！");
+//	        	     window.location.href = window.location.href;				        
+//				});
 			}
 		},
+	
 		
 		goApplicationUpdate:function(id){
 			$("#updateApplicationDate").val($("#applicationDate"+id).text());
@@ -91,11 +96,15 @@
 			identification.initCalendarByClass('form_datetime','form_date','form_time');			
 		},
 		
-		updatelicationUpdate:function() {
+        updatelicationUpdate:function() {
 			
 			var params = this.getUpdateParams();
-			
+//			identification.ajax("/application/update", JSON.stringify(params), "html", function(res) {
+//				alert("修改成功！");
+//       	        window.location.href = window.location.href;				        
+//			});
 		},
+
 		
 		getUpdateParams:function() {
 			var data = {	
