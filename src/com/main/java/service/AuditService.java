@@ -43,6 +43,8 @@ public class AuditService {
 					String repairNames = values.stream().map(Repairer::getRepairerName).collect(Collectors.joining(","));
 					areaRepairInfos.add(key + ": " + repairNames);
 				});
+				
+				item.setAreaRepairInfos(areaRepairInfos);
 			
 			});
 		}

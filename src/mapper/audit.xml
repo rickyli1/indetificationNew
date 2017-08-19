@@ -85,16 +85,28 @@
   			equipment_NEW.EQUIPMENT_LEVEL
   	    from equipment_NEW 
   	    inner join 
-		(SELECT
-		  repairer.repairer_name
-		FROM repairer 
-		inner join repairer r on repairer.repairer_area = r.repairer_area and r.delete_flag = 0
-		
-        where repairer.delete_flag = 0
-        and repairer.repairer_name = #{applicationRepairer}) temp
+		(
+		   SELECT
+			  repairer.repairer_name
+			FROM repairer
+			where repairer.repairer_area in (
+			   select  r.repairer_area
+			   from repairer r
+			   where r.repairer_name = #{applicationRepairer} and r.delete_flag = 0    
+			)
+			
+	        and repairer.delete_flag = 0
+	    
+        ) temp
         
         on equipment_NEW.EQUIPMENT_NAME = #{equimentName} and equipment_NEW.delete_flag = 0
-        
+         and (
+           equipment_NEW.EQUIPMENT_COMPANY like CONCAT(temp.repairer_name, '、','%')
+          or equipment_NEW.EQUIPMENT_COMPANY like CONCAT('%、', temp.repairer_name,'、%')
+          or equipment_NEW.EQUIPMENT_COMPANY like CONCAT('%、', temp.repairer_name,'%')
+          or equipment_NEW.EQUIPMENT_COMPANY = temp.repairer_name
+           
+         )
 	</select>
 	
 	

@@ -15,7 +15,7 @@
 			<c:import url="/WEB-INF/views/common/navgate.jsp"></c:import>
 
 	<div class="panel panel-primary">
-	  <div class="panel-heading">认可申请</div>
+	  <div class="panel-heading">申请审核</div>
 		  <div class="panel-body"> 
             <fieldset>
               <legend> </legend>
@@ -63,7 +63,7 @@
            
        		  
 	       	<div id="applicationResultList">
-	       	<c:import url="/WEB-INF/views/application/list.jsp" charEncoding="UTF-8"></c:import>  
+	       	<c:import url="/WEB-INF/views/audit/list.jsp" charEncoding="UTF-8"></c:import>  
 	       	</div>
 	       	
            <div class="modal-backdrop fade in" style="display:none;z-index:2000" id="loading">
