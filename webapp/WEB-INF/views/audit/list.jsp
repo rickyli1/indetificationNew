@@ -86,7 +86,7 @@
 		                <textarea rows="3" cols="20">${fn:trim(application.remark)}</textarea>
 		                </td>
 		                <td>
-							<button id="applicationModifyBtn" class="btn btn-primary btn-sm" type="button"  data-toggle="modal" data-target="#applicationUpdateModal" onclick="identification.application.goApplicationUpdate('${application.applicationId}')">保存</button>
+							<button id="auditSaveBtn" class="btn btn-primary btn-sm" type="button"  data-toggle="modal"  onclick="identification.audit.auditSave('${application.applicationId}')">保存</button>
 		                </td>		              
 		               </tr>
 	            	</c:forEach>
