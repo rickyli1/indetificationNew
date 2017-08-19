@@ -110,6 +110,17 @@
 	</select>
 	
 	
+	<update id="saveApplicationInfo"  parameterType="Application">
+	    update application_new
+	    set 
+		  `have_success_work` = #{haveSuccesWwork},
+		  `area_have_ability` = #{areaHaveAbility},
+		  `orginization_result` = #{orginizationResult},
+		  `LAST_MODIFY_TIME` = now(),
+		  `LAST_MODIFY_BY` = #{updateId},
+		  `remark` = #{remark}
+	    where application_id = #{applicationId}
+	</update>
 	
 
 	

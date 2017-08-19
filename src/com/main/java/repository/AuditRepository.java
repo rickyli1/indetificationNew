@@ -14,4 +14,6 @@ public interface AuditRepository {
 	
 	public List<Repairer> findAreaRepairInfos(Application application);
 
+	public void saveApplicationInfo(Application updateParams);
+
 }

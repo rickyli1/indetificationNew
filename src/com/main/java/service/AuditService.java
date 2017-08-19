@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.main.java.model.Application;
 import com.main.java.model.Repairer;
@@ -31,6 +32,13 @@ public class AuditService {
 	}
 	
 	
+	//保存结论信息
+	 @Transactional
+	public void saveApplicationInfo(Application updateParams) {
+		 auditRepository.saveApplicationInfo(updateParams);
+	}
+
+	
 	//获得辖区内所有修理厂商和级别
 	private void setAreaRepairInfos(List<Application> applicationList) {
 		if(CollectionUtils.isNotEmpty(applicationList)) {
@@ -49,5 +57,6 @@ public class AuditService {
 			});
 		}
 	}
+
 
 }

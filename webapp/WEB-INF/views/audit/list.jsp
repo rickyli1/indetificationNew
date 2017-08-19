@@ -51,9 +51,9 @@
 		                <td   id="equimentName${application.applicationId}">${application.equimentName}</td>
 		                <td   id="repairerLevel${application.applicationId}">${application.repairerLevel}</td>
 		                <td   id="repairerHistory${application.applicationId}"class="history">${application.repairerHistory}</td>
-		                <td   id="haveSuccesWwork${application.applicationId}">
-		                <input type="radio" <c:if test="${application.haveSuccesWwork == '有'}">checked="checked"</c:if> name="haveSuccesWwork${application.applicationId}" id="haveSuccesWwork${application.applicationId}Y">有</input>
-		                <input type="radio"  <c:if test="${application.haveSuccesWwork == '无'}">checked="checked"</c:if> name="haveSuccesWwork${application.applicationId}" id="haveSuccesWwork${application.applicationId}N">无</input>
+		                <td>
+		                <input type="radio" <c:if test="${application.haveSuccesWwork == '有'}">checked="checked"</c:if> name="haveSuccesWwork${application.applicationId}" value="有">有</<input><br>
+		                <input type="radio"  <c:if test="${application.haveSuccesWwork == '无'}">checked="checked"</c:if> name="haveSuccesWwork${application.applicationId}" value="无">无</<input>
 		                </td>
 		                <c:if test="${application.areaRepairInfos.size() == 0 }">
 		                   <td>无</td>
@@ -67,23 +67,22 @@
 		                </td>
 		                </c:if>
 		                
-		                <td   id="areaHaveAbility${application.applicationId}">
+		                <td>
 		                结论<br>
-		                <input type="radio" <c:if test="${application.areaHaveAbility == '具备'}"> checked="checked"</c:if>name="areaHaveAbility${application.applicationId}" id="haveSuccesWwork${application.applicationId}YY">具备</input><br>
-		                <input type="radio" <c:if test="${application.areaHaveAbility == '基本具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}" id="haveSuccesWwork${application.applicationId}Y">基本具备</input><br>
-		                <input type="radio" <c:if test="${application.areaHaveAbility == '不具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}" id="haveSuccesWwork${application.applicationId}N">不具备</input><br>
+		                <input type="radio" <c:if test="${application.areaHaveAbility == '具备'}"> checked="checked"</c:if>name="areaHaveAbility${application.applicationId}" value="具备">具备</input><br>
+		                <input type="radio" <c:if test="${application.areaHaveAbility == '基本具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}" vlaue="基本具备">基本具备</input><br>
+		                <input type="radio" <c:if test="${application.areaHaveAbility == '不具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}"value="不具备">不具备</input>
 		                </td>
-		                <td   id="orginizationResult${application.applicationId}">
-		                ${application.orginizationResult}
-		                 <input type="radio" <c:if test="${application.areaHaveAbility == '大修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" id="orginizationResult${application.applicationId}B">大修</input><br>
-		                 <input type="radio" <c:if test="${application.areaHaveAbility == '中修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" id="orginizationResult${application.applicationId}M">中修</input><br>
-		                 <input type="radio" <c:if test="${application.areaHaveAbility == '小修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" id="orginizationResult${application.applicationId}S">小修</input><br>
-		                 <input type="radio" <c:if test="${application.areaHaveAbility == '检修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" id="orginizationResult${application.applicationId}C">检修</input><br>
-		                 <input type="radio" <c:if test="${application.areaHaveAbility == '否'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" id="orginizationResult${application.applicationId}N">否</input><br>
+		                <td>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '大修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="大修">大修</input><br>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '中修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="中修">中修</input><br>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '小修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="小修">小修</input><br>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '检修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="检修">检修</input><br>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '否'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="否">否</input>
 		                
 		                </td>
-		                <td   id="remark${application.applicationId}">
-		                <textarea rows="3" cols="20">${fn:trim(application.remark)}</textarea>
+		                <td>
+		                <textarea id="remark${application.applicationId}" rows="3" cols="20">${fn:trim(application.remark)}</textarea>
 		                </td>
 		                <td>
 							<button id="auditSaveBtn" class="btn btn-primary btn-sm" type="button"  data-toggle="modal"  onclick="identification.audit.auditSave('${application.applicationId}')">保存</button>

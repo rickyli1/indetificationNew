@@ -68,6 +68,28 @@
 					"orderType":$("#orderType").val()
 				};
 		   return data;
+		},
+		
+		auditSave:function(id){
+						
+			var params = this.getSaveParams(id);
+			identification.ajax("/audit/save", JSON.stringify(params), "html", function(res) {
+				alert("保存成功！");
+       	        window.location.href = window.location.href;				        
+			});			
+		},
+		
+		getSaveParams:function(id) {
+			var data = {	
+					"applicationId":id,
+					"haveSuccesWwork": $("input[name='haveSuccesWwork" + id + "']" + ":checked").val(),
+					"areaHaveAbility":$("input[name='areaHaveAbility" + id + "']" + ":checked").val(),
+					"orginizationResult":$("input[name='orginizationResult" + id + "']" + ":checked").val(),
+					
+					"remark":$("#remark"+id).val()
+				};
+		   return data;
+			
 		}
 		
 	});

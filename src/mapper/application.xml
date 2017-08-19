@@ -119,7 +119,9 @@
 	
 	<update id="deleteRepairById"  parameterType="int">
 	    update application_new
-	    set DELETE_FLAG = 1
+	    set 
+	    `LAST_MODIFY_TIME` = now(),
+	    DELETE_FLAG = 1
 	    where application_id = #{id}
 	</update>
 	
@@ -133,7 +135,10 @@
 		  `equiment_name` = #{equimentName},
 		  `repairer_level` = #{repairerLevel},
 		  `repairer_history` = #{repairerHistory},
-		  `remark` = #{remark}
+		  `remark` = #{remark},
+	      `LAST_MODIFY_TIME` = now(),
+		  `LAST_MODIFY_BY` = #{updateId}
+			  
 	    where application_id = #{applicationId}
 	</update>
 	

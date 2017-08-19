@@ -110,6 +110,10 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 	 
 	 @Transactional
 	 public void updateRepair(Application updateParams) {
+		AdminUser user = IndetificationUtil.getAdminUser();
+		updateParams.setUpdateor(user.getUserName());
+		updateParams.setUpdateId(user.getUpdateId());
+
 		 applicationRepository.updateRepair(updateParams);
 	}
 	 

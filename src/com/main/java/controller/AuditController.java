@@ -34,6 +34,20 @@ public class AuditController {
 		return "audit/list";
 	}
 	
+
+	@RequestMapping(value ="/save")
+	public String saveRepair(Model model,@RequestBody Application updateParams) {
+		auditService.saveApplicationInfo(updateParams);
+		
+		model.addAttribute("msg", "修改成功！");
+		model.addAttribute("url", "audit/init"); 
+		 
+	   return "common/alert";
+
+	}
+
+
+	
 	
 	private void  doSearch(int page, Model model, Application searchParams) {
 		searchParams.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));
