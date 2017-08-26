@@ -76,6 +76,23 @@
 	       	<c:import url="/WEB-INF/views/equipment/list.jsp" charEncoding="UTF-8"></c:import>  
 	       	</div>
       	      
+      	      
+      	   <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+	      	<div class="modal-dialog" style="width:900px">
+	      		<form method="post">
+	      			<div class="modal-content">
+	      				<div class="modal-header">
+	      					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        		<h4 class="modal-title" id="detailModalLabel"><spring:message code="lable.equipment.equipmentInfo"/></h4>
+	      				</div>
+					<c:import url="/WEB-INF/views/equipment/update.jsp" charEncoding="UTF-8"></c:import>
+					</div>
+				</form>
+			</div>
+		  </div>
+	      <div class="modal-backdrop fade in" style="display:none" id="loading">
+			<div class="loading"></div>  
+		  </div>
 	      </div>
       </div>
       </div>
@@ -94,12 +111,17 @@
       
 		<c:import url="/WEB-INF/views/common/commonScript.jsp"></c:import>  
 
-	    <script type="text/javascript" src="/js/identification/equipment/equipment.js" charset="UTF-8"></script>	    
+	    <script type="text/javascript" src="/js/identification/equipment/equipment.js" charset="UTF-8"></script>
+	    <script type="text/javascript" src="/js/identification/equipment/equipmentAdd.js" charset="UTF-8"></script>	    	    
 	    <script type="text/javascript">
 	    identification.equipment = new Identification.equipment.List();
 
 	    function goPage() {
 	    	identification.equipment.searchList();
+		}
+	    
+	    function goDel(equipmentNo) {
+	    	 identification.equipment.goDel(equipmentNo);
 		}
       </script>
 

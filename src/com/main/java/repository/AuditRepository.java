@@ -16,4 +16,6 @@ public interface AuditRepository {
 
 	public void saveApplicationInfo(Application updateParams);
 
+	public List<Application> findAllApplicationAuditForExport(Application bean);
+
 }

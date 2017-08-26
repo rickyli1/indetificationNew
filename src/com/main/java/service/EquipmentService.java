@@ -115,7 +115,13 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 					    		  //维修单位范围
 					    		case 5:
 					    			equipment.setEquipmentCompany(cellValue);
-					    			equipmentCompany = cellValue;
+//					    			equipmentCompany = cellValue;
+					    			if(cellValue.contains(",")){
+					    				equipmentCompany = cellValue.replace(",", "、");
+					    			}
+					    			else{
+					    				equipmentCompany = cellValue;
+					    			}
 					    		break;
 					    		  //期限
 					    		case 6:
@@ -154,6 +160,8 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 							equipment1.setUpdateId(user.getUpdateId());
 							equipment1.setDeleteFlag(Constants.DELETE_FLAG_FALSE); //未删除
 							equipments.add(equipment1);
+							equipmentLevel = "";
+							
 						}
 					}
 					hm.put(equipmentNo, equipmentNo);
@@ -320,5 +328,15 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 	@Override
 	protected void batchInsertInfo(EquipmentRepository mapper, Equipment equipment) {
 		equipmentRepository.importEquipments(equipment);
+	}
+
+
+	public int updateEquipment(Equipment equipment) {
+		return equipmentRepository.updateEquipment(equipment);
+	}
+
+
+	public Equipment findEquipmentById(Equipment select) {
+		return equipmentRepository.findEquipmentById(select);
 	}
 }

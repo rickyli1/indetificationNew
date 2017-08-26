@@ -17,7 +17,7 @@
            //文件导出
         	$("#auditExportBtn").click(function(){
         		$("#loading").show();
-				location.href="/application/export?applicationDate="+  $("#requireData").val().trim()+"&applicationRepairer=" +  $("#requireCompany").val().trim()+"&equimentName="+ $("#equipmentName").val()+"&orderType="+ $("#orderType").val();
+				location.href="/audit/export?applicationDate="+  $("#requireData").val().trim()+"&applicationRepairer=" +  $("#requireCompany").val().trim()+"&equimentName="+ $("#equipmentName").val();
 				$("#loading").hide();
 
 			});	

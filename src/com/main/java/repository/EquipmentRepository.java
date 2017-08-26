@@ -18,4 +18,8 @@ public interface EquipmentRepository {
 
 	public void updateAllEquipment(Equipment equipment);
 	
+	public int updateEquipment(Equipment equipment);
+
+	public Equipment findEquipmentById(Equipment select);
+	
 }

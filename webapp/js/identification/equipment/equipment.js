@@ -38,7 +38,14 @@
 			});	
         	
 		},
-		
+		goDel:function(equipmentNo) {
+			var that = this;
+			identification.ajax("/equipment/deleteEquipment", equipmentNo, "json", function(res) {
+				$("#alertDiv").empty();
+				$("#alertDiv").html(res);
+			});
+			that.searchList();
+		},
 		searchList : function() {
 			var that = this;
 			

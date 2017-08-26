@@ -58,7 +58,7 @@ public class ApplicationController {
 	@RequestMapping(value="/import",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> importQestion(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
-		Map<String, String> response = new HashMap<String, String>();;
+		Map<String, String> response = new HashMap<String, String>();
 		
 		if(file == null || file.isEmpty()) {
 			response.put("message", "文件为空！");
@@ -109,7 +109,7 @@ public class ApplicationController {
 			wb.write(os);  
 		    
 		} catch (Exception e) {
-			model.addAttribute("msg", "导人成功！");	
+			model.addAttribute("msg", "导出成功！");	
 		} finally{
 			os.flush();
 			os.close();

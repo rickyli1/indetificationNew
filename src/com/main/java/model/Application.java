@@ -17,10 +17,24 @@ public class Application extends BaseModel{
 	private String haveSuccesWwork; //有没有认可任务
 	private String areaHaveAbility;//辖区同型号修理能力总体评价结论
 	private String orginizationResult; //机关批复
+	private String areaRepairInfo; //辖区修理信息 (大修 ： ***厂，###厂)
 	
 	private List<String> areaRepairInfos; //辖区修理信息 (大修 ： ***厂，###厂)
-	
 	private String orderType; //排序
+	
+	
+	public String getHaveSuccesWwork() {
+		return haveSuccesWwork;
+	}
+	public void setHaveSuccesWwork(String haveSuccesWwork) {
+		this.haveSuccesWwork = haveSuccesWwork;
+	}
+	public String getAreaRepairInfo() {
+		return areaRepairInfo;
+	}
+	public void setAreaRepairInfo(String areaRepairInfo) {
+		this.areaRepairInfo = areaRepairInfo;
+	}
 	public int getApplicationId() {
 		return applicationId;
 	}
@@ -68,12 +82,6 @@ public class Application extends BaseModel{
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-	public String getHaveSuccesWwork() {
-		return haveSuccesWwork;
-	}
-	public void setHaveSuccesWwork(String haveSuccesWwork) {
-		this.haveSuccesWwork = haveSuccesWwork;
 	}
 	public String getAreaHaveAbility() {
 		return areaHaveAbility;

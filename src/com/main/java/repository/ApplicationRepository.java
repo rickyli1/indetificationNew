@@ -12,6 +12,8 @@ public interface ApplicationRepository {
 	
 	public List<Application> findAllApplicationsForExport(Application application);
 	
+	public List<Application> findAllApplicationAuditForExport(Application bean);
+	
 	public List<Application> findAllApplications(Application application);
 	
 	public int findApplicationsCount(Application searchParams);
@@ -19,5 +21,6 @@ public interface ApplicationRepository {
 	public void deleteRepairById(@Param(value="id")int id);
 
 	public void updateRepair(Application updateParams);
-	
+
+
 }

@@ -15,7 +15,7 @@
 	                <th><spring:message code="lable.equipment.modifyCompany"/></th>
 	                <th><spring:message code="lable.equipment.limit"/></th>
 	                <th><spring:message code="lable.equipment.remarks"/></th>
-	                
+	                <th>操作</th>
 	              </tr>
 	            </thead>
 	            <tbody>
@@ -30,6 +30,10 @@
 			                <td>${apply.equipmentCompany}</td>
 			                <td>${apply.equipmentLimit}</td>
 			                <td>${apply.remark}</td>
+			                <td>
+			                	<button id="deleteBtn" class="btn btn-primary btn-sm" type="button"   onclick="goDel('${apply.equipmentId}')"><spring:message code="lable.equipment.equipmentDelete"/></button>
+						    	<button id="detailBtn" class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#detailModal" onclick="goEquipmentUpdate('${apply.equipmentId}')"><spring:message code="lable.equipment.equipmentUpdate"/></button>
+			                </td>
 		                </tr>
 	            	</c:forEach>
 	            </tbody>
@@ -55,7 +59,15 @@
 		    	goPage(page);
 		    }
 		});
- </script>
+		
+	 
+	    
+	    function goEquipmentUpdate(equipmentNo) {
+			//window.open("/equipment/updateInit/"+equipmentNo);
+			identification.add = new Identification.equipment.Add();
+	    	identification.add.goDetail(equipmentNo);
+		}
+	   </script>
       
       
       

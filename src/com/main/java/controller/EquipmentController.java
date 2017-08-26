@@ -27,10 +27,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.main.java.model.AdminUser;
 import com.main.java.model.Equipment;
 import com.main.java.service.EquipmentService;
 import com.main.java.utils.Constants;
 import com.main.java.utils.ExcelUtil;
+import com.main.java.utils.IndetificationUtil;
 import com.main.java.utils.PageUtil;
 import com.main.java.utils.TimeUtils;
 
@@ -164,5 +166,53 @@ public class EquipmentController {
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("equipments", equipments);
 		
+	}
+	
+	@RequestMapping("/deleteEquipment")
+	public String deleteEquipment(Model model, @RequestBody String equipmentId) {
+		Equipment equipmentModel = new Equipment();
+		AdminUser user = IndetificationUtil.getAdminUser();
+		// 执行删除
+		int result = -1;
+		if(equipmentId != null && !"".equals(equipmentId)){
+			//软删除数据
+			equipmentModel.setDeleteFlag(Constants.DELETE_FLAG_TRUE);
+			equipmentModel.setLastModifyBy(user.getUsername());
+			equipmentModel.setEquipmentId(Integer.parseInt(equipmentId));
+			result = equipmentService.updateEquipment(equipmentModel);
+		}
+		if (result > 0) {
+			model.addAttribute("msg", "删除设备成功!");
+		} else {
+			model.addAttribute("msg", "删除设备失败!");
+		}
+		model.addAttribute("url", "equipment/init");
+		return "common/alert";
+	}
+	
+	@RequestMapping("/updateEquipment")
+	public String updateEquipment(Model model, @RequestBody Equipment equipmentModel) {
+		int result = -1;
+		AdminUser user = IndetificationUtil.getAdminUser();
+		if(equipmentModel != null && !"".equals(equipmentModel.getEquipmentId())){
+			equipmentModel.setLastModifyBy(user.getUsername());
+			result = equipmentService.updateEquipment(equipmentModel);
+		}
+		if (result > 0) {
+			model.addAttribute("msg", "更新设备成功!");
+		} else {
+			model.addAttribute("msg", "更新设备失败!");
+		}
+		model.addAttribute("url", "equipment/init");
+
+		return "common/alert";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/updateInit")
+	public Equipment updateInit(Model model,@RequestBody Equipment select) {
+		Equipment equipment = new Equipment();
+		equipment = this.equipmentService.findEquipmentById(select);
+		return equipment;
 	}
 }

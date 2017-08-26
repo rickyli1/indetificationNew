@@ -215,4 +215,4 @@
     <include refid="baseSearchSql"/>
     <include refid="searchCondSql"/>
   </select>
-</mapper>
+</mapper> 

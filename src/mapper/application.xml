@@ -15,6 +15,11 @@
 		<result property="repairerHistory" column="repairer_history" />
 		<result property="remark" column="remark" />
 		
+		<result property="haveSuccesWwork" column="have_success_work" />
+		<result property="areaHaveAbility" column="area_have_ability" />
+		<result property="orginizationResult" column="orginization_result" />
+		<result property="areaRepairInfo" column="areaRepairInfo" />
+			
 		<result column="delete_flag" property="deleteFlag" />
 		<result column="CREATE_BY" property="createBy" />
 		<result column="LAST_MODIFY_BY" property="lastModifyBy" />
@@ -106,6 +111,9 @@
 		  `repairer_level`,
 		  `repairer_history`,
 		  `remark`,
+		  `have_success_work`,
+		  `area_have_ability`,
+		  `orginization_result`,
 		  `CREATE_BY`,
 		  `LAST_MODIFY_BY`,
 		  `CREATE_TIME`,
@@ -115,6 +123,85 @@
 		where delete_flag = 0
         <include refid="searchCondSql" />
         <include refid="orderBySql" />
+	</select>
+	
+	<select id="findAllApplicationAuditForExport" resultMap="applicationMap" parameterType="Application">
+	    select 
+		an.application_id,
+		an.application_date,
+		an.application_repairer, 
+		an.equipment_manager,
+		an.equiment_group,
+		an.equiment_name,
+		an.repairer_level,
+		an.repairer_history,
+		an.remark,
+		an.have_success_work,
+		an.area_have_ability,
+		an.orginization_result,
+		an.CREATE_BY,
+		an.LAST_MODIFY_BY,
+		an.CREATE_TIME,
+		an.LAST_MODIFY_TIME,
+		an.DELETE_FLAG,
+        temp5.areaRepairInfo
+		from test.application_new an    
+           
+           left join   
+           
+           (
+           select temp4.equipment_name,group_concat(temp4.areaRepairInfo) as areaRepairInfo
+           from
+           (
+             select temp3.equipment_name,temp3.equipment_group,temp3.EQUIPMENT_LEVEL,
+			concat_ws(<![CDATA[':']]>,temp3.EQUIPMENT_LEVEL ,temp3.areaRepairInfo) as areaRepairInfo from 
+              (
+               select  temp2.equipment_name,temp2.equipment_group,temp2.EQUIPMENT_LEVEL,
+               group_concat(distinct temp2.COMPANY) as areaRepairInfo from 
+		    (
+				select en.equipment_id,en.EQUIPMENT_LEVEL,en.equipment_group ,en.EQUIPMENT_COMPANY,en.equipment_name,temp.company
+			    , r.repairer_area
+				from 
+				(
+					select a.EQUIPMENT_ID,substring_index(substring_index(a.EQUIPMENT_COMPANY,<![CDATA['、']]> ,b.AutoIncreID),<![CDATA['、']]> ,-1)  as company
+					from 
+					equipment_new a
+					join
+					incre_table b
+					on b.AutoIncreID <![CDATA[<= ]]> (length(a.EQUIPMENT_COMPANY) - length(replace(a.EQUIPMENT_COMPANY, <![CDATA['、']]>,'  ' ))+1)
+					where a.DELETE_FLAG=0
+					order by a.EQUIPMENT_ID
+				)temp 
+				inner join 
+				test.equipment_new en 
+				on en.EQUIPMENT_ID = temp.EQUIPMENT_ID
+				and en.DELETE_FLAG=0
+				INNER JOIN test.repairer r
+				ON TEMP.COMPANY= R.repairer_name
+				
+		    ) temp2
+		    
+		    group by temp2.equipment_name,temp2.equipment_group,temp2.EQUIPMENT_LEVEL
+               
+               )temp3
+               group by temp3.equipment_name,temp3.EQUIPMENT_LEVEL
+               
+               )temp4
+			group by temp4.equipment_name 
+               )temp5
+               on temp5.equipment_name = an.equiment_name
+			where 1=1
+			<if test="applicationDate != null and applicationDate != '' ">
+	  			and an.application_date = #{applicationDate}
+	  		</if>
+	  		<if test="applicationRepairer != null and applicationRepairer != '' ">
+	  			and an.application_repairer like concat('%',#{applicationRepairer},'%')
+	  		</if>
+	  		<if test="equimentName != null and equimentName != '' ">
+	  			and an.equiment_name  like concat('%',#{equimentName},'%')
+	  		</if>
+			and	an.DELETE_FLAG = 0
+       
 	</select>
 	
 	<update id="deleteRepairById"  parameterType="int">
@@ -174,6 +261,5 @@
 		0
 		)
 	</insert>
-	
 	
 </mapper>
