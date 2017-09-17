@@ -101,6 +101,14 @@
          <li><a href="/application/init">认可申请</a></li>
          <li><a href="/audit/init">申请审核</a></li>
          <li><a href="/equipment/init">承修单位</a></li>
+         <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">结论报告<span class="caret"></span></a>
+           <ul class="dropdown-menu" role="menu">
+                <li><a href="/resultFile/init">报告查询</a></li>
+                <li><a href="/resultFile/addInit">报告登录</a></li>
+           </ul>
+         </li>             
+          
        </ul>
      </div><!--/.nav-collapse -->
    </div>

@@ -6,7 +6,7 @@ public class WebAppInitializer  extends AbstractAnnotationConfigDispatcherServle
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[]{RootConfig.class}; 
+		return new Class<?>[]{RootConfig.class,MongoDBConfig.class}; 
 	}
 
 	@Override

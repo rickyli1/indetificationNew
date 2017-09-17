@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages={"com.main.java.service"},excludeFilters={@Filter(type=FilterType.ANNOTATION,value=Controller.class)})  
 @MapperScan("com.main.java.repository")
 @EnableTransactionManagement
-@Import({ WebSecurityConfig.class })
+@Import({ WebSecurityConfig.class})
 public class RootConfig {
 
 	  @Bean

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.main.java.repository.ResultFileRepository">
+
+	<sql id="searchCondSql">
+  		<if test="applicationDate != null and applicationDate != '' ">
+  			and application_date = #{applicationDate}
+  		</if>
+  		<if test="repairerName != null and repairerName != '' ">
+  			and repairer_name like concat('%',#{repairerName},'%')
+  		</if>
+  		<if test="equimentGroup != null and equimentGroup != '' ">
+  			and equiment_group  like concat('%',#{equimentGroup},'%')
+  		</if>
+	</sql>
+	
+	<resultMap id="resultFileMap" type="ResultFile">
+		<id column="file_id" property="fileId" />
+		<id column="mongo_file_id" property="mongoFileId" />
+		<id column="mongo_file_name" property="mongoFileName" />
+		<id column="application_date" property="applicationDate" />
+		<id column="repairer_name" property="repairerName" />
+		<id column="equiment_group" property="equimentGroup" />
+
+		<result column="delete_flag" property="deleteFlag" />
+		<result column="CREATE_BY" property="createBy" />
+		<result column="LAST_MODIFY_BY" property="lastModifyBy" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+	</resultMap>
+
+	 
+	<select id="findReulstFileCount" resultType="int" parameterType="ResultFile">
+		select
+		count(1)
+		from result_file
+        where delete_flag = 0
+        <include refid="searchCondSql" />
+	</select>
+	
+	
+	<select id="findResultFileList" resultMap="resultFileMap" parameterType="ResultFile">
+		SELECT
+		  `file_id`,
+		  `mongo_file_id`,
+		  `mongo_file_name`,
+		  `application_date`, 
+		  `repairer_name`,
+		  `equiment_group`,
+		  `CREATE_BY`,
+		  `LAST_MODIFY_BY`,
+		  `CREATE_TIME`,
+		  `LAST_MODIFY_TIME`,
+		  `DELETE_FLAG`
+		FROM result_file
+        where delete_flag = 0
+        <include refid="searchCondSql" />
+		LIMIT ${startNo}, ${pageSize}
+	</select>
+	
+	<insert id="insertResultFile" parameterType="ResultFile" useGeneratedKeys="true" keyProperty="fileId">
+		INSERT INTO result_file(
+		  `file_id`,
+		  `mongo_file_id`,
+		  `mongo_file_name`,
+		  `application_date`, 
+		  `repairer_name`,
+		  `equiment_group`,
+		  `CREATE_BY`,
+		  `LAST_MODIFY_BY`,
+		  `CREATE_TIME`,
+		  `LAST_MODIFY_TIME`,
+		  `DELETE_FLAG`)
+		VALUES(
+			#{fileId},
+			#{mongoFileId},
+			#{mongoFileName},
+			#{applicationDate},
+			#{repairerName},
+			#{equimentGroup},
+			#{createId},
+			#{updateId},
+			now(),
+			now(),
+			0
+		)
+	</insert>
+</mapper>
