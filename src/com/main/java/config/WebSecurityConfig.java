@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
-import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -42,14 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
        // http.authorizeRequests().anyRequest().fullyAuthenticated();
          http.authorizeRequests()
-                .antMatchers("/home")
-                .authenticated()
-                .anyRequest()
-                .authenticated() // #7
-                .antMatchers("/repairer")
-                .authenticated()
-                .anyRequest()
-                .authenticated() // #7                
+                .antMatchers("/resultFile/fileDownload/**")
+                .access("hasRole('ROLE_ADMIN')")
+                .anyRequest().authenticated()
                .and()
                .formLogin()
                  .loginPage("/login")
@@ -116,6 +110,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private SimpleUrlAuthenticationSuccessHandler authenticationSuccessHandler() {
         return new SimpleUrlAuthenticationSuccessHandler("/loginSuccess");
     }
+
+
 
     public static class MyFilterSecurityInterceptor extends FilterSecurityInterceptor {
 

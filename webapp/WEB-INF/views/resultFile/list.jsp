@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>      
  <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix='sec' uri='http://www.springframework.org/security/tags' %> 
    
       	 <div style="padding-top: 10px;">
 	         <table class="table table-bordered table-striped">
@@ -20,7 +21,14 @@
 		                <td>${resultFile.repairerName}</td>
 		                <td>${resultFile.equimentGroup}</td>
 		                <td>${resultFile.applicationDate}</td>
-		                <td><a href="fileDownload/${resultFile.mongoFileId}">${resultFile.mongoFileName}</a></td>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">  
+                           <td><a href="fileDownload/${resultFile.mongoFileId}">${resultFile.mongoFileName}</a></td>
+		                </sec:authorize>
+						
+                        <sec:authorize access="hasRole('ROLE_GENERAL')">  
+                           <td>${resultFile.mongoFileName}</td>
+		                </sec:authorize>
+								                
 		                <td>
 						    <button id="previewBtn" class="btn btn-primary btn-sm" type="button" onclick="previewResultFile('${resultFile.mongoFileId}')">预览</button>		                
 		                </td>

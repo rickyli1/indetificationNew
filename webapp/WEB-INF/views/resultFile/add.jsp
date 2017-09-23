@@ -50,7 +50,7 @@
               <div class="form-group">
                                              
                 <label class="col-md-1 control-label" for="resultFileupload"><spring:message code="lable.application.add.result.file"/></label>
-				<div class="col-md-3">
+				<div class="col-md-*">
 		 			<span class="btn btn-default btn-sm fileinput-button">
 				        <i class="glyphicon glyphicon-plus"></i>
 				        <span><spring:message code="lable.application.add.application.select.file"/></span>

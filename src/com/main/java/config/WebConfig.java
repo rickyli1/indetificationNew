@@ -52,6 +52,7 @@ public class WebConfig {
     public CommonsMultipartResolver multipartResolver() {
     	CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
     	multipartResolver.setMaxUploadSize(5242880 * 4);//5MB *4
+    	multipartResolver.setDefaultEncoding("UTF-8");
     	return multipartResolver;
     }
       
