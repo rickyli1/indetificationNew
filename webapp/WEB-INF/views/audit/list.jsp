@@ -34,7 +34,7 @@
 	                <th>申请级别</th>
 	                <th>申请经历</th>
 	                <th>有无认可任务</th>
-	                <th colspan="2">辖区</th>
+	                <th colspan="2">辖区同型号修理能力</th>
 	                <th>机关批复</th>
 	                <th>备注</th>
 	                <th>操作</th>

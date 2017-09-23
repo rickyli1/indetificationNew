@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
-<c:import url="/WEB-INF/views/common/commonScript.jsp"></c:import> 
 <div class="modal-body">   
 <div class="container-fluid">
 <div class="row">
@@ -73,11 +72,6 @@
 	    </div>
 	</div>
 </div>
-
-<!-- <script type="text/javascript" src="/js/identification/equipment/equipmentAdd.js" charset="UTF-8"></script>
-<script type="text/javascript">
-   identification.equipmentAdd = new Identification.equipment.Add();
-</script> -->
 
 		
 		

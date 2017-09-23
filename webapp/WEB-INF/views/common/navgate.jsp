@@ -97,10 +97,10 @@
    <div class="container">
      <div id="navbar" class="navbar-collapse collapse">
        <ul class="nav navbar-nav">
-         <li><a href="/repairer/init"><spring:message code="lable.navgate.repairer"/></a></li>
+         <li><a href="/equipment/init">承修单位</a></li>
          <li><a href="/application/init">认可申请</a></li>
          <li><a href="/audit/init">申请审核</a></li>
-         <li><a href="/equipment/init">承修单位</a></li>
+         <li><a href="/repairer/init"><spring:message code="lable.navgate.repairer"/></a></li>
          <li>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">结论报告<span class="caret"></span></a>
            <ul class="dropdown-menu" role="menu">

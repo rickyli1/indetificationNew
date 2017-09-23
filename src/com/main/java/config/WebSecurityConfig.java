@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                .formLogin()
                  .loginPage("/login")
                  .permitAll()
-                 .defaultSuccessUrl("/repairer/init")
+                 .defaultSuccessUrl("/equipment/init")
                  .usernameParameter("username")
                  .passwordParameter("password")
                .and()
