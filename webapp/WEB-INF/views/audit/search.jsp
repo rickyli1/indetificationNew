@@ -15,12 +15,12 @@
 			<c:import url="/WEB-INF/views/common/navgate.jsp"></c:import>
 
 	<div class="panel panel-primary">
-	  <div class="panel-heading">申请审核</div>
+	  <div class="panel-heading"><spring:message code="lable.audit.search.title"/></div>
 		  <div class="panel-body"> 
             <fieldset>
               <legend> </legend>
               <div class="form-group">
-                 <label class="col-md-1 control-label" for="requireData">申请日期</label>
+                 <label class="col-md-1 control-label" for="requireData"><spring:message code="lable.audit.search.date"/></label>
                  <div class="col-md-2">
                    <span class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="requireData" data-link-format="yyyy-mm-dd">
                     <input class="form-control" type="text" value="" readonly="readonly">
@@ -28,18 +28,18 @@
                     </span>
 				     <input type="hidden" id="requireData" value="" />                
                  </div>
-                 <label class="col-md-1 control-label" for="requireCompany">申请单位</label>
+                 <label class="col-md-1 control-label" for="requireCompany"><spring:message code="lable.audit.search.company"/></label>
                  <div class="col-md-2">                
 					<input type="text" id="requireCompany" class="form-control" name="requireCompany">
                  </div>
                  
-                 <label class="col-md-2 control-label" for="equipmentName">申请ZB型号名称</label>
+                 <label class="col-md-2 control-label" for="equipmentName"><spring:message code="lable.audit.search.equiment.name"/></label>
                  <div class="col-md-2">                
                    <input type="text" id="equipmentName" class="form-control input-xlarge" name="equipmentName">
                  </div>  
                  
                   <div class="col-md-2">                
-      				<button type="button" class="btn btn-primary btnSize" id="auditSearchBtn">查询</button>
+      				<button type="button" class="btn btn-primary btnSize" id="auditSearchBtn"><spring:message code="button.audit.search"/></button>
                  </div>                                
               </div>
            </fieldset>

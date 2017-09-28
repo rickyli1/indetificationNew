@@ -6,10 +6,10 @@
 	         <table class="table table-bordered table-striped">
 	            <thead>
 	              <tr>
-	                <th>序号</th>
-	                <th>辖区</th>
-	                <th>修理单位名称</th>
-	                <th>单位性质</th>
+	                <th><spring:message code="lable.repairer.list.no"/></th>
+	                <th><spring:message code="lable.repairer.list.area"/></th>
+	                <th><spring:message code="lable.repairer.list.company.name"/></th>
+	                <th><spring:message code="lable.repairer.list.company.attribute"/></th>
 	              </tr>
 	            </thead>
 	            	

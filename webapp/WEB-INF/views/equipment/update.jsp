@@ -36,10 +36,10 @@
 	                 <div class="col-md-2"  style="width:180px;">
 	                      <select  class="form-control" id="dequipmentLevel">
 							 <option selected value=""></option>				
-								  <option value="大修">大修</option>
-								  <option value="中修">中修</option>
-								  <option value="小修">小修</option>
-								  <option value="检修">检修</option>
+								  <option value="大修"><spring:message code="option.equipment.update.major.repair"/></option>
+								  <option value="中修"><spring:message code="option.equipment.update.middle.repair"/></option>
+								  <option value="小修"><spring:message code="option.equipment.update.small.repair"/></option>
+								  <option value="检修"><spring:message code="option.equipment.update.check.repair"/></option>
 							</select>
 	                 </div>
 	                 

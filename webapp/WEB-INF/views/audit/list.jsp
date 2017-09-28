@@ -26,18 +26,18 @@
           <table class="table table-bordered table-striped">
 	            <thead>
 	              <tr>
-	                <th>申请日期</th>
-	                <th>申请单位</th>
-	                <th>装备管理机关</th>
-	                <th>备装专业</th>
-	                <th>申请ZB型号名称</th>
-	                <th>申请级别</th>
-	                <th>申请经历</th>
-	                <th>有无认可任务</th>
-	                <th colspan="2">辖区同型号修理能力</th>
-	                <th>机关批复</th>
-	                <th>备注</th>
-	                <th>操作</th>
+	                <th><spring:message code="lable.audit.list.date"/></th>
+	                <th><spring:message code="lable.audit.list.company"/></th>
+	                <th><spring:message code="lable.audit.list.equiment.manager"/></th>
+	                <th><spring:message code="lable.audit.list.group"/></th>
+	                <th><spring:message code="lable.audit.list.equiment.name"/></th>
+	                <th><spring:message code="lable.audit.list.repair.level"/></th>
+	                <th><spring:message code="lable.audit.list.history"/></th>
+	                <th><spring:message code="lable.audit.list.success.work"/></th>
+	                <th colspan="2"><spring:message code="lable.audit.list.repair.level"/></th>
+	                <th><spring:message code="lable.audit.list.company.result"/></th>
+	                <th><spring:message code="lable.audit.list.remark"/></th>
+	                <th><spring:message code="lable.audit.list.opration"/></th>
 	              </tr>
 	            </thead>
 	            	
@@ -52,11 +52,11 @@
 		                <td   id="repairerLevel${application.applicationId}">${application.repairerLevel}</td>
 		                <td   id="repairerHistory${application.applicationId}"class="history">${application.repairerHistory}</td>
 		                <td>
-		                <input type="radio" <c:if test="${application.haveSuccesWwork == '有'}">checked="checked"</c:if> name="haveSuccesWwork${application.applicationId}" value="有">有</<input><br>
-		                <input type="radio"  <c:if test="${application.haveSuccesWwork == '无'}">checked="checked"</c:if> name="haveSuccesWwork${application.applicationId}" value="无">无</<input>
+		                <input type="radio" <c:if test="${application.haveSuccesWwork == '有'}">checked="checked"</c:if> name="haveSuccesWwork${application.applicationId}" value="有"><spring:message code="option.audit.list.have.success.work"/></<input><br>
+		                <input type="radio"  <c:if test="${application.haveSuccesWwork == '无'}">checked="checked"</c:if> name="haveSuccesWwork${application.applicationId}" value="无"><spring:message code="option.audit.list.no.have.success.work"/></<input>
 		                </td>
 		                <c:if test="${application.areaRepairInfos.size() == 0 }">
-		                   <td>无</td>
+		                   <td><spring:message code="option.audit.list.no.have.success.work"/></td>
 		                </c:if>
 		                
 		                <c:if test="${application.areaRepairInfos.size() > 0 }">
@@ -68,17 +68,17 @@
 		                </c:if>
 		                
 		                <td>
-		                结论<br>
-		                <input type="radio" <c:if test="${application.areaHaveAbility == '具备'}"> checked="checked"</c:if>name="areaHaveAbility${application.applicationId}" value="具备">具备</input><br>
-		                <input type="radio" <c:if test="${application.areaHaveAbility == '基本具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}" vlaue="基本具备">基本具备</input><br>
-		                <input type="radio" <c:if test="${application.areaHaveAbility == '不具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}"value="不具备">不具备</input>
+		                <spring:message code="option.audit.list.result"/><br>
+		                <input type="radio" <c:if test="${application.areaHaveAbility == '具备'}"> checked="checked"</c:if>name="areaHaveAbility${application.applicationId}" value="具备"><spring:message code="option.audit.list.have.ability"/></input><br>
+		                <input type="radio" <c:if test="${application.areaHaveAbility == '基本具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}" vlaue="基本具备"><spring:message code="option.audit.list.base.ability"/></input><br>
+		                <input type="radio" <c:if test="${application.areaHaveAbility == '不具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}"value="不具备"><spring:message code="option.audit.list.no.ability"/></input>
 		                </td>
 		                <td>
-		                 <input type="radio" <c:if test="${application.orginizationResult == '大修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="大修">大修</input><br>
-		                 <input type="radio" <c:if test="${application.orginizationResult == '中修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="中修">中修</input><br>
-		                 <input type="radio" <c:if test="${application.orginizationResult == '小修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="小修">小修</input><br>
-		                 <input type="radio" <c:if test="${application.orginizationResult == '检修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="检修">检修</input><br>
-		                 <input type="radio" <c:if test="${application.orginizationResult == '否'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="否">否</input>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '大修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="大修"><spring:message code="option.audit.list.major.repair"/>大修</input><br>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '中修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="中修"><spring:message code="option.audit.list.middle.repair"/>中修</input><br>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '小修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="小修"><spring:message code="option.audit.list.small.repair"/>小修</input><br>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '检修'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="检修"><spring:message code="option.audit.list.check.repair"/>检修</input><br>
+		                 <input type="radio" <c:if test="${application.orginizationResult == '否'}"> checked="checked"</c:if>name="orginizationResult${application.applicationId}" value="否"><spring:message code="option.audit.list.no.repair"/>否</input>
 		                
 		                </td>
 		                <td>

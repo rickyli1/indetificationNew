@@ -15,23 +15,23 @@
 			<c:import url="/WEB-INF/views/common/navgate.jsp"></c:import>
 
 	<div class="panel panel-primary">
-	  <div class="panel-heading">报告查询</div>
+	  <div class="panel-heading"><spring:message code="lable.resultFile.search.title"/></div>
 		  <div class="panel-body"> 
 		  
            <fieldset>
               <legend> </legend>
               <div class="form-group">
-                  <label class="col-md-1 control-label" for="repairerName">申请单位</label>
+                  <label class="col-md-1 control-label" for="repairerName"><spring:message code="lable.resultFile.search.company"/></label>
                  <div class="col-md-3">                
 					<input type="text" id="repairerName" class="form-control" name="repairerName">
                  </div>
                  
-                 <label class="col-md-1 control-label" for="equimentGroup">申请专业</label>
+                 <label class="col-md-1 control-label" for="equimentGroup"><spring:message code="lable.resultFile.search.group"/></label>
                  <div class="col-md-3">                
                    <input type="text" id="equimentGroup" class="form-control input-xlarge" name="equimentGroup">
                  </div> 
                  
-                <label class="col-md-1 control-label" for="requireData">申请日期</label>
+                <label class="col-md-1 control-label" for="requireData"><spring:message code="lable.resultFile.search.date"/></label>
                  <div class="col-md-2">
                    <span class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="requireData" data-link-format="yyyy-mm-dd">
                     <input class="form-control" type="text" value="" readonly="readonly">
@@ -42,7 +42,7 @@
                   
                  
                   <div class="col-md-1">                
-      				<button type="button" class="btn btn-primary btnSize" id="resultFileSearchBtn">查询</button>
+      				<button type="button" class="btn btn-primary btnSize" id="resultFileSearchBtn"><spring:message code="button.resuktFile.search"/></button>
                  </div>                                
               </div>
            </fieldset>

@@ -21,7 +21,6 @@ out = pageContext.pushBody();
 %>
 </body>
   <script type="text/javascript">
-  console.log(2222);
       alert("${msg}");
       window.location.href = "${baseUrl}"+"${url}";
     </script>

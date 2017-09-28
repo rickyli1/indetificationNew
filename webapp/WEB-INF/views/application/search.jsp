@@ -15,12 +15,12 @@
 			<c:import url="/WEB-INF/views/common/navgate.jsp"></c:import>
 
 	<div class="panel panel-primary">
-	  <div class="panel-heading">认可申请</div>
+	  <div class="panel-heading"><spring:message code="lable.applicationNew.search.title"/></div>
 		  <div class="panel-body"> 
             <fieldset>
               <legend> </legend>
               <div class="form-group">
-                 <label class="col-md-1 control-label" for="requireData">申请日期</label>
+                 <label class="col-md-1 control-label" for="requireData"><spring:message code="lable.applicationNew.search.date"/></label>
                  <div class="col-md-2">
                    <span class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="requireData" data-link-format="yyyy-mm-dd">
                     <input class="form-control" type="text" value="" readonly="readonly">
@@ -28,18 +28,18 @@
                     </span>
 				     <input type="hidden" id="requireData" value="" />                
                  </div>
-                 <label class="col-md-1 control-label" for="requireCompany">申请单位</label>
+                 <label class="col-md-1 control-label" for="requireCompany"><spring:message code="lable.applicationNew.search.company"/></label>
                  <div class="col-md-2">                
 					<input type="text" id="requireCompany" class="form-control" name="requireCompany">
                  </div>
                  
-                 <label class="col-md-2 control-label" for="equipmentName">申请ZB型号名称</label>
+                 <label class="col-md-2 control-label" for="equipmentName"><spring:message code="lable.applicationNew.search.equipment.name"/></label>
                  <div class="col-md-2">                
                    <input type="text" id="equipmentName" class="form-control input-xlarge" name="equipmentName">
                  </div>  
                  
                   <div class="col-md-2">                
-      				<button type="button" class="btn btn-primary btnSize" id="applicationSearchBtn">查询</button>
+      				<button type="button" class="btn btn-primary btnSize" id="applicationSearchBtn"><spring:message code="button.applicationNew.search"/></button>
                  </div>                                
               </div>
            </fieldset>
@@ -53,22 +53,22 @@
                  <div class="col-md-*">
                       <span class="btn btn-primary  btnSize fileinput-button">
 				        <i class="glyphicon glyphicon-plus"></i>
-				        <span>导入</span>
+				        <span><spring:message code="button.applicationNew.import"/></span>
 				        <!-- The file input field used as target for the file upload widget -->
 				         <input id="applicationImoprtBtn"  type="file" name="file" multiple>
 				       </span>  
 				       
 				     <div style="display:inline-block;float:right;">  
      				<select style="height:30px" id="orderType" > 
-      					<option value="1">升序+申请日期</option>
-      					<option value="2">升序+申请单位</option>
-      					<option value="3">升序+申请ZB型号名称</option>
-      					<option value="4">降序+申请日期</option>
-      					<option value="5">降序+申请单位</option>
-      					<option value="6">降序+申请ZB型号名称</option>
+      					<option value="1"><spring:message code="option.applicationNew.asc.date"/></option>
+      					<option value="2"><spring:message code="option.applicationNew.asc.company"/></option>
+      					<option value="3"><spring:message code="option.applicationNew.asc.equipment.name"/></option>
+      					<option value="4"><spring:message code="option.applicationNew.desc.date"/></option>
+      					<option value="5"><spring:message code="option.applicationNew.desc.company"/></option>
+      					<option value="6"><spring:message code="option.applicationNew.desc.equipment.name"/></option>
       				</select>
        				
-       				<button type="button" class="btn btn-primary btnSize" id="applicationExportBtn">导出</button>
+       				<button type="button" class="btn btn-primary btnSize" id="applicationExportBtn"><spring:message code="button.applicationNew.export"/></button>
       				</div>
                  </div>
                                  
@@ -101,13 +101,13 @@
       			<div class="modal-content">
       				<div class="modal-header">
       					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        		<h4 class="modal-title" id="detailModalLabel">认可申请修改</h4>
+		        		<h4 class="modal-title" id="detailModalLabel"><spring:message code="lable.applicationNew.update.title"/></h4>
       				</div>
       				<div class="panel-body"> 
       				<div class="form-group">
 					<div class="row" style="margin-top:10px">
 					    <div class="row" style="margin-top:10px">
-					      	<label class="col-md-2 control-label" for="updateApplicationDate">申请日期</label>
+					      	<label class="col-md-2 control-label" for="updateApplicationDate"><spring:message code="lable.applicationNew.update.date"/></label>
 					      <div class="col-md-3">	
 							<span  class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="updateApplicationDate" data-link-format="yyyy-mm-dd">
 		                    <input id="updateApplicationDateTxt" class="form-control" type="text" value="" readonly="readonly">
@@ -117,43 +117,43 @@
 					      
 					      </div>
 					      
-						  <label class="col-md-2 control-label" for="updateApplicationRepairer">申请单位</label>
+						  <label class="col-md-2 control-label" for="updateApplicationRepairer"><spring:message code="lable.applicationNew.update.company"/></label>
 					      <div class="col-md-3">
 					      	<input type="text" id="updateApplicationRepairer" name="updateApplicationRepairer"/>
 						  </div>
 						 </div>
 					    <div class="row" style="margin-top:10px">							  
-						 <label class="col-md-2 control-label" for="updateEquipmentManager">装备管理机关</label>							  
+						 <label class="col-md-2 control-label" for="updateEquipmentManager"><spring:message code="lable.applicationNew.update.manage.company"/></label>							  
 					      <div class="col-md-3">
 					      	<input type="text" id="updateEquipmentManager" name="updateEquipmentManager"/>
 						  </div>
 						  
-						  <label class="col-md-2 control-label" for="updateEquimentGroup">备装专业</label>
+						  <label class="col-md-2 control-label" for="updateEquimentGroup"><spring:message code="lable.applicationNew.update.equipment.group"/></label>
 						  <div class="col-md-3">
 					      	<input type="text" id="updateEquimentGroup" name="updateEquimentGroup"/>
 						  </div>
                              </div>
                            <div class="row" style="margin-top:10px">
-						  <label class="col-md-2 control-label" for="updateRepairerLevel">申请级别</label>
+						  <label class="col-md-2 control-label" for="updateRepairerLevel"><spring:message code="lable.applicationNew.update.level"/></label>
 						  <div class="col-md-3">
 					      	<input type="text" id="updateRepairerLevel" name="updateRepairerLevel"/>
 						  </div>
 
-                          <label class="col-md-2 control-label" for="updateEquimentName">申请ZB型号名称</label>
+                          <label class="col-md-2 control-label" for="updateEquimentName"><spring:message code="lable.applicationNew.update.equipment.name"/></label>
 						  <div class="col-md-3">
 					      	<input type="text" id="updateEquimentName" name="updateEquimentName"/>
 						  </div>
 						  </div>
 						  <div class="row" style="margin-top:10px">
 						  
-						 <label class="col-md-2 control-label" for="updateRepairerHistory">申请经历</label>							  
+						 <label class="col-md-2 control-label" for="updateRepairerHistory"><spring:message code="lable.applicationNew.update.history"/></label>							  
 						  <div class="col-md-3">
 					      	<textarea rows="5" cols="68" id="updateRepairerHistory"></textarea>
 						  </div>
 						  </div>
 						  <div class="row" style="margin-top:10px">
 						  
-						 <label class="col-md-2 control-label" for="updateRepairerHistory">备注</label>							  
+						 <label class="col-md-2 control-label" for="updateRepairerHistory"><spring:message code="lable.applicationNew.update.remark"/></label>							  
 						  <div class="col-md-3">
 					      	<input type="text" id="updateRemark" name="updateRemark"/>
 						  </div>
@@ -162,7 +162,7 @@
 						</div>
 					</div>
 					<input type="hidden" id="updateApplicationId" value=""/>
-					<button style="float:right" id="updateApplicationBtn" class="btn btn-primary btn-sm" type="button"  onclick="identification.application.updatelicationUpdate()">确认</button>
+					<button style="float:right" id="updateApplicationBtn" class="btn btn-primary btn-sm" type="button"  onclick="identification.application.updatelicationUpdate()"><spring:message code="button.applicationNew.update.ok"/></button>
 				  </div>
 				</div>
 				</div>

@@ -22,16 +22,16 @@
               <legend> </legend>
               <div class="form-group">
                  <div class="col-md-*">
-      				<button type="button" class="btn btn-primary btnSize" id="repairerSearchBtn" style="display:none">查询</button>
+      				<button type="button" class="btn btn-primary btnSize" id="repairerSearchBtn" style="display:none"><spring:message code="button.repairer.search"/></button>
       				
                     <span class="btn btn-primary  btnSize fileinput-button">
 				        <i class="glyphicon glyphicon-plus"></i>
-				        <span>导入</span>
+				        <span><spring:message code="button.repairer.search.import"/></span>
 				        <!-- The file input field used as target for the file upload widget -->
 				         <input id="repairerImoprtBtn"  type="file" name="file" multiple>
 				    </span>  
 				    <div style="display:inline-block;float:right;">  
-      				<button type="button" class="btn btn-primary btnSize" id="repairerExportBtn">导出</button>
+      				<button type="button" class="btn btn-primary btnSize" id="repairerExportBtn"><spring:message code="button.repairer.search.export"/></button>
       				</div>
                  </div>
                                  

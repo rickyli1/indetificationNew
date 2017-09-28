@@ -15,13 +15,13 @@
 			<c:import url="/WEB-INF/views/common/navgate.jsp"></c:import>
 
 	<div class="panel panel-primary">
-	  <div class="panel-heading">报告登录</div>
+	  <div class="panel-heading"><spring:message code="lable.resultFile.add.title"/></div>
       <div class="panel-body"> 
   <form class="form-horizontal" role="form">
            <fieldset>
               
               <div class="form-group">
-                 <label class="col-md-1 control-label"  for="company" id="companyLable"><spring:message code="lable.application.add.company.name"/></label>
+                 <label class="col-md-1 control-label"  for="company" id="companyLable"><spring:message code="lable.resultFile.add.company.name"/></label>
                  <div class="col-md-3">   
                   <input type="text" class="form-control"  id="company"/>             
 					  <select  class="form-control" id="companySelect" style="display:none">
@@ -31,12 +31,12 @@
 					</select>
                  </div>
                  
-                 <label class="col-md-1 control-label" for="department">申请专业</label>
+                 <label class="col-md-1 control-label" for="department"><spring:message code="lable.resultFile.add.department"/></label>
                  <div class="col-md-3">                
                     <input class="form-control" id="department" type="text"/>
                  </div>    
  
-                <label class="col-md-1 control-label" for="applicationDate"><spring:message code="lable.application.add.application.date"/></label>
+                <label class="col-md-1 control-label" for="applicationDate"><spring:message code="lable.resultFile.add.application.date"/></label>
                  <div class="col-md-3">
                     <span class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="applicationDate" data-link-format="yyyy-mm-dd">
                     <input class="form-control" type="text" value="" readonly="readonly">
@@ -49,11 +49,11 @@
              </div> 
               <div class="form-group">
                                              
-                <label class="col-md-1 control-label" for="resultFileupload"><spring:message code="lable.application.add.result.file"/></label>
+                <label class="col-md-1 control-label" for="resultFileupload"><spring:message code="lable.resultFile.add.result.file"/></label>
 				<div class="col-md-*">
 		 			<span class="btn btn-default btn-sm fileinput-button">
 				        <i class="glyphicon glyphicon-plus"></i>
-				        <span><spring:message code="lable.application.add.application.select.file"/></span>
+				        <span><spring:message code="lable.resultFile.add.application.select.file"/></span>
 				        <!-- The file input field used as target for the file upload widget -->
 				         <input id="resultFileupload"  type="file" name="file" multiple>
 				    </span>

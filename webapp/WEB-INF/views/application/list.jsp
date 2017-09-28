@@ -7,15 +7,15 @@
 	         <table class="table table-bordered table-striped">
 	            <thead>
 	              <tr>
-	                <th style="width:9%">申请日期</th>
-	                <th>申请单位</th>
-	                <th>装备管理机关</th>
-	                <th style="width:7%">备装专业</th>
-	                <th>申请ZB型号名称</th>
-	                <th style="width:7%">申请级别</th>
-	                <th>申请经历</th>
-	                <th Style="width:5%">备注</th>
-	                <th style="width:11%">操作</th>
+	                <th style="width:9%"><spring:message code="lable.applicationNew.list.date"/></th>
+	                <th><spring:message code="lable.applicationNew.list.company"/></th>
+	                <th><spring:message code="lable.applicationNew.list.equipment.manage.company"/></th>
+	                <th style="width:7%"><spring:message code="lable.applicationNew.list.equipment.group"/></th>
+	                <th><spring:message code="lable.applicationNew.list.equipment.name"/></th>
+	                <th style="width:7%"><spring:message code="lable.applicationNew.list.level"/></th>
+	                <th><spring:message code="lable.applicationNew.list.history"/></th>
+	                <th Style="width:5%"><spring:message code="lable.applicationNew.list.remark"/></th>
+	                <th style="width:11%"><spring:message code="lable.applicationNew.list.operation"/></th>
 	              </tr>
 	            </thead>
 	            	

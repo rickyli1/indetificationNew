@@ -7,12 +7,11 @@
 	         <table class="table table-bordered table-striped">
 	            <thead>
 	              <tr>
-	                <th>序号</th>
-	                <th>申请单位</th>
-	                <th>申请专业</th>
-	                <th>申请日期</th>
-	                <th>结论文件</th>
-	                <th>操作</th>
+	                <th><spring:message code="lable.resultFile.list.no"/></th>
+	                <th><spring:message code="lable.resultFile.list.company"/></th>
+	                <th><spring:message code="lable.resultFile.list.group"/></th>
+	                <th><spring:message code="lable.resultFile.list.date"/></th>
+	                <th><spring:message code="lable.resultFile.list.file"/></th>
 	              </tr>
 	            </thead>
 	            	<c:forEach var="resultFile" items="${resultFiles}" varStatus="status">
@@ -28,10 +27,6 @@
                         <sec:authorize access="hasRole('ROLE_GENERAL')">  
                            <td>${resultFile.mongoFileName}</td>
 		                </sec:authorize>
-								                
-		                <td>
-						    <button id="previewBtn" class="btn btn-primary btn-sm" type="button" onclick="previewResultFile('${resultFile.mongoFileId}')">预览</button>		                
-		                </td>
 		               </tr>
 	            	</c:forEach>
 	            	
@@ -63,10 +58,6 @@ $('#pagination_repairerList').twbsPagination({
     	goPage(page);
     }
 });	
-
-function previewResultFile(fileId) {
-	
-}
 	
  </script>
       

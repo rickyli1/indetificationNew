@@ -92,20 +92,20 @@
 			
 </style>
 <!--  <div><img alt="" src="/images/ban2.jpg" style="width:100%;height:50%"></div>-->
-<div style="width:100%;height:50px;background-color:#1887f0"><span style="margin-left:38%"> <em style="color: white;font-size: xx-large;">XXXXX维修系统</em> </span></div>
+<div style="width:100%;height:50px;background-color:#1887f0"><span style="margin-left:38%"> <em style="color: white;font-size: xx-large;"><spring:message code="lable.navgate.titel"/></em> </span></div>
 <nav class="navbar navbar-default" role="navigation">
    <div class="container">
      <div id="navbar" class="navbar-collapse collapse">
        <ul class="nav navbar-nav">
-         <li><a href="/equipment/init">承修单位</a></li>
-         <li><a href="/application/init">认可申请</a></li>
-         <li><a href="/audit/init">申请审核</a></li>
+         <li><a href="/equipment/init"><spring:message code="lable.navgate.equipment"/></a></li>
+         <li><a href="/application/init"><spring:message code="lable.navgate.application"/></a></li>
+         <li><a href="/audit/init"><spring:message code="lable.navgate.audit"/></a></li>
          <li><a href="/repairer/init"><spring:message code="lable.navgate.repairer"/></a></li>
          <li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">结论报告<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><spring:message code="lable.navgate.report"/><span class="caret"></span></a>
            <ul class="dropdown-menu" role="menu">
-                <li><a href="/resultFile/init">报告查询</a></li>
-                <li><a href="/resultFile/addInit">报告登录</a></li>
+                <li><a href="/resultFile/init"><spring:message code="lable.navgate.report.search"/></a></li>
+                <li><a href="/resultFile/addInit"><spring:message code="lable.navgate.report.upload"/></a></li>
            </ul>
          </li>             
           

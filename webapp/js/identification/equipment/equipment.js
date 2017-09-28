@@ -40,10 +40,15 @@
 		},
 		goDel:function(equipmentNo) {
 			var that = this;
-			identification.ajax("/equipment/deleteEquipment", equipmentNo, "json", function(res) {
-				$("#alertDiv").empty();
-				$("#alertDiv").html(res);
-			});
+//			identification.ajax("/equipment/deleteEquipment", equipmentNo, "json", function(res) {
+//				$("#alertDiv").empty();
+//				$("#alertDiv").html(res);
+//			});
+			if(confirm("确定删除此项么？")) {
+				identification.ajax("/equipment/deleteEquipment", equipmentNo, "json", function(res) {
+					alert("删除成功！");
+				});
+			}
 			that.searchList();
 		},
 		searchList : function() {

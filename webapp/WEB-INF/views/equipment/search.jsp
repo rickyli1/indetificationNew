@@ -37,14 +37,14 @@
                  <div class="col-md-1">                
                      <select  class="form-control" id="equipmentLevel">
 					 <option selected value=""></option>				
-						  <option value="大修">大修</option>
-						  <option value="中修">中修</option>
-						  <option value="小修">小修</option>
-						  <option value="检修">检修</option>
+						  <option value="大修"><spring:message code="option.equipment.search.major.repair"/></option>
+						  <option value="中修"><spring:message code="option.equipment.search.middle.repair"/></option>
+						  <option value="小修"><spring:message code="option.equipment.search.small.repair"/></option>
+						  <option value="检修"><spring:message code="option.equipment.search.check.repair"/></option>
 					</select>
                  </div>  
                  <div class="col-md-1">                
-                    <button type="button" class="btn btn-primary btnSize" id="equipmentSearchBtn">查询</button>
+                    <button type="button" class="btn btn-primary btnSize" id="equipmentSearchBtn"><spring:message code="button.equipment.search"/></button>
                  </div>                                
                                  
               </div>
