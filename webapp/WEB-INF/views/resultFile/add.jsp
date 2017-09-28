@@ -23,7 +23,7 @@
               <div class="form-group">
                  <label class="col-md-1 control-label"  for="company" id="companyLable"><spring:message code="lable.resultFile.add.company.name"/></label>
                  <div class="col-md-3">   
-                  <input type="text" class="form-control"  id="company"/>             
+                  <input type="text" class="form-control"  id="company" required="required"/>             
 					  <select  class="form-control" id="companySelect" style="display:none">
 					  <c:forEach var="company" items="${companys}" varStatus="status">
 						  <option value="${company.companyNo}">${company.companyName}</option>
@@ -31,15 +31,15 @@
 					</select>
                  </div>
                  
-                 <label class="col-md-1 control-label" for="department"><spring:message code="lable.resultFile.add.department"/></label>
+                 <label class="col-md-1 control-label" for="department" id="departmentLable"><spring:message code="lable.resultFile.add.department"/></label>
                  <div class="col-md-3">                
-                    <input class="form-control" id="department" type="text"/>
+                    <input class="form-control" id="department" type="text" required="required"/>
                  </div>    
  
-                <label class="col-md-1 control-label" for="applicationDate"><spring:message code="lable.resultFile.add.application.date"/></label>
+                <label class="col-md-1 control-label" for="applicationDate" id="applicationDateLable"><spring:message code="lable.resultFile.add.application.date"/></label>
                  <div class="col-md-3">
                     <span class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="applicationDate" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" type="text" value="" readonly="readonly">
+                    <input class="form-control" type="text" value="" readonly="readonly" required="required">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </span>
 				     <input type="hidden" id="applicationDate" value="" />
@@ -49,13 +49,13 @@
              </div> 
               <div class="form-group">
                                              
-                <label class="col-md-1 control-label" for="resultFileupload"><spring:message code="lable.resultFile.add.result.file"/></label>
+                <label class="col-md-1 control-label" for="resultFileupload" id="resultFileuploadLable"><spring:message code="lable.resultFile.add.result.file"/></label>
 				<div class="col-md-*">
 		 			<span class="btn btn-default btn-sm fileinput-button">
 				        <i class="glyphicon glyphicon-plus"></i>
-				        <span><spring:message code="lable.resultFile.add.application.select.file"/></span>
+				        <span><spring:message code="lable.resultFile.list.file"/></span>
 				        <!-- The file input field used as target for the file upload widget -->
-				         <input id="resultFileupload"  type="file" name="file" multiple>
+				         <input id="resultFileupload"  required="required" type="file" name="file" multiple>
 				    </span>
 				    <span>
 				     <span id="resultFileNameSpan"></span>
@@ -71,7 +71,7 @@
                   </div>
                   <div class="col-md-1">
                   
-                  <button type="button" class="btn btn-primary btn-sm" id="saveApplicationBtn"><spring:message code="button.application.add.save.application"/></button>
+                  <button type="button" class="btn btn-primary btn-sm" id="saveApplicationBtn"><spring:message code="button.resultFile.save"/></button>
                   </div>                  
                </div>  
             </fieldset>   

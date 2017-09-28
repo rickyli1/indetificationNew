@@ -110,6 +110,8 @@
          </li>             
           
        </ul>
+        <a href="/logout" role="button" class="btn btn-primary btn-sm navbar-right" style="margin-top:6px;margin-right:50px">退出</a>      
+       
      </div><!--/.nav-collapse -->
    </div>
 </nav>

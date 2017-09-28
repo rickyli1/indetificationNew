@@ -15,7 +15,42 @@
 			
 			//申请保存
 	        $("#saveApplicationBtn").click(function() {
-	        	var saveData = that.getSaveData();
+	        	//check input required
+	        	if($("#company").val().trim() == "") {
+	        		var companyLab = $("#companyLable").text();
+	        		
+	        		alert("请输入" + companyLab);
+	        		
+	        		return;
+	        	}
+	        	
+	        	if($("#department").val().trim() == "") {
+	        		var companyLab = $("#departmentLable").text();
+	        		
+	        		alert("请输入" + companyLab);
+	        		
+	        		return;
+	        	}
+	        	
+	        	
+	        	if($("#applicationDate").val().trim() == "") {
+	        		var companyLab = $("#applicationDateLable").text();
+	        		
+	        		alert("请输入" + companyLab);
+	        		
+	        		return;
+	        	}
+	        	
+	          	
+	        	if($("#resultFileIdHid").val().trim() == "") {
+	        		var companyLab = $("#resultFileuploadLable").text();
+	        		
+	        		alert("请输入" + companyLab);
+	        		
+	        		return;
+	        	}
+	        	
+ 	        	var saveData = that.getSaveData();
 	        	identification.ajax("/resultFile/add", JSON.stringify(saveData), "json", function(res) {
 	        		if(res.msg == "success") {
 		        		alert("插入成功!");
