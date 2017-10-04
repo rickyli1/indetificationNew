@@ -49,13 +49,13 @@ public class RootConfig {
 	    sessionFactory.setDataSource(dataSource());
 	     ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();        
 
-	    sessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
-	    sessionFactory.setTypeAliasesPackage("com.main.java.model");
+	    sessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));//mapping xml
+	    sessionFactory.setTypeAliasesPackage("com.main.java.model");//bean别名定义
 	    return sessionFactory.getObject();
 	  }
 	  
     @Bean
     public DataSourceTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
+        return new DataSourceTransactionManager(dataSource());//事务管理
     }
 }

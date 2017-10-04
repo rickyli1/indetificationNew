@@ -20,28 +20,31 @@ public class MonoFileUploadRepository {
 	@Autowired
 	private GridFsOperations gridFsTemplcate;  
 
+	//插入图片
 	public String save(InputStream inputStream, String contentType, String filename) {  
 	  
 	DBObject metaData = new BasicDBObject();  
-	metaData.put("meta1", filename);  
-	metaData.put("meta2", contentType);  
+	metaData.put("meta1", filename);  //文件名
+	metaData.put("meta2", contentType); // 文件类型
 	  
 	GridFSFile file = gridFsTemplcate.store(inputStream, filename, metaData);  
 	  
-	return file.getId().toString(); 
+	return file.getId().toString(); //返回文件id
 	}  
-	  
+	 
+	//根据ID读取文件
 	public GridFSDBFile get(String id) {  
 	  
-	System.out.println("Finding by ID: " + id);  
 	return gridFsTemplcate.findOne(new Query(Criteria.where("_id").is(new ObjectId(id))));  
 	}  
-	  
+	 
+	//获取所以文件
 	public List<GridFSDBFile> listFiles() {  
 	  
 	return gridFsTemplcate.find(null);  
 	}  
-	  
+	 
+	//根据文件名取的文件
 	public GridFSDBFile getByFilename(String filename) {  
 	return gridFsTemplcate.findOne(new Query(Criteria.where("filename").is(filename)));  
 	}  

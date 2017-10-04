@@ -8,15 +8,16 @@ public interface AdminUserRepository {
 	public List<AdminUser> selectAdminUser(AdminUser adminUser);
 
 	/**
-	 * @return
+	 * 插入用户信息
 	 */
 	public int insertAdminUser(AdminUser adminUser);
 
 	/**
-	 * @return
+	 * 修改用户信息
 	 */
 	public int updateAdminUser(AdminUser adminUser);
 	
+	//验证用户信息
 	public AdminUser loginCheck(AdminUser adminUser);
 
 }

@@ -11,6 +11,8 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import com.main.java.model.AdminUser;
 import com.main.java.repository.HomeRepository;
 
+
+@Deprecated
 @Service
 public class HomeService {
 	@Autowired

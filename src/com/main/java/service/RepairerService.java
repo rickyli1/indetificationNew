@@ -26,31 +26,34 @@ public class RepairerService extends BaseImportService<RepairRepository, Repaire
 	@Autowired
 	private RepairRepository repairRepository;
 	
+	//获得修理厂商数量
 	public int getRepairersCount() {
 		return repairRepository.findAllRepairersCount();
 	}
 	
-	
+	//获得所以修理厂商
 	public List<Repairer> findAllRepairersForExport() {
 		return repairRepository.findAllRepairersForExport();
 	}
 	
+	//按页取得修理厂商
 	public List<Repairer> findAllRepairers(Repairer repairer){
 		return  repairRepository.findAllRepairers(repairer);
 	}
 	
+	//获得修理厂商数量
 	public int findRepairersCount() {
 		return repairRepository.findAllRepairersCount();
 	}
 	
-
-
+	//导入厂商
 	public String importRepairers(Sheet sheet) {
 		List<Repairer> repairers = new ArrayList<>();
 		
 		AdminUser user = IndetificationUtil.getAdminUser();
 		
 		for (Row row : sheet) {
+			//去掉头
 			if (row.getRowNum() < 1) {
 				continue;
 			}else{
@@ -88,22 +91,25 @@ public class RepairerService extends BaseImportService<RepairRepository, Repaire
 				repairers.add(repairer);
 			}
 		}
-		
+		//批量插入
 		return batchCommit(repairers, RepairRepository.class);
 	}
 	
 
+	//插入方法
 	@Override
 	protected void batchInsertInfo(RepairRepository repository, Repairer bean) {
 		repairRepository.importRepairers(bean);
 	}
 	
+	//插入前，删除所以数据
 	@Override
 	protected void deleteAllData() {
 		repairRepository.deleteAllRepairers();
 	}
 
 
+	//导出数据
 	@Override
 	protected void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs, Repairer bean) {
 		//取数据

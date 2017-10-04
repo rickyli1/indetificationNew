@@ -63,7 +63,7 @@ public class AuditService {
 				List<String> areaRepairInfos = new ArrayList<>();
 				List<Repairer> infos = auditRepository.findAreaRepairInfos(item);
 				Map<String, List<Repairer>> repairMap = infos.stream().collect(Collectors.groupingBy(Repairer :: getRepairerLevel));
-				
+				//修理级别：厂商1，厂商2
 				repairMap.forEach((key, values) -> {
 					String repairNames = values.stream().map(Repairer::getRepairerName).collect(Collectors.joining(","));
 					areaRepairInfos.add(key + ": " + repairNames);
@@ -78,7 +78,7 @@ public class AuditService {
 	public Workbook writeNewExcel(File file, Application equipment) throws IOException {
 		
 		BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
-	       // 打开HSSFWorkbook
+	    // 打开HSSFWorkbook
         POIFSFileSystem fs = new POIFSFileSystem(in);
         HSSFWorkbook wb = new HSSFWorkbook(fs);
 		Sheet sheet = wb.getSheetAt(0);

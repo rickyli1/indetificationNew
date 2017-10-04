@@ -28,20 +28,23 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 	@Autowired
 	private ApplicationRepository applicationRepository;
 	
+	//获取分页数据
 	public List<Application> findAllApplications(Application application){
 		return  applicationRepository.findAllApplications(application);
 	}
 	
+	//获得数据总数
 	public int findApplicatiosCount(Application searchParams) {
 		return applicationRepository.findApplicationsCount(searchParams);
 	}
 	
 	public String importRepairers(Sheet sheet) {
 		List<Application> applications = new ArrayList<>();
-		
+		//获得用户信息
 		AdminUser user = IndetificationUtil.getAdminUser();
 		
 		for (Row row : sheet) {
+			//去掉头
 			if (row.getRowNum() < 1) {
 				continue;
 			}else{
@@ -103,16 +106,17 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 				
 			}
 		}
-		
+		//批量插入数据
 		return batchCommit(applications, ApplicationRepository.class);
 	}
 	
-	 
+	//根据主键删除数据
 	 @Transactional
 	 public void deleteRepairById(int id) {
 		 applicationRepository.deleteRepairById(id);
 	 }
 	 
+	 //更新申请信息
 	 @Transactional
 	 public void updateRepair(Application updateParams) {
 		AdminUser user = IndetificationUtil.getAdminUser();
@@ -122,12 +126,13 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 		 applicationRepository.updateRepair(updateParams);
 	}
 	 
-	
+	//批量插入申请信息
 	@Override
 	protected void batchInsertInfo(ApplicationRepository repository, Application bean) {
 		repository.importApplications(bean);
 	}
 	
+	//过滤掉重复的数据（申请时间+申请单位+设备名）
 	@Override
 	protected  List<Application> filterExistData(List<Application> list) {
 		Application application = new Application();
@@ -136,6 +141,7 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 		
 		List<String> applicationKeyList = applicationList.stream().map(Application :: getApplicationKey).collect(toList());
 		
+		//申请时间+申请单位+设备名
 		return list.stream().filter(item -> !applicationKeyList.contains(item.getApplicationKey())).collect(toList());
 		 
 	 }

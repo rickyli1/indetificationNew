@@ -114,6 +114,8 @@ public class Application extends BaseModel{
 	public void setAreaRepairInfos(List<String> areaRepairInfos) {
 		this.areaRepairInfos = areaRepairInfos;
 	}
+	
+	//申请时间+申请单位+设备名
 	public String getApplicationKey() {
 		StringBuilder sb = new StringBuilder();
 		return sb.append(this.getApplicationDate())

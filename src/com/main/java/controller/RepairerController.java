@@ -39,6 +39,7 @@ public class RepairerController {
 	@Autowired
 	private RepairerService repairerService;
 	
+	//厂商初始页面查询
 	@RequestMapping("/init")
 	public String repairerInit(Model model) {
 		doSearch(1, model);
@@ -46,6 +47,7 @@ public class RepairerController {
 		return "repairer/search";
 	}
 	
+	//查询按钮，翻页查询数据
 	@RequestMapping("/search/{page}")
 	public String searchRepairers(@PathVariable int page, Model model) {
 		doSearch(page, model);
@@ -53,12 +55,13 @@ public class RepairerController {
 	}
 
 	
-	
+	//导入数据
 	@RequestMapping(value="/import",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> importQestion(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 		Map<String, String> response = new HashMap<String, String>();
 		
+		//判断导入使用文件不为空
 		if(file == null || file.isEmpty()) {
 			response.put("message", "文件为空！");
 			return response;
@@ -112,14 +115,15 @@ public class RepairerController {
 	   return "common/alert";
 		
    }
-	
+	//按条件查询
 	private void  doSearch(int page, Model model) {
 		Repairer repairer = new Repairer();
 		repairer.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));
 		repairer.setPageSize(Constants.PAGE_SIZE);
 		
-		int totalCount = repairerService.findRepairersCount();
+		int totalCount = repairerService.findRepairersCount();//总数量
 		List<Repairer> repairers = repairerService.findAllRepairers(repairer);
+		//设置结果
 		model.addAttribute("totalPage", PageUtil.getTotalPage(totalCount, Constants.PAGE_SIZE));
 		model.addAttribute("pageSize", Constants.PAGE_SIZE);
 		model.addAttribute("page", page);

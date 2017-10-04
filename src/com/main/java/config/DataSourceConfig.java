@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-
+@Deprecated
 @MapperScan("com.main.java.repository")
 public class DataSourceConfig {
 

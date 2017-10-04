@@ -21,14 +21,17 @@ public class ResultFileService {
 	@Autowired
 	private MonoFileUploadRepository monoFileUploadRepository;
 	
+	//按页获得结论文件数据
 	public List<ResultFile> findResultFileList(ResultFile resultFile) {
 		return resultFileRepository.findResultFileList(resultFile);
 	}
-		
+	
+	//获得结论文件数量
 	public int findReulstFileCount(ResultFile resultFile) {
 		return resultFileRepository.findReulstFileCount(resultFile);
 	}
 	
+	//插入结论文件
 	public int insertResultFile(ResultFile resultFile) {
 		AdminUser user = IndetificationUtil.getAdminUser();
 		resultFile.setCreateor(user.getUsername());
@@ -38,10 +41,12 @@ public class ResultFileService {
 		return resultFileRepository.insertResultFile(resultFile);
 	}
 	
+	//插入结论文件到mongo
 	public String inserMongoFile(InputStream inputStream, String contentType, String filename) {
 		return monoFileUploadRepository.save(inputStream, contentType, filename);
 	}
 
+	//获取文件
 	public GridFSDBFile getMongoFile(String id) {
 		return monoFileUploadRepository.get(id);
 

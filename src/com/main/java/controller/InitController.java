@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.main.java.service.HomeService;
+@Deprecated
 @Controller
 public class InitController {
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());  

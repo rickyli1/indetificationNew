@@ -60,18 +60,21 @@ public abstract class BaseImportService<T,V>{
          return Constants.RESULT_SUCCESS;
      }
 	 
+	 //批量插入
 	 protected abstract void batchInsertInfo(T mapper, V bean) ;
-	 
+	
+	 //不是增量插入时先删除数据
 	 protected void deleteAllData() {}
 	 
-     protected  List<V> filterExistData(List<V> list) {
+     //过滤数据方法，子类可以实现
+	 protected  List<V> filterExistData(List<V> list) {
     	 return list;
      }
 	 
 	 public Workbook writeNewExcel(File file, V searchParam) throws Exception {
 			
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
-		       // 打开HSSFWorkbook
+		    //打开HSSFWorkbook
 	        POIFSFileSystem fs = new POIFSFileSystem(in);
 	        HSSFWorkbook wb = new HSSFWorkbook(fs);
 			Sheet sheet = wb.getSheetAt(0);

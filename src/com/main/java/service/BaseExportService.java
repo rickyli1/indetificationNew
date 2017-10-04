@@ -12,12 +12,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import com.main.java.utils.ExcelUtil;
 
+@Deprecated
 public abstract class BaseExportService {
 	 
 	 public Workbook writeNewExcel(File file, String sheetName) throws Exception {
 			
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
-		       // 打开HSSFWorkbook
+		    // 打开HSSFWorkbook
 	        POIFSFileSystem fs = new POIFSFileSystem(in);
 	        HSSFWorkbook wb = new HSSFWorkbook(fs);
 			Sheet sheet = wb.getSheet(sheetName);

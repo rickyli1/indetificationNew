@@ -21,6 +21,9 @@ public class ExcelUtil {
 	private static final String EXCEL_TYPE_XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 	private static DateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 	
+	/**
+	 * 创建excel的sheet页
+	 */	
 	@SuppressWarnings("resource")
 	public static Sheet createSheet(InputStream in, String fileType)
 			throws Exception {
@@ -28,10 +31,10 @@ public class ExcelUtil {
 		if (fileType == null) {
 			fileType = "";
 		}
-		if (EXCEL_TYPE_XLS.equals(fileType.toLowerCase())) {
+		if (EXCEL_TYPE_XLS.equals(fileType.toLowerCase())) { //office 2007以前
 			wb = new HSSFWorkbook(in);
 		} else if (EXCEL_TYPE_XLSX.equals(fileType.toLowerCase())) {
-			wb = new XSSFWorkbook(in);
+			wb = new XSSFWorkbook(in); //office 2007
 		}
 		if (wb == null) {
 			throw new Exception("[ERROR]Excel file is null.");
@@ -43,15 +46,16 @@ public class ExcelUtil {
 		return sheet;
 	}
 	
+	//获取单元格内数据值
 	@SuppressWarnings("deprecation")
 	public static String getCellValue(Cell cell) {
 		if (cell == null) {
 			return StringUtils.EMPTY;
 		}
 		switch (cell.getCellType()) {
-			case Cell.CELL_TYPE_STRING:
+			case Cell.CELL_TYPE_STRING://字符串
 				return cell.getStringCellValue();
-			case Cell.CELL_TYPE_NUMERIC:
+			case Cell.CELL_TYPE_NUMERIC://数字
 				DecimalFormat formatter = new DecimalFormat("######## ");
 				if (HSSFDateUtil.isCellDateFormatted(cell)) {
 					return DEFAULT_DATE_FORMAT.format(cell.getDateCellValue());
@@ -61,7 +65,7 @@ public class ExcelUtil {
 			case Cell.CELL_TYPE_FORMULA:
 				return cell.getCellFormula();
 			case Cell.CELL_TYPE_BOOLEAN:
-				return String.valueOf(cell.getBooleanCellValue());
+				return String.valueOf(cell.getBooleanCellValue());//布尔
 			case Cell.CELL_TYPE_ERROR:
 				return StringUtils.EMPTY;
 			default:

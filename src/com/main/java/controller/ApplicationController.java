@@ -39,6 +39,7 @@ public class ApplicationController {
 	@Autowired
 	private ApplicationService applicationService;
 	
+	//页面初始查询
 	@RequestMapping("/init")
 	public String applicationInit(Model model) {
 		Application searchParams = new Application();
@@ -47,6 +48,7 @@ public class ApplicationController {
 		return "application/search";
 	}
 	
+	//查询按钮，翻页查询数据
 	@RequestMapping("/search/{page}")
 	public String searchRepairers(@PathVariable int page, Model model, @RequestBody Application searchParams) {
 		doSearch(page, model, searchParams);
@@ -54,17 +56,17 @@ public class ApplicationController {
 	}
 
 	
-	
+	//导出文件
 	@RequestMapping(value="/import",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> importQestion(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 		Map<String, String> response = new HashMap<String, String>();
-		
+		//判断文件是否为空
 		if(file == null || file.isEmpty()) {
 			response.put("message", "文件为空！");
 			return response;
 		}
-		
+		//导出文件
 		try(InputStream fileStream = file.getInputStream()) {
 			Sheet sheet = ExcelUtil.createSheet(file.getInputStream(), file.getContentType());
 			applicationService.importRepairers(sheet);
@@ -77,12 +79,12 @@ public class ApplicationController {
 	}	
 
 	/**
+	 * 导出文件
 	 * @param request
 	 * @param response
 	 * @throws Exception
 	 */
 	@RequestMapping(value ="/export")
-
 	public String exportRepairers(Model model,HttpServletRequest request,HttpServletResponse response, @RequestParam(value="applicationDate", required=false)String applicationDate
 			, @RequestParam(value="applicationRepairer", required=false)String applicationRepairer, @RequestParam(value="equimentName", required=false)String equimentName
 			, @RequestParam(value="orderType", required=false)String orderType) throws Exception {
@@ -101,11 +103,12 @@ public class ApplicationController {
 			
 			String sheetName="认可申请表";  
 			wb = applicationService.writeNewExcel(res2.getFile(), application); 
-			
+			//设置文件名
 			String fileName= sheetName + "_" +TimeUtils.getStringFromTime(new Date(), TimeUtils.FORMAT_DATE_NO) +".xls";
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-disposition", "attachment;filename="+ URLEncoder.encode(fileName, "utf-8"));
 		    os = response.getOutputStream();
+		    //输出文件
 			wb.write(os);  
 		    
 		} catch (Exception e) {
@@ -123,6 +126,7 @@ public class ApplicationController {
 		
    }
 	
+	//删除申请信息
 	@RequestMapping(value ="/delete/{id}")
 	public String deleteRepairById(Model model, @PathVariable int id) {
 		applicationService.deleteRepairById(id);
@@ -134,6 +138,7 @@ public class ApplicationController {
 
 	}
 	
+	//修改申请信息
 	@RequestMapping(value ="/update")
 	public String updateRepair(Model model,@RequestBody Application updateParams) {
 		applicationService.updateRepair(updateParams);
@@ -145,13 +150,14 @@ public class ApplicationController {
 
 	}
 
-	
+	//根据条件查询数据
 	private void  doSearch(int page, Model model, Application searchParams) {
-		searchParams.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));
-		searchParams.setPageSize(Constants.PAGE_SIZE);
+		searchParams.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));//起始页
+		searchParams.setPageSize(Constants.PAGE_SIZE);//一页数量
 		
-		int totalCount = applicationService.findApplicatiosCount(searchParams);
+		int totalCount = applicationService.findApplicatiosCount(searchParams);//总数量
 		List<Application> applications = applicationService.findAllApplications(searchParams);
+		//设置查询结果
 		model.addAttribute("totalPage", PageUtil.getTotalPage(totalCount, Constants.PAGE_SIZE));
 		model.addAttribute("pageSize", Constants.PAGE_SIZE);
 		model.addAttribute("page", page);

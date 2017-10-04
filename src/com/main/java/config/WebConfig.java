@@ -23,7 +23,7 @@ public class WebConfig {
     @Bean  
     public ViewResolver viewResolver(){  
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();//jsp视图解析器  
-        resolver.setPrefix("/WEB-INF/views/");  
+        resolver.setPrefix("/WEB-INF/views/");  //jsp文件位置
         resolver.setSuffix(".jsp");  
         resolver.setExposeContextBeansAsAttributes(true);  
         return resolver;  
@@ -32,13 +32,13 @@ public class WebConfig {
     @Bean
     public MessageSource messageSource() {
     	ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-    	messageSource.setBasename("classpath:resources/messages");
+    	messageSource.setBasename("classpath:resources/messages");//国际化文件配置
     	return messageSource;
     }
     
     @Bean
     public MappingJackson2HttpMessageConverter mappingJacksonHttpMessageConverter() {
-    	return new MappingJackson2HttpMessageConverter();
+    	return new MappingJackson2HttpMessageConverter();//json格式解析
     }
     
     @Bean
@@ -48,6 +48,7 @@ public class WebConfig {
     	return requestMappingHandlerAdapter;
     }
     
+    //文件上传
     @Bean
     public CommonsMultipartResolver multipartResolver() {
     	CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();

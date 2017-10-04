@@ -31,21 +31,23 @@ public class AuditController {
 	@Autowired
 	private AuditService auditService;
 	
+	//结论文件初始页面查询
 	@RequestMapping("/init")
 	public String applicationInit(Model model) {
 		Application searchParams = new Application();
-		doSearch(1, model, searchParams);
+		doSearch(1, model, searchParams);//默认page为第一页
 
 		return "audit/search";
 	}
 	
+	//查询按钮，翻页查询数据
 	@RequestMapping("/search/{page}")
 	public String searchRepairers(@PathVariable int page, Model model, @RequestBody Application searchParams) {
 		doSearch(page, model, searchParams);
 		return "audit/list";
 	}
 	
-
+	//修改结论文件
 	@RequestMapping(value ="/save")
 	public String saveRepair(Model model,@RequestBody Application updateParams) {
 		auditService.saveApplicationInfo(updateParams);
@@ -56,16 +58,15 @@ public class AuditController {
 	   return "common/alert";
 
 	}
-
-
 	
-	
+	//根据条件查询数据
 	private void  doSearch(int page, Model model, Application searchParams) {
-		searchParams.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));
-		searchParams.setPageSize(Constants.PAGE_SIZE);
+		searchParams.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));//起始页
+		searchParams.setPageSize(Constants.PAGE_SIZE);//一页数量
 		
 		int totalCount = auditService.findApplicatiosCount(searchParams);
 		List<Application> applications = auditService.findAllApplications(searchParams);
+		//设置查询结果
 		model.addAttribute("totalPage", PageUtil.getTotalPage(totalCount, Constants.PAGE_SIZE));
 		model.addAttribute("pageSize", Constants.PAGE_SIZE);
 		model.addAttribute("page", page);
@@ -98,7 +99,7 @@ public class AuditController {
 			
 			String sheetName="认可申请审核表";  
 			wb = auditService.writeNewExcel(res2.getFile(),application); 
-			
+			//设置文件名
 			String fileName= sheetName + "_" +TimeUtils.getStringFromTime(new Date(), TimeUtils.FORMAT_DATE_NO) +".xls";
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-disposition", "attachment;filename="+ URLEncoder.encode(fileName, "utf-8"));

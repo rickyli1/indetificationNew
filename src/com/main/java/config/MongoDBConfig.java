@@ -12,13 +12,13 @@ import com.mongodb.MongoClient;
 public class MongoDBConfig extends AbstractMongoConfiguration{
     @Override
     protected String getDatabaseName() {
-        return "test";
+        return "test"; //数据库名
     }
 
     @Override
     @Bean
     public Mongo mongo() throws Exception {
-        return new MongoClient("127.0.0.1", 27017);
+        return new MongoClient("127.0.0.1", 27017);//数据库IP和端口
     }
 
     @Bean

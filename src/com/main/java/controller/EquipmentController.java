@@ -43,28 +43,29 @@ public class EquipmentController {
 	@Autowired
 	private EquipmentService equipmentService;
 	
-	
+	//页面初始查询
 	@RequestMapping("/init")
 	public String repairerInit(Model model) {
 		Equipment equipment = new Equipment();
-		doSearch(1, model, equipment);
+		doSearch(1, model, equipment);//查看第一页
 
 		return "equipment/search";
 	}
 	
+	//根据条件查询数据
 	@RequestMapping("/search/{page}")
 	public String searchRepairers(@PathVariable int page, Model model,@RequestBody Equipment equipment) {
 		doSearch(page, model, equipment);
 		return "/equipment/list";
 	}
-
 	
-	
+	//导入设备
 	@RequestMapping(value="/import",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> importQestion(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 		Map<String, String> response = new HashMap<String, String>();;
 		
+		//判断文件是否为空
 		if(file == null || file.isEmpty()) {
 			response.put("message", "文件为空！");
 			return response;
@@ -96,18 +97,22 @@ public class EquipmentController {
 	
 		
 		Equipment equipment = new Equipment();
+		//设备名
 		if(!StringUtils.isEmpty(equipmentName)){
 			equipmentName=new String(equipmentName.getBytes( "iso-8859-1" ), "UTF-8" );
 			equipment.setEquipmentName("%"+equipmentName.trim()+"%");
 		}
+		//设备专业		
 		if(!StringUtils.isEmpty(equipmentGroup)){
 			equipmentGroup=new String(equipmentGroup.getBytes( "iso-8859-1" ), "UTF-8" );
 			equipment.setEquipmentGroup("%"+equipmentGroup.trim()+"%");
 		}
+		//设备子专业				
 		if(!StringUtils.isEmpty(equipmentSubGroup)){
 			equipmentSubGroup=new String(equipmentSubGroup.getBytes( "iso-8859-1" ), "UTF-8" );
 			equipment.setEquipmentSubGroup("%"+equipmentSubGroup.trim()+"%");
 		}
+		//设备级别				
 		if(!StringUtils.isEmpty(equipmentLevel)){
 			equipmentLevel=new String(equipmentLevel.getBytes( "iso-8859-1" ), "UTF-8" );
 			equipment.setEquipmentLevel(equipmentLevel.trim());
@@ -142,19 +147,24 @@ public class EquipmentController {
 	    return "common/alert";
    }
 	
+	//按条件查询
 	private void  doSearch(int page, Model model, Equipment equipmentParam) {
 		Equipment equipment = new Equipment();
 		equipment.setStartNo(PageUtil.getStartNo(page, Constants.PAGE_SIZE));
 		equipment.setPageSize(Constants.PAGE_SIZE);
+		//设备名
 		if(!StringUtils.isEmpty(equipmentParam.getEquipmentName())){
 			equipment.setEquipmentName("%"+equipmentParam.getEquipmentName().trim()+"%");
 		}
+		//专业
 		if(!StringUtils.isEmpty(equipmentParam.getEquipmentGroup())){
 			equipment.setEquipmentGroup("%"+equipmentParam.getEquipmentGroup().trim()+"%");
 		}
+		//子专业				
 		if(!StringUtils.isEmpty(equipmentParam.getEquipmentSubGroup())){
 			equipment.setEquipmentSubGroup("%"+equipmentParam.getEquipmentSubGroup().trim()+"%");
 		}
+		//级别		
 		if(!StringUtils.isEmpty(equipmentParam.getEquipmentLevel())){
 			equipment.setEquipmentLevel(equipmentParam.getEquipmentLevel().trim());
 		}
@@ -190,10 +200,12 @@ public class EquipmentController {
 		return "common/alert";
 	}
 	
+	//修改或插入设备信息
 	@RequestMapping("/updateEquipment")
 	public String updateEquipment(Model model, @RequestBody Equipment equipmentModel) {
 		int result = -1;
 		AdminUser user = IndetificationUtil.getAdminUser();
+		//修改信息
 		if(equipmentModel != null && !"".equals(equipmentModel.getEquipmentId())){
 			equipmentModel.setLastModifyBy(user.getUsername());
 			result = equipmentService.updateEquipment(equipmentModel);
