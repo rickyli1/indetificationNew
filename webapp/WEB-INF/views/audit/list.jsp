@@ -70,7 +70,7 @@
 		                <td>
 		                <spring:message code="option.audit.list.result"/><br>
 		                <input type="radio" <c:if test="${application.areaHaveAbility == '具备'}"> checked="checked"</c:if>name="areaHaveAbility${application.applicationId}" value="具备"><spring:message code="option.audit.list.have.ability"/></input><br>
-		                <input type="radio" <c:if test="${application.areaHaveAbility == '基本具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}" vlaue="基本具备"><spring:message code="option.audit.list.base.ability"/></input><br>
+		                <input type="radio" <c:if test="${application.areaHaveAbility == '基本具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}" value="基本具备"><spring:message code="option.audit.list.base.ability"/></input><br>
 		                <input type="radio" <c:if test="${application.areaHaveAbility == '不具备'}">checked="checked"</c:if> name="areaHaveAbility${application.applicationId}"value="不具备"><spring:message code="option.audit.list.no.ability"/></input>
 		                </td>
 		                <td>
