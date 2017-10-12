@@ -34,8 +34,17 @@ public class BackupController {
 		if(!FileUtils.isFolderExist(folderPath)){
 			FileUtils.makeFolder(folderPath);
 		}
+		
 		ArrayList<String> listFolders = FileUtils.getFolderNameFromFolder(folderPath);
-		model.addAttribute("listFolders", listFolders);
+	    ArrayList<String> listFolders1 = new ArrayList<String>(); 
+	    for(String filename : listFolders){
+	    	   if(!filename.equals("backup")){
+	    		    listFolders1.add(filename);
+	    		 }
+	     }
+	    		  
+	    model.addAttribute("listFolders", listFolders1);
+		
 		return "backup/backup";
 	}
 	
