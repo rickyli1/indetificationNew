@@ -108,7 +108,7 @@
                 <li><a href="/resultFile/addInit"><spring:message code="lable.navgate.report.upload"/></a></li>
            </ul>
          </li>             
-          
+         <li><a href="/backup/init">备份</a></li>
        </ul>
         <a href="/logout" role="button" class="btn btn-primary btn-sm navbar-right" style="margin-top:6px;margin-right:50px">退出</a>      
        

@@ -67,7 +67,7 @@ public class TimeUtils {
 		Date date1 = new Date();
 		Date date2 = DateUtils.addHours(date1, 10);
 		System.out.println(getDayDiff(date1, date2));
-		System.out.println(getMinuteDiffByTime(date1, date2));
+		System.out.println(TimeUtils.getCurrentTime(FORMAT_DATE_NO));
 	}
 
 	private static final long MILLIS_IN_A_SECOND = 1000;
