@@ -5,5 +5,5 @@
 <link rel="stylesheet" href="/css/jquery/jquery.fileupload.css">
 <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/bootstrap/docs.min.css">
-<link href="/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/css/bootstrap/bootstrap-datetimepicker.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/common.css">

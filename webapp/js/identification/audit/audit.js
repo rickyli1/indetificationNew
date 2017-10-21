@@ -22,6 +22,36 @@
 
 			});	
         	
+        	//文件修改保存
+           	$("#auditSaveBtn").click(function(){
+        		var datas = that.getSaveParams();
+        		
+        		if(datas.length <= 0) {
+        			alert("请选择要修改的项目！");
+        			return false;
+        		}
+        		
+        		$("#loading").show();
+    			var params = {"appliationList" : datas};
+    			
+    			identification.ajax("/audit/save", JSON.stringify(params), "html", function(res) {
+    				alert("保存成功！");
+           	        window.location.href = window.location.href;				        
+    			});			
+				$("#loading").hide();
+
+			});
+           	
+           	//check all 
+           	$("#auditChkAll").click(function() {
+           		if($(this).prop('checked')) {
+           			$(".chooseAuditChk").each(function() {$(this).prop("checked", true);});
+           		}else {
+           			$(".chooseAuditChk").each(function() {$(this).prop("checked", false);});
+
+           		}
+           	}) ;
+        	
         	that.initCalendar();
         	
         	//order change
@@ -70,26 +100,27 @@
 		   return data;
 		},
 		
-		auditSave:function(id){
-						
-			var params = this.getSaveParams(id);
-			identification.ajax("/audit/save", JSON.stringify(params), "html", function(res) {
-				alert("保存成功！");
-       	        window.location.href = window.location.href;				        
-			});			
-		},
-		
-		getSaveParams:function(id) {
-			var data = {	
-					"applicationId":id,
-					"haveSuccesWwork": $("input[name='haveSuccesWwork" + id + "']" + ":checked").val(),
-					"areaHaveAbility":$("input[name='areaHaveAbility" + id + "']" + ":checked").val(),
-					"orginizationResult":$("input[name='orginizationResult" + id + "']" + ":checked").val(),
-					
-					"remark":$("#remark"+id).val()
-				};
-		   return data;
+		getSaveParams:function() {
+			var saveParams = [];
 			
+			$(".chooseAuditChk").each(function() {
+				if($(this).prop('checked')) {
+					var id = $(this).attr("data-id");
+					var data = {	
+							"applicationId":id,
+							"haveSuccesWwork": $("input[name='haveSuccesWwork" + id + "']" + ":checked").val(),
+							"areaHaveAbility":$("input[name='areaHaveAbility" + id + "']" + ":checked").val(),
+							"orginizationResult":$("input[name='orginizationResult" + id + "']" + ":checked").val(),
+							
+							"remark":$("#remark"+id).val()
+						};
+					
+					saveParams.push(data);
+				}
+			})
+			console.log(saveParams);
+			
+		   return saveParams;
 		}
 		
 	});

@@ -4,6 +4,7 @@ package com.main.java.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -29,18 +30,16 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 	@Autowired
 	private EquipmentRepository equipmentRepository;
 	
-	//获取所有设备数量
 	public int getEquipmentsCount() {
 		Equipment equipment = new Equipment();
 		return equipmentRepository.findAllEquipmentsCount(equipment);
 	}
 	
-	//获取所以设备（导出用）
+	
 	public List<Equipment> findAllEquipmentsForExport(Equipment equipmentParam) {
 		return equipmentRepository.findAllEquipmentsForExport(equipmentParam);
 	}
 	
-	//按页获取设备
 	public List<Equipment> findAllEquipments(Equipment equipment){
 		List<Equipment> equipments = equipmentRepository.findAllEquipments(equipment);
 		List<Equipment> equipmentMerged = new ArrayList<>();
@@ -61,12 +60,9 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 		return  equipments;
 	}
 	
-	//按条件获取设备数量
 	public int findAllEquipmentsCount(Equipment equipment) {
 		return equipmentRepository.findAllEquipmentsCount(equipment);
 	}
-	
-	//设备导入
 	public String importEquipments(Sheet sheet) {
 		List<Equipment> equipments = new ArrayList<>();
 		HashMap<String,String> hm = new HashMap<>();
@@ -80,7 +76,7 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 		String equipmentGroup = "";
 		String equipmentSubGroup = "";
 		for (Row row : sheet) {
-			//去掉头部
+			
 			if (row.getRowNum() < 1) {
 				continue;
 			}else{
@@ -175,12 +171,12 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 				}
 			}
 		}
-		//批量插入
+		
 		return batchCommit(equipments, EquipmentRepository.class);
 	}
 	
 
-	//导入前删除数据
+	
 	@Override
 	protected void deleteAllData() {
 		AdminUser user = IndetificationUtil.getAdminUser();
@@ -329,18 +325,17 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 	}
 
 
-	//批量插入
 	@Override
 	protected void batchInsertInfo(EquipmentRepository mapper, Equipment equipment) {
 		equipmentRepository.importEquipments(equipment);
 	}
 
-	//修改设备信息
+
 	public int updateEquipment(Equipment equipment) {
 		return equipmentRepository.updateEquipment(equipment);
 	}
 
-	//根据id获得设备
+
 	public Equipment findEquipmentById(Equipment select) {
 		return equipmentRepository.findEquipmentById(select);
 	}

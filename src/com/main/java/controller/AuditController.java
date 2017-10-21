@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.main.java.model.Application;
+import com.main.java.model.ApplicationUpdateModel;
 import com.main.java.service.AuditService;
 import com.main.java.utils.Constants;
 import com.main.java.utils.PageUtil;
@@ -49,7 +50,7 @@ public class AuditController {
 	
 	//修改结论文件
 	@RequestMapping(value ="/save")
-	public String saveRepair(Model model,@RequestBody Application updateParams) {
+	public String saveRepair(Model model,@RequestBody ApplicationUpdateModel updateParams) {
 		auditService.saveApplicationInfo(updateParams);
 		
 		model.addAttribute("msg", "修改成功！");

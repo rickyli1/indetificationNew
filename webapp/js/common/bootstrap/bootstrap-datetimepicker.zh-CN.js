@@ -1,5 +1,6 @@
 /**
  * Simplified Chinese translation for bootstrap-datetimepicker
+ * Yuan Cheung <advanimal@gmail.com>
  */
 ;(function($){
 	$.fn.datetimepicker.dates['zh-CN'] = {
@@ -9,6 +10,7 @@
 			months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
 			monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
 			today: "今天",
+			clear:"清空", // add by xiaomin
 			suffix: [],
 			meridiem: ["上午", "下午"]
 	};

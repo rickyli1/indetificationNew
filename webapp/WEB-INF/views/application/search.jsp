@@ -136,7 +136,14 @@
                            <div class="row" style="margin-top:10px">
 						  <label class="col-md-2 control-label" for="updateRepairerLevel"><spring:message code="lable.applicationNew.update.level"/></label>
 						  <div class="col-md-3">
-					      	<input type="text" id="updateRepairerLevel" name="updateRepairerLevel"/>
+                             <select  class="form-control" id="updateRepairerLevel" name="updateRepairerLevel">
+							 <option selected value=""></option>				
+								  <option value="大修"><spring:message code="option.applicationNew.update.major.repair"/></option>
+								  <option value="中修"><spring:message code="option.applicationNew.update.middle.repair"/></option>
+								  <option value="小修"><spring:message code="option.applicationNew.update.small.repair"/></option>
+								  <option value="检修"><spring:message code="option.applicationNew.update.check.repair"/></option>
+							</select>					      	
+					      	
 						  </div>
 
                           <label class="col-md-2 control-label" for="updateEquimentName"><spring:message code="lable.applicationNew.update.equipment.name"/></label>

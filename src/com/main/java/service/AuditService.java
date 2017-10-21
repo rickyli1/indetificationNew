@@ -20,16 +20,16 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.main.java.model.Application;
+import com.main.java.model.ApplicationUpdateModel;
 import com.main.java.model.Repairer;
 import com.main.java.repository.ApplicationRepository;
 import com.main.java.repository.AuditRepository;
 import com.main.java.utils.ExcelUtil;
 
 @Service
-public class AuditService {
+public class AuditService extends BaseImportService<AuditRepository, Application>{
 	@Autowired
 	private AuditRepository auditRepository;
 	
@@ -50,9 +50,8 @@ public class AuditService {
 	
 	
 	//保存结论信息
-	 @Transactional
-	public void saveApplicationInfo(Application updateParams) {
-		 auditRepository.saveApplicationInfo(updateParams);
+	public void saveApplicationInfo(ApplicationUpdateModel updateParams) {
+		 batchCommit(updateParams.getAppliationList(), AuditRepository.class);
 	}
 
 	
@@ -166,6 +165,12 @@ public class AuditService {
 				cell.setCellStyle(cs);
 			});
 	    }
+	}
+
+	@Override
+	protected void batchInsertInfo(AuditRepository mapper, Application bean) {
+		 mapper.saveApplicationInfo(bean);
+
 	}
 
 

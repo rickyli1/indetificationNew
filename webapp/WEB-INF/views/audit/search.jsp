@@ -53,8 +53,9 @@
                  <div class="col-md-*">
                        
 				     <div style="display:inline-block;float:right;">  
-     				
-       				<button type="button" class="btn btn-primary btnSize" id="auditExportBtn">导出</button>
+				         <button type="button" class="btn btn-primary btnSize" id="auditSaveBtn">保存</button>
+				     
+       				     <button type="button" class="btn btn-primary btnSize" id="auditExportBtn">导出</button>
       				</div>
                  </div>
                                  

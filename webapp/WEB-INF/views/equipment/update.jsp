@@ -28,11 +28,11 @@
 	           </fieldset>
 	           <fieldset style="margin-top:10px">
 	              <div class="form-group">  
-	                 <label class="col-md-1 control-label" for="dequipmentCompany" style="width:100px;">承修单位选择范围</label>
+	                 <label class="col-md-1 control-label" for="dequipmentCompany" style="width:100px;"><spring:message code="lable.equipment.update.choose.company"/></label>
 	                 <div class="col-md-2"  style="width:180px;">
 	                    <input type="text" class="form-control" id="dequipmentCompany">
 	                 </div>
-	                 <label class="col-md-1 control-label" for="dlevel" style="width:100px;"><spring:message code="lable.equipment.sort"/></label>
+	                 <label class="col-md-1 control-label" for="dlevel" style="width:100px;"><spring:message code="lable.equipment.update.repair.level"/></label>
 	                 <div class="col-md-2"  style="width:180px;">
 	                      <select  class="form-control" id="dequipmentLevel">
 							 <option selected value=""></option>				

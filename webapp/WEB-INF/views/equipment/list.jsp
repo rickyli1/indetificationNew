@@ -7,7 +7,7 @@
 	            <thead>
 	              <tr>
 	                <th>No</th>
-	                <th><spring:message code="lable.equipment.no"/></th>
+	                <th>序列号</th>
 	                <th><spring:message code="lable.equipment.group"/></th>
 	                <th><spring:message code="lable.equipment.subGroup"/></th>
 	                <th><spring:message code="lable.equipment.equipmentName"/></th>
@@ -15,7 +15,7 @@
 	                <th><spring:message code="lable.equipment.modifyCompany"/></th>
 	                <th><spring:message code="lable.equipment.limit"/></th>
 	                <th><spring:message code="lable.equipment.remarks"/></th>
-	                <th><spring:message code="lable.equipment.operation"/></th>
+	                <th>操作</th>
 	              </tr>
 	            </thead>
 	            <tbody>
@@ -31,9 +31,9 @@
 			                <td>${apply.equipmentLimit}</td>
 			                <td>${apply.remark}</td>
 			                <td>
-			               		<button id="detailBtn" class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#detailModal" onclick="goEquipmentUpdate('${apply.equipmentId}')"><spring:message code="lable.equipment.equipmentUpdate"/></button>
 			                	<button id="deleteBtn" class="btn btn-primary btn-sm" type="button"   onclick="goDel('${apply.equipmentId}')"><spring:message code="lable.equipment.equipmentDelete"/></button>
-						    </td>
+						    	<button id="detailBtn" class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#detailModal" onclick="goEquipmentUpdate('${apply.equipmentId}')"><spring:message code="lable.equipment.equipmentUpdate"/></button>
+			                </td>
 		                </tr>
 	            	</c:forEach>
 	            </tbody>

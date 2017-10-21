@@ -114,37 +114,20 @@ identification.fileUpload = function(url, uploadBtnId, fileName, fileId){
 	//init calendar
 identification.initCalendarByClass = function(form_datetime, form_date, form_time){
 		
-	    $('.'+ form_datetime).datetimepicker({
-	        language:  'zh-CN',
-	        weekStart: 1,
-	        todayBtn:  1,
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			forceParse: 0,
-	        showMeridian: 1
-	    });
+	  
 		$('.'+form_date).datetimepicker({
 	        language:  'zh-CN',
+	        format:"yyyy-mm-dd",
 	        weekStart: 1,
 	        todayBtn:  1,
+	        clearBtn:true,
 			autoclose: 1,
 			todayHighlight: 1,
 			startView: 2,
 			minView: 2,
 			forceParse: 0
 	    });
-		$('.'+form_time).datetimepicker({
-	        language:  'zh-CN',
-	        weekStart: 1,
-	        todayBtn:  1,
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 1,
-			minView: 0,
-			maxView: 1,
-			forceParse: 0
-	    });
+		
 };		
 	
 //init calendar yyyy
