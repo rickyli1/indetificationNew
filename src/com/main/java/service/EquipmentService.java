@@ -165,6 +165,7 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 						}
 					}
 					hm.put(equipmentNo, equipmentNo);
+					equipmentNo = null;
 //					else{
 //						
 //					}
