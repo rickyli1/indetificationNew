@@ -90,7 +90,7 @@
 				</form>
 			</div>
 		  </div>
-	      <div class="modal-backdrop fade in" style="display:none" id="loading">
+	      <div class="modal-backdrop fade in" style="display:none;z-index:2000" id="loading">
 			<div class="loading"></div>  
 		  </div>
 	      </div>
