@@ -90,12 +90,12 @@
 				</form>
 			</div>
 		  </div>
-	      <div class="modal-backdrop fade in" style="display:none;z-index:2000" id="loading">
-			<div class="loading"></div>  
-		  </div>
 	      </div>
       </div>
       </div>
+	      <div class="modal-backdrop fade in" style="display:none;z-index:2000" id="loading">
+			<div class="loading"></div>  
+		  </div>
 			
 <!-- yangqi     -->
  <div id="searchCondition">
