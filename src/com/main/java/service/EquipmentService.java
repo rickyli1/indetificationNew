@@ -50,7 +50,7 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
     			equipmentMerged.add(equipmentIndex);
     			equipmentName = equipmentIndex.getEquipmentName();
     		}else{
-    			equipmentIndex.setEquipmentNo("");
+//    			equipmentIndex.setEquipmentNo("");
     			equipmentIndex.setEquipmentGroup("");
     			equipmentIndex.setEquipmentSubGroup("");
     			equipmentIndex.setEquipmentName("");
@@ -86,6 +86,7 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 					for (Cell cell : row) {
 			    		String cellValue = ExcelUtil.getCellValue(cell);
 			    		if(!StringUtils.isEmpty(cellValue)){
+			    			cellValue = cellValue.trim();
 				    		switch (cell.getColumnIndex()) {
 				    		    //序号
 					    		case 0:
@@ -165,7 +166,7 @@ public class EquipmentService extends BaseImportService<EquipmentRepository, Equ
 						}
 					}
 					hm.put(equipmentNo, equipmentNo);
-					equipmentNo = null;
+					equipmentNo ="";
 //					else{
 //						
 //					}
