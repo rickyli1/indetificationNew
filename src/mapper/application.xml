@@ -157,7 +157,7 @@
 			concat_ws(<![CDATA[':']]>,temp3.EQUIPMENT_LEVEL ,temp3.areaRepairInfo) as areaRepairInfo from 
               (
                select  temp2.equipment_name,temp2.equipment_group,temp2.EQUIPMENT_LEVEL,
-               group_concat(temp2.COMPANY) as areaRepairInfo from 
+               group_concat(distinct temp2.COMPANY) as areaRepairInfo from 
 		    (
 				select en.equipment_id,en.EQUIPMENT_LEVEL,en.equipment_group ,en.EQUIPMENT_COMPANY,en.equipment_name,temp.company
 			    , r.repairer_area

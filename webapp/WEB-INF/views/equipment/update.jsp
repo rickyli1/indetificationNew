@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
+<c:import url="/WEB-INF/views/common/commonScript.jsp"></c:import> 
 <div class="modal-body">   
 <div class="container-fluid">
 <div class="row">
@@ -28,18 +29,18 @@
 	           </fieldset>
 	           <fieldset style="margin-top:10px">
 	              <div class="form-group">  
-	                 <label class="col-md-1 control-label" for="dequipmentCompany" style="width:100px;"><spring:message code="lable.equipment.update.choose.company"/></label>
+	                 <label class="col-md-1 control-label" for="dequipmentCompany" style="width:100px;"><spring:message code="lable.equipment.modifyCompany"/></label>
 	                 <div class="col-md-2"  style="width:180px;">
 	                    <input type="text" class="form-control" id="dequipmentCompany">
 	                 </div>
-	                 <label class="col-md-1 control-label" for="dlevel" style="width:100px;"><spring:message code="lable.equipment.update.repair.level"/></label>
+	                 <label class="col-md-1 control-label" for="dlevel" style="width:100px;"><spring:message code="lable.equipment.modifyCategory"/></label>
 	                 <div class="col-md-2"  style="width:180px;">
 	                      <select  class="form-control" id="dequipmentLevel">
 							 <option selected value=""></option>				
-								  <option value="大修"><spring:message code="option.equipment.update.major.repair"/></option>
-								  <option value="中修"><spring:message code="option.equipment.update.middle.repair"/></option>
-								  <option value="小修"><spring:message code="option.equipment.update.small.repair"/></option>
-								  <option value="检修"><spring:message code="option.equipment.update.check.repair"/></option>
+								  <option value="大修">大修</option>
+								  <option value="中修">中修</option>
+								  <option value="小修">小修</option>
+								  <option value="检修">检修</option>
 							</select>
 	                 </div>
 	                 
@@ -72,6 +73,11 @@
 	    </div>
 	</div>
 </div>
+
+<!-- <script type="text/javascript" src="/js/identification/equipment/equipmentAdd.js" charset="UTF-8"></script>
+<script type="text/javascript">
+   identification.equipmentAdd = new Identification.equipment.Add();
+</script> -->
 
 		
 		

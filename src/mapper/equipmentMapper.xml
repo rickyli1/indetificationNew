@@ -149,6 +149,15 @@
       <if test="equipmentSubGroup != null and equipmentSubGroup != ''">  
 	    , e.EQUIPMENT_SUB_GROUP = #{equipmentSubGroup}
       </if>
+      <if test="equipmentLimit != null and equipmentLimit != ''">  
+	    , e.EQUIPMENT_LIMIT = #{equipmentLimit}
+      </if>
+      <if test="equipmentLevel != null and equipmentLevel != ''">  
+	    , e.EQUIPMENT_LEVEL = #{equipmentLevel}
+      </if>
+      <if test="equipmentCompany != null and equipmentCompany != ''">  
+	    , e.EQUIPMENT_COMPANY= #{equipmentCompany}
+      </if>
       <if test="remark != null and remark != ''">  
 	    , e.REMARK = #{remark}
       </if>
@@ -215,4 +224,4 @@
     <include refid="baseSearchSql"/>
     <include refid="searchCondSql"/>
   </select>
-</mapper>
+</mapper> 

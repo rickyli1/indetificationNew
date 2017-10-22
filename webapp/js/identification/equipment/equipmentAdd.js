@@ -43,7 +43,7 @@
 	        	identification.ajax("/equipment/updateEquipment", JSON.stringify(saveData), "html", function(res) {
 					$("#alertDiv").empty();
 					$("#alertDiv").html(res);
-					window.location.reload()
+					window.location.reload();
 				});	     
 	        	
 	        });		
@@ -69,11 +69,11 @@
 //    	   rep.equipments = [];
     	   equipment.equipmentId = $("#dequipmentId").val();
     	   equipment.equipmentName = $("#dequipmentName").val();
-		   equipment.dlimit = $("#dlimit").val();
+		   equipment.equipmentLimit = $("#dlimit").val();
 		   equipment.equipmentGroup = $("#dgroupNo").val();
 		   equipment.equipmentSubGroup = $("#dsubGroupNo").val();
 		   equipment.remark = $("#dremark").val();
-		   equipment.dequipmentLevel = $("#equipmentLevel").val();
+		   equipment.equipmentLevel = $("#dequipmentLevel").val();
 		   equipment.equipmentCompany = $("#dequipmentCompany").val();
     	   return equipment;
        } ,
