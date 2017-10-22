@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -92,8 +93,10 @@ public class AuditService extends BaseImportService<AuditRepository, Application
  
 	protected void writeCells(HSSFWorkbook wb, Sheet sheet, CellStyle cs, Application bean) {
 		//取数据
-		List<Application> applications = applicationRepository.findAllApplicationAuditForExport(bean);
-
+//		List<Application> applications = applicationRepository.findAllApplicationAuditForExport(bean);
+		bean.setStartNo(0);
+		bean.setPageSize(100);
+		List<Application> applications = findAllApplications(bean);
 	    if(CollectionUtils.isNotEmpty(applications)) {
 	    	
 	    	IntStream.range(0, applications.size()).forEach(index -> {
@@ -151,7 +154,15 @@ public class AuditService extends BaseImportService<AuditRepository, Application
 				
 				//辖区同型号修理能力具体情况
 				cell = row.createCell(9);
-				cell.setCellValue(application.getAreaRepairInfo());
+				String areaRepairInfo ="";
+				if(application.getAreaRepairInfos() != null){
+					for(String str:application.getAreaRepairInfos()){
+						areaRepairInfo += str;
+						areaRepairInfo += "\n  ";
+					}
+					
+				}
+				cell.setCellValue(areaRepairInfo);
 				cell.setCellStyle(cs);
 				
 				//机关批复
