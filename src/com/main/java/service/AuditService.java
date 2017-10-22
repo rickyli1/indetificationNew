@@ -95,7 +95,7 @@ public class AuditService extends BaseImportService<AuditRepository, Application
 		//取数据
 //		List<Application> applications = applicationRepository.findAllApplicationAuditForExport(bean);
 		bean.setStartNo(0);
-		bean.setPageSize(100);
+		bean.setPageSize(Integer.MAX_VALUE);
 		List<Application> applications = findAllApplications(bean);
 	    if(CollectionUtils.isNotEmpty(applications)) {
 	    	
