@@ -31,8 +31,8 @@
 			                <td>${apply.equipmentLimit}</td>
 			                <td>${apply.remark}</td>
 			                <td>
+						    	<button id="detailBtn" class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#detailModal" onclick="goEquipmentUpdate('${apply.equipmentId}')"><spring:message code="lable.equipment.equipmentUpdate"/></button>			                
 			                	<button id="deleteBtn" class="btn btn-primary btn-sm" type="button"   onclick="goDel('${apply.equipmentId}')"><spring:message code="lable.equipment.equipmentDelete"/></button>
-						    	<button id="detailBtn" class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#detailModal" onclick="goEquipmentUpdate('${apply.equipmentId}')"><spring:message code="lable.equipment.equipmentUpdate"/></button>
 			                </td>
 		                </tr>
 	            	</c:forEach>

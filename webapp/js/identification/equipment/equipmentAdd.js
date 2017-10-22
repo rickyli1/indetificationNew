@@ -41,8 +41,7 @@
 			$("#updateEquipmentBtn").click(function() {
 	        	var saveData = that.getUpdateData();
 	        	identification.ajax("/equipment/updateEquipment", JSON.stringify(saveData), "html", function(res) {
-					$("#alertDiv").empty();
-					$("#alertDiv").html(res);
+					alert("修改成功");
 					window.location.reload();
 				});	     
 	        	
@@ -75,6 +74,8 @@
 		   equipment.remark = $("#dremark").val();
 		   equipment.equipmentLevel = $("#dequipmentLevel").val();
 		   equipment.equipmentCompany = $("#dequipmentCompany").val();
+		   equipment.equipmentNo = $("#dequipmentNo").val();
+		   
     	   return equipment;
        } ,
        goDetail:function(equipmentId) {
@@ -95,6 +96,7 @@
 			$("#dsubGroupNo").val(data.equipmentSubGroup);
 			$("#dequipmentLevel").val(data.equipmentLevel);
 			$("#dequipmentCompany").val(data.equipmentCompany);
+			$("#dequipmentNo").val(data.equipmentNo);
 		},
 		
 	});

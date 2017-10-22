@@ -161,6 +161,9 @@
       <if test="remark != null and remark != ''">  
 	    , e.REMARK = #{remark}
       </if>
+      <if test="equipmentNo != null and equipmentNo != ''">  
+	    , e.EQUIPMENT_NO = #{equipmentNo}
+      </if>
       WHERE EQUIPMENT_ID = #{equipmentId}
   </update>
   

@@ -30,9 +30,9 @@
         		var equipmentSubGroup = $("#equipmentSubGroup").val();
         		var equipmentLevel = $("#equipmentLevel").val();
         		var url = encodeURI("/equipment/export?equipmentGroup="+equipmentGroup+"&equipmentSubGroup="+equipmentSubGroup+"&equipmentLevel="+equipmentLevel+"&equipmentName="+equipmentName);
-//				location.href=encodeURI("/equipment/export/"+json);   
-        		window.open(url, '_self',
-        		'width=1,height=1,toolbar=no,menubar=no,location=no');
+				location.href=url;   
+//        		window.open(url, '_self',
+//        		'width=1,height=1,toolbar=no,menubar=no,location=no');
 				$("#loading").hide();
 
 			});	

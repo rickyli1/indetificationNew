@@ -1,5 +1,7 @@
 package com.main.java.service;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -20,7 +22,6 @@ import com.main.java.model.Application;
 import com.main.java.repository.ApplicationRepository;
 import com.main.java.utils.ExcelUtil;
 import com.main.java.utils.IndetificationUtil;
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class ApplicationService extends BaseImportService<ApplicationRepository, Application>{
@@ -141,8 +142,31 @@ public class ApplicationService extends BaseImportService<ApplicationRepository,
 		
 		List<String> applicationKeyList = applicationList.stream().map(Application :: getApplicationKey).collect(toList());
 		
+		//去掉excel重复数据
+		List<Application> excelList = new ArrayList<>();
+		for(int i = 0; i < list.size(); i++) {
+			
+			if(CollectionUtils.isEmpty(excelList)) {
+				excelList.add(list.get(i));
+			}else {
+				boolean isExist = false;
+				
+				for(int j = 0; j < excelList.size(); j++) {
+					if(StringUtils.equals(list.get(i).getApplicationKey(), excelList.get(j).getApplicationKey())) {
+						isExist = true;
+						break;
+					}
+				}
+				
+				if(!isExist) {
+					excelList.add(list.get(i));
+				}
+
+			}
+		}
+				
 		//申请时间+申请单位+设备名
-		return list.stream().filter(item -> !applicationKeyList.contains(item.getApplicationKey())).collect(toList());
+		return excelList.stream().filter(item -> !applicationKeyList.contains(item.getApplicationKey())).collect(toList());
 		 
 	 }
 	

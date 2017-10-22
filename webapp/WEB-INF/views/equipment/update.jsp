@@ -58,9 +58,13 @@
 	                 <div class="col-md-2"  style="width:180px;">
 	                    <input type="text" class="form-control" id="dremark">
 	                 </div>
+                 
+	                 <label class="col-md-1 control-label" for="dequipmentNo" style="width:100px;"><spring:message code="lable.equipment.update.equipmentNo"/></label>
+	                 <div class="col-md-2"  style="width:180px;">
+	                    <input type="text" class="form-control" id="dequipmentNo">
+	                 </div>
                  </div> 
 	           </fieldset>
-	           
 	           <fieldset style="margin-top:10px">
 	              <div class="form-group">
 	                  <div class="col-md-1">
